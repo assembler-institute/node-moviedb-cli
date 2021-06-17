@@ -1,38 +1,179 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
+const dotenv = require("dotenv");
+const ora = require("ora");
+
+dotenv.config();
 
 const program = new Command();
 program.version("0.0.1");
 
+const {
+  getRequestOptions,
+  getPaginatedRequestOptions,
+  getPersons,
+  getPerson,
+  getMovies,
+  getMovie,
+  getMovieReviews,
+} = require("./utils/requestMethods");
+
+const {
+  renderPersonsData,
+  renderPersonData,
+  renderMoviesData,
+  renderMovieData,
+  renderMovieReviewsData,
+} = require("./utils/renderMethods");
+
+const {
+  createSpinnerSuccessHandler,
+  createSpinnerErrorHandler,
+} = require("./utils/createSpinnerHandlers");
+
+const { notify } = require("./utils/notifiers");
+
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-p, --popular", "Fetch the popular persons")
+  .requiredOption(
+    "--page <number>",
+    "The page of persons data results to fetch"
+  )
+  .option("-s, --save", "Store the data in the filesystem")
+  .option("-l, --local", "Load the data from the filesystem first")
+  .action(function handleAction(programOptions) {
+    const spinner = ora("Fetching the popular persons data...").start();
+    let requestPath = `person/`;
+
+    if (programOptions.popular) {
+      requestPath += "popular";
+    }
+
+    const requestOptions = getPaginatedRequestOptions(
+      requestPath,
+      process.env.API_KEY,
+      programOptions.page
+    );
+
+    return getPersons(
+      requestOptions,
+      programOptions,
+      createSpinnerSuccessHandler(spinner),
+      createSpinnerErrorHandler(spinner),
+      renderPersonsData,
+      notify
+    );
   });
 
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-i, --id <personID>", "The id of the person")
+  .option("-s, --save", "Store the data in the filesystem")
+  .option("-l, --local", "Load the data from the filesystem first")
+  .action(function handleAction(programOptions) {
+    const spinner = ora("Fetching the person data...").start();
+
+    const requestOptions = getRequestOptions(
+      `person/${programOptions.id}`,
+      process.env.API_KEY
+    );
+
+    return getPerson(
+      requestOptions,
+      programOptions,
+      createSpinnerSuccessHandler(spinner),
+      createSpinnerErrorHandler(spinner),
+      renderPersonData
+    );
   });
 
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("--page <number>", "The page of movies data results to fetch")
+  .option("-p, --popular", "Fetch the popular movies", false)
+  .option("-n, --now-playing", "Fetch the movies that are playing now", false)
+  .option("-s, --save", "Store the data in the filesystem")
+  .option("-l, --local", "Load the data from the filesystem first")
+  .action(function handleAction(programOptions) {
+    const spinner = ora("Fetching the movies data...").start();
+
+    let requestPath = "movie/";
+
+    if (programOptions.popular) {
+      requestPath += "popular";
+    } else if (programOptions.nowPlaying) {
+      requestPath += "now_playing";
+    } else if (!programOptions.nowPlaying && !programOptions.popular) {
+      requestPath += "popular";
+    }
+
+    const requestOptions = getPaginatedRequestOptions(
+      requestPath,
+      process.env.API_KEY,
+      programOptions.page
+    );
+
+    return getMovies(
+      requestOptions,
+      programOptions,
+      createSpinnerSuccessHandler(spinner),
+      createSpinnerErrorHandler(spinner),
+      renderMoviesData
+    );
   });
 
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-i, --id <movieID>", "The id of the movie")
+  .option("-r, --reviews", "Fetch the reviews of the movie")
+  .option("-s, --save", "Store the data in the filesystem")
+  .option("-l, --local", "Load the data from the filesystem first")
+  .action(function handleAction(programOptions) {
+    const spinner = ora("Fetching the movie data...").start();
+
+    let requestPath = `movie/${programOptions.id}`;
+
+    if (programOptions.reviews) {
+      requestPath += `/reviews`;
+
+      const requestOptions = getRequestOptions(
+        requestPath,
+        process.env.API_KEY
+      );
+
+      return getMovieReviews(
+        requestOptions,
+        programOptions,
+        createSpinnerSuccessHandler(spinner),
+        createSpinnerErrorHandler(spinner),
+        renderMovieReviewsData
+      );
+    }
+
+    const requestOptions = getRequestOptions(requestPath, process.env.API_KEY);
+
+    return getMovie(
+      requestOptions,
+      programOptions,
+      createSpinnerSuccessHandler(spinner),
+      createSpinnerErrorHandler(spinner),
+      renderMovieData
+    );
   });
 
 // error on unknown commands
+program.on("command:*", function () {
+  console.error(
+    "Invalid command: %s\nSee --help for a list of available commands.",
+    program.args.join(" ")
+  );
+  process.exit(1);
+});
 
 program.parse(process.argv);
