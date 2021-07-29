@@ -1,0 +1,35 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Get movies default",
+      "type": "pwa-node",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/src/moviedb.js",
+      // Optional arguments passed to the runtime executable.
+      "args": ["get-movies", "--page", "1"]
+    },
+    {
+      "name": "Get movies -popular",
+      "type": "pwa-node",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/src/moviedb.js",
+      // Optional arguments passed to the runtime executable.
+      "args": ["get-movies", "--page", "1", "-p"]
+    },
+    {
+      "name": "Get movies now playing",
+      "type": "pwa-node",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/src/moviedb.js",
+      // Optional arguments passed to the runtime executable.
+      "args": ["get-movies", "--page", "1", "-n"]
+    }
+  ]
+}

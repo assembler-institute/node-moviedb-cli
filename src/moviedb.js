@@ -22,8 +22,15 @@ program
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption(
+    "--page <number>",
+    "The page of movies data results to fetch",
+    "1"
+  )
+  .option("-p, --popular", "Fetch the popular movies")
+  .option("-n, --now-playing", "Fetch the movies that are playing now")
+  .action(function handleAction(options) {
+    console.log(options);
   });
 
 program
