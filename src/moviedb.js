@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
+require('dotenv').config();
+// console.log(process.env.API_KEY);
 
 const program = new Command();
 program.version("0.0.1");
