@@ -1,11 +1,15 @@
 #!/usr/bin/env node
-
 const { Command } = require("commander");
-require('dotenv').config();
+require("dotenv").config();
 // console.log(process.env.API_KEY);
 
 const program = new Command();
 program.version("0.0.1");
+
+const render = require("./utils/renderMethods");
+
+//! This is a require for the json to mock the call on the render for the getMovies
+const exampleMovie = require("./utils/exampleMovie.json");
 
 program
   .command("get-persons")
@@ -32,7 +36,12 @@ program
   .option("-p, --popular", "Fetch the popular movies")
   .option("-n, --now-playing", "Fetch the movies that are playing now")
   .action(function handleAction(options) {
-    console.log(options);
+    //! The argument for this function should be the values returned from the requet
+    render.renderMovies(
+      exampleMovie.page,
+      exampleMovie.total_pages,
+      exampleMovie.results
+    );
   });
 
 program
