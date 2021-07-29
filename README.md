@@ -15,7 +15,7 @@
     - options:
       - --popular (-p) REQUIRED ("Fetch the popular persons")
       - --page (none) (input type: number) REQUIRED ("The page of persons data results to fetch")
-  3.2 Start terminal spinner using ora (https://github.com/sindresorhus/ora)
+  3.2 Start terminal spinner using ora (https://github.com/sindresorhus/ora) that renders the following message until the request has finished: "Fetching the popular person's data..."
   3.3 Create https request file (https://nodejs.org/api/https.html#https_https_request_options_callback)
   3.4 ERROR HANDLER -> ora.fail()
   3.5 RENDERING RESULT -> chalk (https://github.com/chalk/chalk)
