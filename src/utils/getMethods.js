@@ -7,7 +7,6 @@ const ora = require("ora");
 function getPersonsByPage(page = 1) {
   const options = {
     host: "api.themoviedb.org",
-    port: 80,
     protocol: "https:",
     path: `/3/person/popular?page=${page}&api_key=${process.env.API_KEY}`,
     method: "GET",
@@ -30,7 +29,7 @@ function getPersonsByPage(page = 1) {
       try {
         let json = JSON.parse(body);
         setTimeout(() => {
-          console.log(json);
+          console.log("\n", json);
           spinner.succeed("Data fetched successfully");
         }, 2000);
       } catch (error) {
