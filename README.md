@@ -1,5 +1,71 @@
 `#node.js` `#master-in-software-engineering`
 
+
+1. Create API_KEY 
+   https://www.themoviedb.org/signup
+2. Create .env file with API_KEY (process.env.API_KEY)
+
+  /****** CLI PROGRAM *****/
+
+ 3.  Popular persons 
+  ----------------
+  3.1  URL: https://api.themoviedb.org/3/person/popular?page=1 
+  - Required fields: 
+    - description: "Make a network request to fetch the most popular persons"
+    - options:
+      - --popular (-p) REQUIRED ("Fetch the popular persons")
+      - --page (none) (input type: number) REQUIRED ("The page of persons data results to fetch")
+  3.2 Start terminal spinner using ora (https://github.com/sindresorhus/ora)
+  3.3 Create https request file (https://nodejs.org/api/https.html#https_https_request_options_callback)
+  3.4 ERROR HANDLER -> ora.fail()
+  3.5 RENDERING RESULT -> chalk (https://github.com/chalk/chalk)
+    - Use chalk.white() method to render pagination
+    - Use chalk for rendering persons data
+    - If person appears in movies:
+        - Use chalk for rendering movies
+  3.6 Ending the terminal spinner using ora.succeed()
+
+4. Persons details
+------------------
+  4.1 URL: https://api.themoviedb.org/3/person/:id
+  - Required fields:
+    - description: "Make a network request to fetch the data of a single person"
+    - options:
+      - --id (-i) REQUIRED ("The id of the person")
+  4.2 Start terminal spinner using ora (https://github.com/sindresorhus/ora)
+  4.3 Create https request file (https://nodejs.org/api/https.html#https_https_request_options_callback)
+  4.4 ERROR HANDLER -> ora.fail()
+  4.5 Rendering using chalk
+  4.6 Ending the terminal spinner using ora.succeed()
+
+5. REQUIEREMENTS
+
+  - GIT
+  - Directory structure
+  - English comments
+  - camelCase
+  - Subtasks
+  - Delete files not used 
+
+6. DELIVERABLES
+
+  - Repository
+  - Postman collection
+  - README
+
+7. RESOURCES
+
+● Oficial web page: https://nodejs.org/en/docs/
+● W3schools: https://www.w3schools.com/nodejs/
+● NodeJS Tutorial: https://www.tutorialsteacher.com/nodejs/nodejs-tutorials
+● chalk: https://www.npmjs.com/package/chalk
+● commander: https://www.npmjs.com/package/commander
+● dotenv: https://www.npmjs.com/package/dotenv
+● node-notifier: https://www.npmjs.com/package/node-notifier
+● ora: https://www.npmjs.com/package/ora/v/0.3.0
+
+
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
@@ -12,7 +78,15 @@ In this project you will learn how to create a cli app with Node.js.
 
 ## Table of Contents <!-- omit in toc -->
 
+- [3.  Popular persons](#3--popular-persons)
+- [4. Persons details](#4-persons-details)
 - [Getting Started](#getting-started)
+  - [The repository](#the-repository)
+  - [Fetching All the Branches](#fetching-all-the-branches)
+  - [List Both Remote Tracking Branches and Local Branches](#list-both-remote-tracking-branches-and-local-branches)
+  - [Installing](#installing)
+  - [Running the Tests](#running-the-tests)
+  - [Git `precommit` and `prepush` Hooks](#git-precommit-and-prepush-hooks)
 - [The Project](#the-project)
 - [Project requirements](#project-requirements)
 - [Project delivery](#project-delivery)
