@@ -7,7 +7,7 @@ const ora = require("ora");
 function getPersonsByPage(page = 1) {
   const options = {
     host: "api.themoviedb.org",
-    port: 443,
+    port: 80,
     protocol: "https:",
     path: `/3/person/popular?page=${page}&api_key=${process.env.API_KEY}`,
     method: "GET",
@@ -17,10 +17,10 @@ function getPersonsByPage(page = 1) {
     },
   };
 
+  const spinner = ora("Loading data").start();
+
   const req = https.request(options, (res) => {
     let body = "";
-
-    const spinner = ora("Loading data").start();
 
     res.on("data", (chunk) => {
       body += chunk;
@@ -34,13 +34,13 @@ function getPersonsByPage(page = 1) {
           spinner.succeed("Data fetched successfully");
         }, 2000);
       } catch (error) {
-        console.error(error.message);
+        spinner.fail(error.message);
       }
     });
   });
 
   req.on("error", (e) => {
-    console.error(`problem with request: ${e.message}`);
+    spinner.fail(e.message);
   });
 
   req.end();
