@@ -1,4 +1,5 @@
 const https = require("https");
+const ora = require("ora");
 
 /**
  * Persons by Pages
@@ -19,6 +20,8 @@ function getPersonsByPage(page = 1) {
   const req = https.request(options, (res) => {
     let body = "";
 
+    const spinner = ora("Loading data").start();
+
     res.on("data", (chunk) => {
       body += chunk;
     });
@@ -26,7 +29,10 @@ function getPersonsByPage(page = 1) {
     res.on("end", () => {
       try {
         let json = JSON.parse(body);
-        console.log(json);
+        setTimeout(() => {
+          console.log(json);
+          spinner.succeed("Data fetched successfully");
+        }, 2000);
       } catch (error) {
         console.error(error.message);
       }
