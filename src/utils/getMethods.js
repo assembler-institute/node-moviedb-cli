@@ -4,7 +4,7 @@ const ora = require("ora");
 /**
  * Persons by Pages
  */
-function getPersonsByPage(page = 1) {
+function PersonsByPage(page = 1) {
   const options = {
     host: "api.themoviedb.org",
     protocol: "https:",
@@ -16,7 +16,7 @@ function getPersonsByPage(page = 1) {
     },
   };
 
-  const spinner = ora("Loading data").start();
+  const spinner = ora("Loading popular people").start();
 
   const req = https.request(options, (res) => {
     let body = "";
@@ -45,11 +45,4 @@ function getPersonsByPage(page = 1) {
   req.end();
 }
 
-/**
- * Popular functions
- */
-function getPopularPersons() {
-  console.log("personas populares como Einar ");
-}
-
-module.exports = { getPersonsByPage, getPopularPersons };
+module.exports = { PersonsByPage };
