@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const { Command } = require("commander");
-const dotenv = require("dotenv");
+require("dotenv").config({ path: "../.env" });
 const program = new Command();
 
-dotenv.config();
+// dotenv.config();
 
 console.log("This is the API key: ", process.env.API_KEY);
 program.version("0.0.1");
