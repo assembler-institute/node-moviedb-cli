@@ -1,29 +1,28 @@
 #!/usr/bin/env node
-const { Command } = require("commander");
+// Imports
 require("dotenv").config({ path: "../.env" });
+const { Command } = require("commander");
+const chalk = require("chalk");
 const program = new Command();
 
-// dotenv.config();
+// General variables
+const apiKey = process.env.API_KEY;
+let opts;
 
-console.log("This is the API key: ", process.env.API_KEY);
 program.version("0.0.1");
 
 // Options ---------------------------------------------------
 program
-  // Get persons
-  .requiredOption("-p, --popular", "Fetch the popular persons")
-  .requiredOption("--page", "The page of persons data results to fetch");
-
-const opt = program.opts();
-// debugger;
-console.log(opt);
+  .option("--page <number>", "The page of persons data results to fetch")
+  .option("-p, --popular", "Fetch the popular persons");
 
 // Commands ---------------------------------------------------
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
-  .action(function handleAction() {
-    console.log("Get persons at page: ", opt.page);
+  .action(() => {
+    opts = program.opts();
+    console.log(chalk.yellow.bold("Get persons at page: "), opts.page);
   });
 
 program
@@ -50,3 +49,8 @@ program
 // error on unknown commands
 
 program.parse(process.argv);
+
+/* -------------------------------------------------------------------------- */
+/*                                    Test                                    */
+/* -------------------------------------------------------------------------- */
+console.log("This is the API key: ", chalk.blue(apiKey));
