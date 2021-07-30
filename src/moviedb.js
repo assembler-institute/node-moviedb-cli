@@ -107,12 +107,11 @@ program
         l(movie.id + "\n");
         l("Title: ", "blue", true);
         l(movie.title + "\n", "white", true);
-        // if (person.known_for_department) {
-        //   l("Deparment: ", "white", true);
-        //   l(person.known_for_department, "magenta");
-        // }
-        l("Movie overview: ", "magenta", true);
-        l(movie.overview + "\n");
+        l("Release date: ", "magenta", true);
+        l(movie.release_date + "\n");
+        if (apiResult.results[apiResult.results.length - 1] === movie) {
+          l("----------------------------------------\n");
+        }
       });
     });
   });
