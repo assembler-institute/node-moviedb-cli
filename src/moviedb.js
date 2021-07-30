@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+/** @format */
+
 const { Command } = require("commander");
 
 const get = require("./utils/getMethods.js");
@@ -31,8 +33,11 @@ program
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("--page <number>", "The page of movies data results to fetch")
+  .option("-p, --popular", "Fetch the popular movies")
+  .option("-n, --now-playing", "Fetch the movies that are playing now")
+  .action(function handleAction(opt) {
+    get.MoviesByPage(opt.page, opt.nowPlaying);
   });
 
 program
