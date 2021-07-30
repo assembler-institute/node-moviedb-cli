@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
+const https = require("https");
+const req = require("./utils/httprequest");
+const date = require("./utils/httprequest");
 require("dotenv/config");
 
 const program = new Command();
@@ -10,7 +13,8 @@ program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
   .action(function handleAction() {
-    console.log("hello-world");
+    const personsData = req.httpRequest("person/popular", "page=1");
+    /* console.log(personsData); */
   });
 
 program
