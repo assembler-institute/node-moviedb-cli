@@ -1,13 +1,28 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
-
 const ora = require("ora");
 const dotenv = require("dotenv");
 dotenv.config();
 const https = require("https");
 
-const { getPerson } = require("./util/requests");
+const chalk = require("chalk");
+
+const { getPersons, getPerson } = require("./utils/httpsRequest");
+
+const requestOptions = {
+  href: "https://api.themoviedb.org",
+  protocol: "https:",
+  hostname: "api.themoviedb.org",
+  path: ``,
+  // path: `/3/person/popular?page=1&api_key=f599dfd0f0fe1ae38c4420cd239f2cd2`,
+  port: 443,
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${process.env.API_KEY}`,
+  },
+};
 
 const program = new Command();
 program.version("0.0.1");
@@ -20,40 +35,40 @@ program
     "--page, <number>",
     "The page of persons data results to fetch"
   )
-  .action(function handleAction() {
-    const options = {
-      href: "https://api.themoviedb.org",
-      protocol: "https:",
-      hostname: "api.themoviedb.org",
-      path: `/3/person/popular?page=1`,
-      // path: `/3/person/popular?page=1&api_key=f599dfd0f0fe1ae38c4420cd239f2cd2`,
-      port: 443,
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.API_KEY}`,
-      },
-    };
+  .action(async function handleAction(programOptions) {
     const spinner = ora("Fetching the popular person's data...").start();
     console.log("hello-world");
 
-    const req = https.request(options, (res) => {
-      let response = "";
+    requestOptions.path = `/3/person/popular?page=${programOptions.page}`;
+    data = await getPersons(requestOptions);
+    // console.log(persons);
 
-      res.on("data", function onData(chunk) {
-        response += chunk;
+    data.results.forEach((person) => {
+      console.log(
+        `PERSON: 
+    
+    ID: ${person.id}
+    Name: ${chalk.bold.blue(person.name)}
+    Departament: ${chalk.magenta(person.known_for_department)}\n\n`
+      );
+
+      person.known_for.forEach((movies) => {
+        if (movies.original_title == undefined) {
+          console.log(`${chalk.yellow.dim("There's no movive ")}`);
+        } else {
+          console.log(
+            `\tMovie:
+        \tID: ${chalk.green(movies.id)}
+        \tRelease Date: ${chalk.green(movies.release_date)}
+        \tTitle: ${chalk.green(movies.original_title)}`
+          );
+        }
       });
 
-      res.on("end", function onEnd() {
-        const data = JSON.parse(response);
-        console.log(data);
-      });
+      console.log(
+        `--------------------------------------------------------\n\n`
+      );
     });
-
-    req.on("error", (e) => {
-      console.error(e);
-    });
-    req.end();
 
     spinner.succeed("Popular persons data loaded");
   });
@@ -62,9 +77,12 @@ program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
   .requiredOption("-i, --id", "The page of persons data results to fetch")
-  .action(function handleAction(option) {
-    const id = option.args.toString();
-    getPerson(id);
+  .action(async function handleAction(programOptions) {
+    const spinner = ora("Fetching the person's data...").start();
+    const id = programOptions.args.toString();
+    requestOptions.path = `/3/person/${id}`;
+    data = await getPerson(requestOptions);
+    spinner.succeed("Person data loaded");
   });
 
 program
