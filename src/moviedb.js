@@ -20,7 +20,7 @@ program
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
-  .option("-i, --id [id]", "The id of the person")
+  .requiredOption("-i, --id [id]", "The id of the person")
   .action(function handleAction(option) {
     if (option.id) get.PersonById(option.id);
   });
