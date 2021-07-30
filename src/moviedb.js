@@ -3,7 +3,6 @@
 const { Command } = require("commander");
 require("dotenv").config();
 const request = require("./utils/requestsMethods");
-// console.log(process.env.API_KEY);
 
 const program = new Command();
 program.version("0.0.1");
@@ -29,8 +28,6 @@ program
   .option("-p, --popular", "Fetch the popular movies")
   .option("-n, --now-playing", "Fetch the movies that are playing now")
   .action(async function handleAction(options) {
-    //default popular movies
-    // const options = program.opts();
     const page = parseInt(options.page);
     if (options.nowPlaying === true) {
       const json = await request.getNowPlayingMovies(page);
@@ -44,8 +41,17 @@ program
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-i, --id <number>", "The id of the movie")
+  .option("-r, --reviews", "Fetch the reviews of the movie")
+  .action(async function handleAction(options) {
+    const movieId = parseInt(options.id);
+    const json = await request.getMovie(movieId);
+    console.log(json);
+    if (options.reviews === true) {
+      const movieId = parseInt(options.id);
+      const json = await request.getMovieReviews(movieId);
+      console.log(json);
+    }
   });
 
 // error on unknown commands
