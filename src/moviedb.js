@@ -13,10 +13,11 @@ const program = new Command();
 // ---------------------------------------------------
 const apiKey = process.env.API_KEY;
 
-/* -------------------------------------------------------------------------- */
-/*                                    Test                                    */
-/* -------------------------------------------------------------------------- */
+// Helpers
+// ---------------------------------------------------
+
 // console.log("This is the API key: ", chalk.blue(apiKey));
+
 let undefinedTitle = function returnUndefined(element) {
   if (element === undefined) {
     return true;
@@ -37,11 +38,11 @@ program
   .action((options) => {
     // console.log(chalk.yellow.bold("Get persons at page: "), options.page);
 
-    getPersons(options.page).then((result) => {
+    getPersons(options.page).then((apiResult) => {
       l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-      l(`Page: ${options.page} of ${result.total_pages}\n`);
+      l(`Page: ${options.page} of ${apiResult.total_pages}\n`);
 
-      result.results.forEach((person) => {
+      apiResult.results.forEach((person) => {
         l("----------------------------------------\n");
         l("PERSON \n");
         l("Id: ", "white", true);
@@ -74,7 +75,7 @@ program
           });
         } else {
           // If only appears in tv shows
-          l(`${person.name} doesn’t appear in any movie. \n`);
+          l(`${person.name} doesn’t appear in any movie. \n`, "red");
         }
       });
     });
