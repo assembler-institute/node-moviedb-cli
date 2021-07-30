@@ -2,7 +2,7 @@
 
 const { Command } = require("commander");
 
-const func = require("./utils/getMethods.js");
+const get = require("./utils/getMethods.js");
 const dotenv = require("dotenv").config();
 
 const program = new Command();
@@ -11,11 +11,10 @@ program.version("0.0.1");
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
-  .option("-p, --popular", "Fetch the popular persons")
-  .option("--page <page>", "The page of persons data results to fetch")
-  .action(function handleAction(options) {
-    if (options.page) func.getPersonsByPage(options.page);
-    if (options.popular) func.getPopularPersons(options.popular);
+  .requiredOption("-p, --popular", "Fetch the popular persons")
+  .requiredOption("--page <number>", "The page of data results to fetch")
+  .action(function handleAction(opt) {
+    if (opt.page && opt.popular) get.PersonsByPage(opt.page);
   });
 
 program
