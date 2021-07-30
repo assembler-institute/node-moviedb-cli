@@ -2,7 +2,7 @@
 // Imports
 // ---------------------------------------------------
 require("dotenv").config({ path: "../.env" });
-const { getPersons } = require("./requests.js");
+const { getPersons, getPersonById } = require("./requests.js");
 const { Command } = require("commander");
 const { l } = require("./chalk.js");
 const chalk = require("chalk");
@@ -38,18 +38,18 @@ program
   .action((options) => {
     // console.log(chalk.yellow.bold("Get persons at page: "), options.page);
 
-    getPersons(options.page).then((apiResult) => {
+    getPersons(options.page).then((apiResponse) => {
       l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-      l(`Page: ${options.page} of ${apiResult.total_pages}\n`);
+      l(`Page: ${options.page} of ${apiResponse.total_pages}\n`);
 
-      apiResult.results.forEach((person) => {
-        l("----------------------------------------\n");
+      apiResponse.results.forEach((person) => {
+        l("----------------------------------------");
         l("PERSON \n");
         l("Id: ", "white", true);
         l(person.id);
         l("Name: ", "white", true);
         l(person.name, "blue", true);
-        if (person.known_for_department) {
+        if (person.known_for_department === "Acting") {
           l("Deparment: ", "white", true);
           l(person.known_for_department, "magenta");
         }
@@ -75,7 +75,7 @@ program
           });
         } else {
           // If only appears in tv shows
-          l(`${person.name} doesn’t appear in any movie. \n`, "red");
+          l(`${person.name} doesn’t appear in any movie.\n`, "red");
         }
       });
     });
@@ -84,8 +84,39 @@ program
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-i, --id <personId>", "The id of the person")
+  .action((options) => {
+    getPersonById(options.id).then((apiResponse) => {
+      let person = apiResponse;
+      l("----------------------------------------");
+      l("PERSON \n");
+      l("Id: ", "white", true);
+      l(person.id);
+      l("Name: ", "white", true);
+      l(person.name, "blue", true);
+      l("Birthday: ", "white", true);
+      if (person.birthday && person.place_of_birth) {
+        l(person.birthday + " | " + person.place_of_birth);
+      } else {
+        l(`No birthday data of ${person.name}.`, "red", true);
+      }
+      if (person.known_for_department === "Acting") {
+        l("Deparment: ", "white", true);
+        l(person.known_for_department, "magenta");
+      }
+      if (person.biography) {
+        l("Biography: ", "white", true);
+        l(person.biography, "blue", true);
+      }
+      l("Also known as: ", "white", true);
+      if (person.also_known_as != undefined) {
+        person.also_known_as.forEach((aka) => {
+          l(`\t · ${aka}`);
+        });
+      } else {
+        l(`\n${person.name} doesn’t have any alternate names\n`, "red", true);
+      }
+    });
   });
 
 program
