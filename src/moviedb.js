@@ -1,16 +1,21 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
-
+const { getPersons } = require("./module/getPersonsRequest");
 const program = new Command();
 program.version("0.0.1");
 
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
-  .action(function handleAction() {
-    console.log("hello-world");
-  });
+  .action((options) => {
+    getPersons(options);
+  })
+  .requiredOption("-p, --popular", "Fetch the popular persons")
+  .requiredOption(
+    "--page <number>",
+    "The page of persons data results to fetch"
+  );
 
 program
   .command("get-person")
