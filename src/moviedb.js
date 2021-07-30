@@ -5,7 +5,29 @@ const { Command } = require("commander");
 const ora = require("ora");
 const dotenv = require("dotenv");
 dotenv.config();
+const https = require('https');
 
+// const options = {
+//   hostname: ' https://api.themoviedb.org',
+//   port: 443,
+//   path: '/',
+//   method: 'GET',
+  
+// };
+const options ={
+  href: "https://api.themoviedb.org",
+protocol: "https:",
+hostname: "api.themoviedb.org",
+path: `/3/person/popular?page=1`,
+port: 443,
+method: "GET",
+headers: {
+"Content-Type": "application/json",
+Authorization: `Bearer "fd994b7d6abb03ae970228dfbc606f88"`,
+}
+}
+
+//3/person/popular?page=1&api_key=f599dfd0f0fe1ae38c4420cd239f2cd2'
 const program = new Command();
 program.version("0.0.1");
 
@@ -20,6 +42,23 @@ program
   .action(function handleAction() {
     const spinner = ora("Fetching the popular person's data...").start();
     console.log("hello-world");
+
+    const req = https.request(options, (res) => {
+       console.log("this is res: ",res);
+      // console.log('statusCode:', res.statusCode);
+      // console.log('headers:', res.headers);
+    
+      res.on('data', (d) => {
+        console.log(d);
+        //process.stdout.write(d);
+      });
+    });
+    
+    req.on('error', (e) => {
+      console.error(e);
+    });
+    req.end();
+
     spinner.succeed("Popular persons data loaded");
   });
 
