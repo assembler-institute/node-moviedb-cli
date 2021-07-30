@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
-
 const ora = require("ora");
 const dotenv = require("dotenv");
 dotenv.config();
+const chalk = require('chalk');
+
 
 const {
   getPersons,
@@ -38,10 +39,37 @@ program
   )
   .action(async function handleAction(programOptions) {
     const spinner = ora("Fetching the popular person's data...").start();
+    console.log("hello-world");
 
     requestOptions.path = `/3/person/popular?page=${programOptions.page}`;
-    persons = await   getPersons(requestOptions);
-    console.log(persons);
+    data = await getPersons(requestOptions);
+    // console.log(persons);
+
+    data.results.forEach((person) => {
+      console.log((
+        `PERSON: 
+    
+    ID: ${person.id}
+    Name: ${chalk.bold.blue(person.name)}
+    Departament: ${chalk.magenta(person.known_for_department)}\n\n`)
+      )
+
+      person.known_for.forEach((movies) => {
+        if (movies.original_title == undefined) {
+          console.log(`${chalk.yellow.dim("There's no movive ")}`)
+        } else {
+          console.log((
+            `\tMovie:
+        \tID: ${chalk.green(movies.id)}
+        \tRelease Date: ${chalk.green(movies.release_date)}
+        \tTitle: ${chalk.green(movies.original_title)}`)
+          )
+        }
+      })
+
+      console.log(`--------------------------------------------------------\n\n`)
+    })
+
 
     spinner.succeed("Popular persons data loaded");
   });
