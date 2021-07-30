@@ -1,5 +1,4 @@
 const chalk = require("chalk");
-const ora = require("ora");
 
 const log = console.log;
 
@@ -17,23 +16,6 @@ function renderMovies(page, allPages, movies) {
     });
   }
 }
-
-//! This is the use for the spinner with ora.
-function spinner(time) {
-  // const spinner = ora("Loading content...").start();
-  const spinner = ora({
-    text: `${chalk.yellow("Fetching de movie data...")}`,
-    spinner: "soccerHeader",
-  });
-
-  spinner.start();
-
-  setTimeout(() => {
-    spinner.succeed("Data received");
-  }, time + 1000);
-}
-//! This is the execution of the spinner.
-spinner(1000);
 
 function renderSingleMovie(movie) {
   log(chalk.white("\n\n--------------------------------"));
