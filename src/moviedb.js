@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
+require("dotenv/config");
 
 const program = new Command();
 program.version("0.0.1");
@@ -30,7 +31,7 @@ program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
   .action(function handleAction() {
-    console.log("hello-world");
+    console.log(process.env.API_KEY);
   });
 
 // error on unknown commands
