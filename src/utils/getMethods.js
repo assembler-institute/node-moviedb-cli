@@ -31,40 +31,27 @@ function PersonsByPage(page = 1) {
 
 /**
  * Movies functions - Movies Pagination
- */
-//https://api.themoviedb.org/3/movie/popular?page=1&api_key=b103cea4e07be4e6b9e24670e40350a5
-function MoviesByPage(page = 1) {
+ * @param page: number of page to render
+ * @param nowPlaying: bool, manage change of path
+ * */
+function MoviesByPage(page = 1, nowPlaying) {
+  let path = `/3/movie/popular?page=${page}&api_key=${process.env.API_KEY}`;
+
+  if (nowPlaying) {
+    path = `/3/movie/now_playing?page=${page}&api_key=${process.env.API_KEY}`;
+  }
+
   const options = {
     ...httpConstants,
-    path: `/3/movie/popular?page=${page}&api_key=${process.env.API_KEY}`,
+    path: path,
   };
-
   const spinner = ora("Loading popular movie").start();
 
   const req = https.request(options, (res) => {
     let body = "";
 
     res.on("data", (chunk) => (body += chunk));
-    res.on("end", () => chalkMovie(JSON.parse(body), spinner));
-  });
-
-  req.on("error", (e) => spinner.fail(e.message));
-  req.end();
-}
-
-function MoviesByPage(page = 1) {
-  const options = {
-    ...httpConstants,
-    path: `/3/movie/popular?page=${page}&api_key=${process.env.API_KEY}`,
-  };
-
-  const spinner = ora("Loading popular movie").start();
-
-  const req = https.request(options, (res) => {
-    let body = "";
-
-    res.on("data", (chunk) => (body += chunk));
-    res.on("end", () => chalkMovie(JSON.parse(body), spinner));
+    res.on("end", () => chalkMovie(JSON.parse(body), spinner, nowPlaying));
   });
 
   req.on("error", (e) => spinner.fail(e.message));

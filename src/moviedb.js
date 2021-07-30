@@ -26,8 +26,6 @@ program
     if (option.id) get.PersonById(option.id);
   });
 
-//./moviedb.js get-movies --popular --page 2
-//./moviedb.js get-movies --now-playing --page 2
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
@@ -35,10 +33,7 @@ program
   .option("-p, --popular", "Fetch the popular movies")
   .option("-n, --now-playing", "Fetch the movies that are playing now")
   .action(function handleAction(opt) {
-    // if (opt.page && opt.popular && opt.nowPlaying) get.MoviesByPage(opt.page);
-    // if ((opt.page && opt.popular) || opt.nowPlaying) get.MoviesByPage(opt.page);
-    //get.MoviesByPage(opt.page, opt.nowPlaying);
-    console.log(opt.nowPlaying); // if nP is true, ...
+    get.MoviesByPage(opt.page, opt.nowPlaying);
   });
 
 program

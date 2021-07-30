@@ -30,6 +30,7 @@ function chalkPeople(page, spinner) {
       });
 
       spinner.succeed("Popular Persons data loaded");
+
       log("\n");
     }, 1000);
   } catch (error) {
@@ -51,7 +52,12 @@ function chalkPersonId(person, spinner) {
   }
 }
 
-function chalkMovie(page, spinner) {
+/**
+ * Render Movie in command line
+ * @param page : Response object of type movie
+ * @param spinner : a Spinner to render
+ */
+function chalkMovie(page, spinner, nowPlaying) {
   try {
     setTimeout(() => {
       page.results.forEach((movie, index, array) => {
@@ -68,7 +74,10 @@ function chalkMovie(page, spinner) {
         log(chalk.white("----------------------"));
       });
 
-      spinner.succeed("Popular Movie data loaded");
+      if (nowPlaying) spinner.succeed("Movies playing now data loaded");
+      else {
+        spinner.succeed("Popular Movies data loaded");
+      }
       log("\n");
     }, 1000);
   } catch (error) {
