@@ -18,12 +18,12 @@ const options ={
   href: "https://api.themoviedb.org",
 protocol: "https:",
 hostname: "api.themoviedb.org",
-path: `/3/person/popular?page=1`,
+path: `/3/person/popular?page=1&api_key=f599dfd0f0fe1ae38c4420cd239f2cd2`,
 port: 443,
 method: "GET",
 headers: {
 "Content-Type": "application/json",
-Authorization: `Bearer "fd994b7d6abb03ae970228dfbc606f88"`,
+//Authorization: `f599dfd0f0fe1ae38c4420cd239f2cd2`,
 }
 }
 
@@ -43,12 +43,17 @@ program
     const spinner = ora("Fetching the popular person's data...").start();
     console.log("hello-world");
 
-    const req = https.request(options, (res) => {
-       console.log("this is res: ",res);
+    const req = https.request(options, (req,res) => {
+       //console.log("this is res: ",req);
       // console.log('statusCode:', res.statusCode);
-      // console.log('headers:', res.headers);
-    
-      res.on('data', (d) => {
+       //console.log('headers:', res.headers);
+       let data = '';
+       req.on('data', chunk => {
+         data += chunk;
+         console.log(JSON.stringify(data));
+       })
+      
+      req.on('data', (d) => {
         console.log(d);
         //process.stdout.write(d);
       });
