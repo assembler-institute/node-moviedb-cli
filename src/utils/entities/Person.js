@@ -19,41 +19,51 @@ class Person {
     log(`ID: ${chalk.white(this.id)}`);
     log(`Name: ${chalk.blue.bold(this.name)}`);
 
+    // If department is Acting
     if (this.known_for_department == "Acting")
       log(`Department: ${chalk.magenta(this.known_for_department)}`);
 
+    // if no titles
+    const titles = this.known_for.filter((movie) => movie.title);
+    if (!titles.length) {
+      log(chalk.bgYellow.red(`\n\t${this.name} doesn’t appear in any movie\n`));
+      return;
+    }
+
     this.known_for.forEach((movie) => {
-      if (movie.title !== "undefined") {
+      if (movie.title) {
         log("\n");
         log(`\tMovie:`);
         log(`\tRelease date: ${chalk.white(movie.release_date)}`);
         log(`\tTitle: ${chalk.white(movie.title)}`);
-        log("\n");
-      } else {
-        log(`\t${chalk.white(this.name)} doesn’t appear in any movie\n:`);
       }
     });
 
     log("\n");
   }
-  
+
   renderPersonById() {
-      log("____________________________________\nPerson:\n");
-      log(`ID: ${this.id} \nName: ${chalk.cyanBright(this.name)} \nBirthday: ${this.birthday} ${chalk.gray("|")} ${this.place_of_birth}`);
-      if (this.known_for_department != null) log(`Department: ${chalk.magentaBright(this.known_for_department)}`);
-        
-      log(`Biography: ${chalk.cyanBright(chalk.bold(this.biography))} \n`);
-      
-      if (this.also_known_as) { 
-          log(`Also known as: \n`);
-          this.also_known_as.forEach(element => {
-          log(element);
-        });
-      } else {
-          log(`${chalk.yellow(this.name)} doesn’t have any alternate names`)
-      }
-      
-      log("");
+    log("____________________________________\nPerson:\n");
+    log(
+      `ID: ${this.id} \nName: ${chalk.cyanBright(this.name)} \nBirthday: ${
+        this.birthday
+      } ${chalk.gray("|")} ${this.place_of_birth}`
+    );
+    if (this.known_for_department != null)
+      log(`Department: ${chalk.magentaBright(this.known_for_department)}`);
+
+    log(`Biography: ${chalk.cyanBright(chalk.bold(this.biography))} \n`);
+
+    if (this.also_known_as) {
+      log(`Also known as: \n`);
+      this.also_known_as.forEach((element) => {
+        log(element);
+      });
+    } else {
+      log(`${chalk.yellow(this.name)} doesn’t have any alternate names`);
+    }
+
+    log("\n");
   }
 }
 
