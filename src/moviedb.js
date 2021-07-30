@@ -7,27 +7,21 @@ const dotenv = require("dotenv");
 dotenv.config();
 const https = require('https');
 
-// const options = {
-//   hostname: ' https://api.themoviedb.org',
-//   port: 443,
-//   path: '/',
-//   method: 'GET',
-  
-// };
-const options ={
+
+const options = {
   href: "https://api.themoviedb.org",
-protocol: "https:",
-hostname: "api.themoviedb.org",
-path: `/3/person/popular?page=1&api_key=f599dfd0f0fe1ae38c4420cd239f2cd2`,
-port: 443,
-method: "GET",
-headers: {
-"Content-Type": "application/json",
-//Authorization: `f599dfd0f0fe1ae38c4420cd239f2cd2`,
-}
+  protocol: "https:",
+  hostname: "api.themoviedb.org",
+  path: `/3/person/popular?page=1`,
+  // path: `/3/person/popular?page=1&api_key=f599dfd0f0fe1ae38c4420cd239f2cd2`,
+  port: 443,
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${process.env.API_KEY}`,
+  }
 }
 
-//3/person/popular?page=1&api_key=f599dfd0f0fe1ae38c4420cd239f2cd2'
 const program = new Command();
 program.version("0.0.1");
 
@@ -43,22 +37,22 @@ program
     const spinner = ora("Fetching the popular person's data...").start();
     console.log("hello-world");
 
-    const req = https.request(options, (req,res) => {
-       //console.log("this is res: ",req);
-      // console.log('statusCode:', res.statusCode);
-       //console.log('headers:', res.headers);
-       let data = '';
-       req.on('data', chunk => {
-         data += chunk;
-         console.log(JSON.stringify(data));
-       })
-      
-      req.on('data', (d) => {
-        console.log(d);
-        //process.stdout.write(d);
+    const req = https.request(options, (res) => {
+      let response = '';
+
+      res.on("data", function onData(chunk) {
+        response += chunk;
       });
+
+
+      res.on("end", function onEnd() {
+        const data = JSON.parse(response);
+        console.log(data.page);
+      });
+
+
     });
-    
+
     req.on('error', (e) => {
       console.error(e);
     });
