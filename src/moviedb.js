@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const { Command } = require("commander");
 require("dotenv").config();
-// console.log(process.env.API_KEY);
+const request = require("./utils/requestsMethods");
 
 const program = new Command();
 program.version("0.0.1");
@@ -30,30 +30,43 @@ program
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
-  .requiredOption(
-    "--page <number>",
-    "The page of movies data results to fetch",
-    "1"
-  )
+  .requiredOption("--page <number>", "The page of movies data results to fetch")
   .option("-p, --popular", "Fetch the popular movies")
   .option("-n, --now-playing", "Fetch the movies that are playing now")
-  .action(function handleAction(options) {
-    //! The argument for this function should be the values returned from the requet
-    render.renderMovies(
-      exampleMovies.page,
-      exampleMovies.total_pages,
-      exampleMovies.results
-    );
+  .action(async function handleAction(options) {
+    const page = parseInt(options.page);
+    if (options.nowPlaying === true) {
+      const json = await request.getNowPlayingMovies(page);
+      console.log(json);
+    } else {
+      const json = await request.getPopularMovies(page);
+      console.log(json);
+    }
+    // render.renderMovies(
+    //   exampleMovies.page,
+    //   exampleMovies.total_pages,
+    //   exampleMovies.results
+    // );
   });
 
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
+  .requiredOption("-i, --id <number>", "The id of the movie")
+  .option("-r, --reviews", "Fetch the reviews of the movie")
+  .action(async function handleAction(options) {
+    const movieId = parseInt(options.id);
+    const json = await request.getMovie(movieId);
+    console.log(json);
+    if (options.reviews === true) {
+      const movieId = parseInt(options.id);
+      const json = await request.getMovieReviews(movieId);
+      console.log(json);
+    }
     // render.renderSingleMovie(singleMovie);
-    render.renderReviews(reviewsMovie);
+    // render.renderReviews(reviewsMovie);
   });
 
-// error on unknown commands
+//TODO error on unknown commands
 
 program.parse(process.argv);
