@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
-
+//import chalk from 'chalk';
 const ora = require("ora");
 const dotenv = require("dotenv");
 dotenv.config();
 const https = require('https');
+const chalk = require('chalk');
+
 
 
 const options = {
@@ -47,7 +49,31 @@ program
 
       res.on("end", function onEnd() {
         const data = JSON.parse(response);
-        console.log(data.page);
+        console.log("all of them")
+        data.results.forEach((person)=>{console.log((
+        `PERSON: 
+        
+        ID: ${person.id}
+        Name: ${chalk.bold.blue(person.name)}
+        Departament: ${chalk.magenta(person.known_for_department)}\n\n`)
+        )
+         
+           person.known_for.forEach((movies)=>{
+             if(movies.original_title==undefined){
+            console.log(`${chalk.yellow.dim("There's no movive ")}`)
+             }else{
+            console.log((
+            `\tMovie:
+            \tID: ${chalk.green(movies.id)}
+            \tRelease Date: ${chalk.green(movies.release_date)}
+            \tTitle: ${chalk.green(movies.original_title)}`)
+            )}
+          })
+              
+      console.log(`--------------------------------------------------------\n\n`)
+        })
+        //))
+        //console.log(chalk.blue("one of the actors/actrees", data.results[0].name));
       });
 
 
