@@ -5,10 +5,13 @@ const { Command } = require("commander");
 const ora = require("ora");
 const dotenv = require("dotenv");
 dotenv.config();
-const https = require('https');
+
+const {
+  getPersons,
+} = require("./utils/httpsRequest");
 
 
-const options = {
+const requestOptions = {
   href: "https://api.themoviedb.org",
   protocol: "https:",
   hostname: "api.themoviedb.org",
@@ -33,30 +36,11 @@ program
     "--page, <number>",
     "The page of persons data results to fetch"
   )
-  .action(function handleAction() {
+  .action(function handleAction(programOptions) {
     const spinner = ora("Fetching the popular person's data...").start();
-    console.log("hello-world");
 
-    const req = https.request(options, (res) => {
-      let response = '';
-
-      res.on("data", function onData(chunk) {
-        response += chunk;
-      });
-
-
-      res.on("end", function onEnd() {
-        const data = JSON.parse(response);
-        console.log(data.page);
-      });
-
-
-    });
-
-    req.on('error', (e) => {
-      console.error(e);
-    });
-    req.end();
+    requestOptions.path = `/3/person/popular?page=${programOptions.page}`,
+    getPersons(requestOptions);
 
     spinner.succeed("Popular persons data loaded");
   });
