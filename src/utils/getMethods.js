@@ -10,10 +10,7 @@ const { chalkPeople, chalkPersonId } = require("./chalks.js");
  * @param page: number of page to render
  */
 function PersonsByPage(page = 1, option) {
-  const options = {
-    ...httpConstants,
-    path: `/3/person/popular?page=${page}&api_key=${process.env.API_KEY}`,
-  };
+  const options = {...httpConstants, path: `/3/person/popular?page=${page}&api_key=${process.env.API_KEY}`};
 
   const spinner = ora("Loading popular people").start();
 
@@ -23,12 +20,12 @@ function PersonsByPage(page = 1, option) {
     res.on("data", (chunk) => (body += chunk));
     res.on("end", () => {
       if(option) {
-        console.log("JSON"); 
+        //console.log("JSON"); 
         file.savePeople(JSON.parse(body));
         spinner.succeed("Popular Persons data loaded");
       }
       else {
-        console.log("REQUEST"); 
+        //console.log("REQUEST"); 
         chalkPeople(JSON.parse(body), spinner);
       }
     });
@@ -44,21 +41,22 @@ function PersonsByPage(page = 1, option) {
  */
 function JsonPersonByPage(page = 1) {
   const spinner = ora("Loading popular people").start();
+  const path = "./src/utils/json/persons.json";
 
-  fs.readFile('./src/utils/json/persons.json', 'utf-8', (err, data) => {
-    if (err) {
-        spinner.fail(e.message);
-        throw err;
+  try {
+    if (fs.existsSync(path)) {
+
+      fs.readFile(path, 'utf-8', (err, data) => {
+        const user = JSON.parse(data.toString());
+        chalkPeople(user, spinner);
+      });
+
+    } else {
+      spinner.fail("File dosn't exist");
     }
-
-    // parse JSON object
-    const user = JSON.parse(data.toString());
-
-    // print JSON object
-    console.log("LOADED FROM JSON")
-    chalkPeople(user, spinner);
-    
-  });
+  } catch (err){
+    console.log(err.message);
+  }
 
 }
 
@@ -66,19 +64,14 @@ function JsonPersonByPage(page = 1) {
  * Person by ID functions
  */
 function PersonById(id) {
-  const options = {
-    ...httpConstants,
-    path: `/3/person/${id}?&api_key=${process.env.API_KEY}`,
-  };
+  const options = {...httpConstants, path: `/3/person/${id}?&api_key=${process.env.API_KEY}`};
 
   const spinner = ora("Fetching the person data...\n").start();
 
   const req = https.request(options, (res) => {
     let body = "";
 
-    res.on("data", (chunk) => {
-      body += chunk;
-    });
+    res.on("data", (chunk) => {body += chunk;});
     res.on("end", () => chalkPersonId(JSON.parse(body), spinner));
 
   });
