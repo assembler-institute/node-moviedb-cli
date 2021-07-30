@@ -1,11 +1,15 @@
 // Imports
+// ---------------------------------------------------
 require("dotenv").config({ path: "../.env" });
 const https = require("https");
 
 // General variables
+// ---------------------------------------------------
 const apiKey = process.env.API_KEY;
 const pageNum = 1;
 
+// Functions
+// ---------------------------------------------------
 function getPersons(page, key = apiKey) {
   const options = {
     hostname: "api.themoviedb.org",
@@ -42,8 +46,6 @@ function getPersons(page, key = apiKey) {
   return finalResult;
 }
 
-// getPersons(pageNum, apiKey).then((result) => {
-//   console.log(result.results[0]);
-// });
-
+// Exports
+// ---------------------------------------------------
 module.exports = { getPersons };

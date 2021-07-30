@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // Imports
+// ---------------------------------------------------
 require("dotenv").config({ path: "../.env" });
 const { getPersons } = require("./requests.js");
 const { Command } = require("commander");
@@ -7,17 +8,20 @@ const chalk = require("chalk");
 const program = new Command();
 
 // General variables
+// ---------------------------------------------------
 const apiKey = process.env.API_KEY;
-let opts;
 
 /* -------------------------------------------------------------------------- */
 /*                                    Test                                    */
 /* -------------------------------------------------------------------------- */
 console.log("This is the API key: ", chalk.blue(apiKey));
 
+// General
+// ---------------------------------------------------
 program.version("0.0.1").description("MovieDb database using CLI");
 
-// Commands ---------------------------------------------------
+// Commands
+//---------------------------------------------------
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
