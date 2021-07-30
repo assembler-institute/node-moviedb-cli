@@ -31,6 +31,9 @@ program
   .action((options) => {
     console.log(chalk.yellow.bold("Get persons at page: "), options.page);
     getPersons(options.page).then((result) => {
+      l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      l(`Page: ${options.page} of ${result.total_pages}\n`);
+
       result.results.forEach((person) => {
         l("----------------------------------------\n");
         l(person.id);
