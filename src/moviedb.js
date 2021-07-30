@@ -6,6 +6,7 @@ const { getPersons } = require("./requests.js");
 const { Command } = require("commander");
 const { l } = require("./chalk.js");
 const chalk = require("chalk");
+
 const program = new Command();
 
 // General variables
@@ -15,7 +16,12 @@ const apiKey = process.env.API_KEY;
 /* -------------------------------------------------------------------------- */
 /*                                    Test                                    */
 /* -------------------------------------------------------------------------- */
-console.log("This is the API key: ", chalk.blue(apiKey));
+// console.log("This is the API key: ", chalk.blue(apiKey));
+let undefinedTitle = function returnUndefined(element) {
+  if (element === undefined) {
+    return true;
+  }
+};
 
 // General
 // ---------------------------------------------------
@@ -29,28 +35,45 @@ program
   .requiredOption("--page <num>", "The page of persons data results to fetch")
   .requiredOption("-p, --popular", "Fetch the popular persons")
   .action((options) => {
-    console.log(chalk.yellow.bold("Get persons at page: "), options.page);
+    // console.log(chalk.yellow.bold("Get persons at page: "), options.page);
+
     getPersons(options.page).then((result) => {
       l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       l(`Page: ${options.page} of ${result.total_pages}\n`);
 
       result.results.forEach((person) => {
         l("----------------------------------------\n");
+        l("PERSON \n");
+        l("Id: ", "white", true);
         l(person.id);
-        l(`Name: ${person.name}`, "blue", true);
+        l("Name: ", "white", true);
+        l(person.name, "blue", true);
         if (person.known_for_department) {
-          l(`Deparment: ${person.known_for_department}`, "magenta");
+          l("Deparment: ", "white", true);
+          l(person.known_for_department, "magenta");
         }
-        if (person.known_for !== undefined) {
+        l("Movie carreer: ", "white", true);
+
+        // Get all movies names
+        let movies = new Array();
+        person.known_for.forEach((m) => movies.push(m.title));
+
+        // Check if all are titles undefined
+        if (!movies.every(undefinedTitle)) {
           l("Appearing in: ");
           l("\n");
           person.known_for.forEach((movie) => {
-            l(`\t${movie.id}`);
-            l(`\t${movie.title}`);
-            l(`\t${movie.release_date}`);
-            l("\n");
+            // Only show not undefined titles
+            if (movie.title != undefined) {
+              l("\tMovie:");
+              l(`\t${movie.id}`);
+              l(`\t${movie.title}`);
+              l(`\t${movie.release_date}`);
+              l("\n");
+            }
           });
         } else {
+          // If only appears in tv shows
           l(`${person.name} doesn’t appear in any movie. \n`);
         }
       });
