@@ -4,6 +4,7 @@
 require("dotenv").config({ path: "../.env" });
 const { getPersons } = require("./requests.js");
 const { Command } = require("commander");
+const { l } = require("./chalk.js");
 const chalk = require("chalk");
 const program = new Command();
 
@@ -16,33 +17,6 @@ const apiKey = process.env.API_KEY;
 /* -------------------------------------------------------------------------- */
 console.log("This is the API key: ", chalk.blue(apiKey));
 
-function l(text, color) {
-  switch (color) {
-    case "black":
-      console.log(chalk.black(text));
-      break;
-    case "red":
-      console.log(chalk.red(text));
-      break;
-    case "green":
-      console.log(chalk.green(text));
-      break;
-    case "yellow":
-      console.log(chalk.yellow(text));
-      break;
-    case "blue":
-      console.log(chalk.blue(text));
-      break;
-    case "magenta":
-      console.log(chalk.magenta(text));
-      break;
-    case "cyan":
-      console.log(chalk.cyan(text));
-      break;
-    default:
-      console.log(chalk.white(text));
-  }
-}
 // General
 // ---------------------------------------------------
 program.version("0.0.1").description("MovieDb database using CLI");
@@ -60,7 +34,7 @@ program
       result.results.forEach((person) => {
         l("----------------------------------------\n");
         l(person.id);
-        l(`Name: ${person.name}`, "blue");
+        l(`Name: ${person.name}`, "blue", true);
         if (person.known_for_department) {
           l(`Deparment: ${person.known_for_department}`, "magenta");
         }
@@ -76,7 +50,6 @@ program
         } else {
           l(`${person.name} doesn’t appear in any movie. \n`);
         }
-        // console.log(person.name);
       });
     });
   });
