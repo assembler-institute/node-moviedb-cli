@@ -2,7 +2,7 @@ const https = require("https");
 const ora = require("ora");
 
 const httpConstants = require("./httpConstants.js");
-const { chalkPeople } = require("./chalks.js");
+const { chalkPeople, chalkPersonId } = require("./chalks.js");
 
 /**
  * get People by Pages
@@ -37,57 +37,23 @@ function getPopularPersons() {
 /**
  * Person by ID functions
  */
-function getPersonById(id) {
+function PersonById(id) {
   const options = {
-    host: "api.themoviedb.org",
-    port: 443,
-    protocol: "https:",
+    ...httpConstants,
     path: `/3/person/${id}?&api_key=${process.env.API_KEY}`,
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.API_KEY}`,
-    },
   };
 
+  const spinner = ora("Fetching the person data...\n").start();
+
   const req = https.request(options, (res) => {
-    spinner.start('Fetching the person data...\n');
     let body = "";
 
-    res.on("data", (chunk) => {
-      body += chunk;
-    });
-
-    res.on("end", () => {
-      try {
-        let person = JSON.parse(body);
-        log("____________________________________\nPerson:\n");
-        log(`ID: ${person.id} \nName: ${chalk.cyanBright(person.name)} \nBirthday: ${person.birthday} ${chalk.gray("|")} ${person.place_of_birth}`);
-        if (person.known_for_department != null) log(`Department: ${chalk.magentaBright(person.known_for_department)}`);
-        
-        log(`Biography: ${chalk.cyanBright(chalk.bold(person.biography))} \n`);
-        
-        if (person.also_known_as) { 
-          log(`Also known as: \n`);
-          person.also_known_as.forEach(element => {
-          log(element);
-        });
-        } else {
-          log(`${chalk.yellow(person.name)} doesn’t have any alternate names`)
-        }
-        log("");
-        spinner.succeed('Person data loaded');
-      } catch (error) {
-        console.error(error.message);
-      }
-    });
+    res.on("data", (chunk) => {body += chunk;});
+    res.on("end", () => chalkPersonId(JSON.parse(body), spinner));
   });
 
-  req.on("error", (e) => {
-    console.error(`problem with request: ${e.message}`);
-  });
-
-  req.end();
+  req.on("error", (e) => spinner.fail(e.message));
+    req.end();
 }
 
-module.exports = { getPersonsByPage, PersonsByPage};
+module.exports = { PersonById, PersonsByPage};
