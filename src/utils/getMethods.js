@@ -1,46 +1,29 @@
 const https = require("https");
-const chalk = require("chalk");
-const ora = require('ora');
-const log = console.log;
-const spinner = ora('');  
+const ora = require("ora");
+
+const httpConstants = require("./httpConstants.js");
+const { chalkPeople } = require("./chalks.js");
 
 /**
- * Persons by Pages
+ * get People by Pages
+ * @param page: number of page to render
  */
-function getPersonsByPage(page = 1) {
+function PersonsByPage(page = 1) {
   const options = {
-    host: "api.themoviedb.org",
-    port: 443,
-    protocol: "https:",
+    ...httpConstants,
     path: `/3/person/popular?page=${page}&api_key=${process.env.API_KEY}`,
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.API_KEY}`,
-    },
   };
+
+  const spinner = ora("Loading popular people").start();
 
   const req = https.request(options, (res) => {
     let body = "";
 
-    res.on("data", (chunk) => {
-      body += chunk;
-    });
-
-    res.on("end", () => {
-      try {
-        let json = JSON.parse(body);
-        console.log(json);
-      } catch (error) {
-        console.error(error.message);
-      }
-    });
+    res.on("data", (chunk) => (body += chunk));
+    res.on("end", () => chalkPeople(JSON.parse(body), spinner));
   });
 
-  req.on("error", (e) => {
-    console.error(`problem with request: ${e.message}`);
-  });
-
+  req.on("error", (e) => spinner.fail(e.message));
   req.end();
 }
 
@@ -107,4 +90,4 @@ function getPersonById(id) {
   req.end();
 }
 
-module.exports = { getPersonsByPage, getPopularPersons, getPersonById };
+module.exports = { getPersonsByPage, PersonsByPage};

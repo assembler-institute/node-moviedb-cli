@@ -16,6 +16,9 @@
     "url": "https://github.com/assembler-school/node-moviedb-cli.git"
   },
   "scripts": {},
+  "bin": {
+    "moviedb": "./src/moviedb.js"
+  },
   "dependencies": {
     "chalk": "^4.1.0",
     "commander": "^6.1.0",
