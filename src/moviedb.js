@@ -3,7 +3,6 @@
 require("dotenv").config({ path: "../.env" });
 const { Command } = require("commander");
 const chalk = require("chalk");
-const { Command } = require("commander");
 
 const program = new Command();
 program.version("0.0.1");
@@ -31,7 +30,7 @@ program
   .action(function handleAction(num) {
     console.log("hello-world");
     opts = program.opts();
-    console.log(chalk.yellow.bold("Get persons at page: "), opts.page);
+    console.log(chalk.yellow.bold("Get movies at page: "), opts.page);
   });
 
 program

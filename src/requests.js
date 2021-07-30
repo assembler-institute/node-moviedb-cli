@@ -5,6 +5,30 @@ const https = require("https");
 // General variables
 const apiKey = process.env.API_KEY;
 
+function makeHTTPRequest() {
+
+    return new Promise((resolve, reject) => {
+        const req = https.request(options, (res) => {
+          res.setEncoding("utf8");
+          let responseBody = "";
+    
+          res.on("data", (chunk) => {
+            responseBody += chunk;
+          });
+    
+          res.on("end", () => {
+            resolve(JSON.parse(responseBody));
+            console.log("This is the response ", responseBody);
+          });
+        });
+    
+        req.on("error", (err) => {
+          reject(err);
+        });
+      });
+
+}
+
 function getMovies(pageNum, key) {
   const options = {
     hostname: "localhost",
@@ -16,29 +40,6 @@ function getMovies(pageNum, key) {
     },
   };
 
-  let finalResult = new Promise((resolve, reject) => {
-    const req = https.request(options, (res) => {
-      // console.log(`STATUS: ${res.statusCode}`);
-      // console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-      res.setEncoding("utf8");
-      let responseBody = "";
-
-      res.on("data", (chunk) => {
-        responseBody += chunk;
-      });
-
-      res.on("end", () => {
-        resolve(JSON.parse(responseBody));
-        console.log("This is the response ", responseBody);
-      });
-    });
-
-    req.on("error", (err) => {
-      reject(err);
-    });
-  });
-
-  return finalResult;
 }
 
 getPersons(1, apiKey);
