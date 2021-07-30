@@ -15,8 +15,8 @@ program
     "--page <pageNum>",
     "The page of persons data results to fetch"
   )
-  .action(function handleAction() {
-    req.httpRequest("person/popular", "page=1");
+  .action(function handleAction(options) {
+    req.httpRequest("person/popular", `page=${options.page}`);
   });
 
 program
