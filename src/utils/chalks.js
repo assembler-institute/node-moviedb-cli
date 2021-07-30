@@ -20,13 +20,13 @@ function chalkPeople(page, spinner) {
         chalkPerson.renderPopular();
 
         if (index == array.length - 1) {
-          log(chalk.white("---------------------------------------------"));
+          log(chalk.white("________________________________________________"));
           log(chalk.white(`Page: ${page.page} of: ${page.total_pages}`));
           log("\n");
           return;
         }
 
-        log(chalk.white("----------------------"));
+        log(chalk.white("_________________________"));
       });
 
       spinner.succeed("Popular Persons data loaded");
@@ -44,7 +44,7 @@ function chalkPersonId(person, spinner) {
       const chalkPerson = new Person(person);
       chalkPerson.renderPersonById();
 
-      spinner.succeed("Popular Persons data loaded");
+      spinner.succeed("Person data loaded");
       log("\n");
     }, 1000);
   } catch (error) {

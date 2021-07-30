@@ -12,16 +12,20 @@ program.version("0.0.1");
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
-  .requiredOption("-p, --popular", "Fetch the popular persons")
+  .option("-p, --popular", "Fetch the popular persons")
   .requiredOption("--page <number>", "The page of data results to fetch")
+  .option("-s, --save", "The page of data to JSON file")
+  .option("-l, --local", "Read data from local JSON")
   .action(function handleAction(opt) {
     if (opt.page && opt.popular) get.PersonsByPage(opt.page);
+    if (opt.save) get.PersonsByPage(opt.page, opt.save);
+    if (opt.local) get.JsonPersonByPage(opt.page);
   });
 
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
-  .option("-i, --id [id]", "The id of the person")
+  .requiredOption("-i, --id <id>", "The id of the person")
   .action(function handleAction(option) {
     if (option.id) get.PersonById(option.id);
   });
