@@ -3,10 +3,14 @@ const log = console.log;
 
 class Person {
   constructor(person) {
-    this.id = Person.id;
-    this.name = Person.name;
+    this.id = person.id;
+    this.name = person.name;
     this.known_for_department = person.known_for_department;
     this.known_for = person.known_for;
+    this.birthday = person.birthday;
+    this.place_of_birth = person.place_of_birth;
+    this.biography = person.biography;
+    this.also_known_as = person.also_known_as;
   }
 
   renderPopular() {
@@ -31,6 +35,25 @@ class Person {
     });
 
     log("\n");
+  }
+  
+  renderPersonById() {
+      log("____________________________________\nPerson:\n");
+      log(`ID: ${this.id} \nName: ${chalk.cyanBright(this.name)} \nBirthday: ${this.birthday} ${chalk.gray("|")} ${this.place_of_birth}`);
+      if (this.known_for_department != null) log(`Department: ${chalk.magentaBright(this.known_for_department)}`);
+        
+      log(`Biography: ${chalk.cyanBright(chalk.bold(this.biography))} \n`);
+      
+      if (this.also_known_as) { 
+          log(`Also known as: \n`);
+          this.also_known_as.forEach(element => {
+          log(element);
+        });
+      } else {
+          log(`${chalk.yellow(this.name)} doesn’t have any alternate names`)
+      }
+      
+      log("");
   }
 }
 

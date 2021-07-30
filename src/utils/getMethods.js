@@ -2,7 +2,7 @@ const https = require("https");
 const ora = require("ora");
 
 const httpConstants = require("./httpConstants.js");
-const { chalkPeople } = require("./chalks.js");
+const { chalkPeople, chalkPersonId } = require("./chalks.js");
 
 /**
  * get People by Pages
@@ -27,4 +27,33 @@ function PersonsByPage(page = 1) {
   req.end();
 }
 
-module.exports = { PersonsByPage };
+/**
+ * Popular functions
+ */
+function getPopularPersons() {
+  console.log("personas populares como Einar ");
+}
+
+/**
+ * Person by ID functions
+ */
+function PersonById(id) {
+  const options = {
+    ...httpConstants,
+    path: `/3/person/${id}?&api_key=${process.env.API_KEY}`,
+  };
+
+  const spinner = ora("Fetching the person data...\n").start();
+
+  const req = https.request(options, (res) => {
+    let body = "";
+
+    res.on("data", (chunk) => {body += chunk;});
+    res.on("end", () => chalkPersonId(JSON.parse(body), spinner));
+  });
+
+  req.on("error", (e) => spinner.fail(e.message));
+    req.end();
+}
+
+module.exports = { PersonById, PersonsByPage};

@@ -34,4 +34,18 @@ function chalkPeople(page, spinner) {
   }
 }
 
-module.exports = { chalkPeople };
+function chalkPersonId(person, spinner) {
+  try {
+    setTimeout(() => {
+      const chalkPerson = new Person(person);
+      chalkPerson.renderPersonById();
+
+      spinner.succeed("Popular Persons data loaded");
+      log("\n");
+    }, 1000);
+  } catch (error) {
+    spinner.fail(error.message);
+  }
+}
+
+module.exports = { chalkPeople, chalkPersonId };
