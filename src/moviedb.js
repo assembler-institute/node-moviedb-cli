@@ -9,18 +9,20 @@ const program = new Command();
 const apiKey = process.env.API_KEY;
 let opts;
 
-program.version("0.0.1");
+/* -------------------------------------------------------------------------- */
+/*                                    Test                                    */
+/* -------------------------------------------------------------------------- */
+console.log("This is the API key: ", chalk.blue(apiKey));
 
-// Options ---------------------------------------------------
-program
-  .option("--page <number>", "The page of persons data results to fetch")
-  .option("-p, --popular", "Fetch the popular persons");
+program.version("0.0.1").description("MovieDb database using CLI");
 
 // Commands ---------------------------------------------------
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
-  .action(() => {
+  .requiredOption("--page <num>", "The page of persons data results to fetch")
+  .requiredOption("-p, --popular", "Fetch the popular persons")
+  .action(function handleAction(num) {
     opts = program.opts();
     console.log(chalk.yellow.bold("Get persons at page: "), opts.page);
   });
@@ -49,8 +51,3 @@ program
 // error on unknown commands
 
 program.parse(process.argv);
-
-/* -------------------------------------------------------------------------- */
-/*                                    Test                                    */
-/* -------------------------------------------------------------------------- */
-console.log("This is the API key: ", chalk.blue(apiKey));
