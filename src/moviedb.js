@@ -68,8 +68,10 @@ program
       const movieId = parseInt(options.id);
       const movieReviewsJson = await request.getMovieReviews(movieId);
       render.renderReviews(movieReviewsJson);
+      spinner.succeed("Movie reviews data loaded");
+    } else {
+      spinner.succeed("Movie data loaded");
     }
-    spinner.succeed("Movie data loaded");
   });
 
 //TODO error on unknown commands
