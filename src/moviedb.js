@@ -22,9 +22,8 @@ program
   .description("Make a network request to fetch most popular persons")
   .requiredOption("--page <num>", "The page of persons data results to fetch")
   .requiredOption("-p, --popular", "Fetch the popular persons")
-  .action(function handleAction(num) {
-    opts = program.opts();
-    console.log(chalk.yellow.bold("Get persons at page: "), opts.page);
+  .action(function handleAction(options) {
+    console.log(chalk.yellow.bold("Get persons at page: "), options.page);
   });
 
 program
