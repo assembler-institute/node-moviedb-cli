@@ -1,24 +1,27 @@
 const https = require('https');
 
-function getPersons(options) {
-  const req = https.request(options, (res) => {
-    let response = '';
+async function getPersons(options) {
+  let promise = new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      let response = '';
 
-    res.on("data", function onData(chunk) {
-      response += chunk;
+      res.on("data", function onData(chunk) {
+        response += chunk;
+      });
+
+      res.on("end", function onEnd() {
+        const data = JSON.parse(response);
+        resolve(data);
+      });
+
+      res.on("error", function (error) {
+        reject(error);
+      })
     });
 
-    res.on("end", function onEnd() {
-      const data = JSON.parse(response);
-      console.log(data);
-      return data;
-    });
+    req.end()
   });
-
-  req.on('error', (e) => {
-    console.error(e);
-  });
-  req.end();
+  return await promise;
 }
 
 module.exports = {
