@@ -2,6 +2,7 @@
 // ---------------------------------------------------
 require("dotenv").config({ path: "../.env" });
 const https = require("https");
+const ora = require("ora");
 
 // General variables
 // ---------------------------------------------------
@@ -21,6 +22,9 @@ function getPersons(page, key = apiKey) {
     },
   };
 
+  const spinner = ora("Fetching the popular person's data...").start();
+  spinner;
+
   let finalResult = new Promise((resolve, reject) => {
     const req = https.request(options, (res) => {
       res.setEncoding("utf8");
@@ -33,11 +37,13 @@ function getPersons(page, key = apiKey) {
       res.on("end", () => {
         resolve(JSON.parse(responseBody));
         // console.log("This is the response ", responseBody);
+        spinner.succeed(`Loaded popular persons at page ${page}`);
       });
     });
 
     req.on("error", (err) => {
       reject(err);
+      spinner.fail(`Couldn't load popular persons at page ${page}`);
     });
 
     req.end();
