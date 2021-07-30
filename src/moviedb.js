@@ -9,7 +9,9 @@ program.version("0.0.1");
 const render = require("./utils/renderMethods");
 
 //! This is a require for the json to mock the call on the render for the getMovies
-const exampleMovie = require("./utils/exampleMovie.json");
+const exampleMovies = require("./utils/exampleMovies.json");
+const singleMovie = require("./utils/exampleSingleMovie.json");
+const reviewsMovie = require("./utils/exampleReviewsMovies.json");
 
 program
   .command("get-persons")
@@ -38,9 +40,9 @@ program
   .action(function handleAction(options) {
     //! The argument for this function should be the values returned from the requet
     render.renderMovies(
-      exampleMovie.page,
-      exampleMovie.total_pages,
-      exampleMovie.results
+      exampleMovies.page,
+      exampleMovies.total_pages,
+      exampleMovies.results
     );
   });
 
@@ -48,7 +50,8 @@ program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
   .action(function handleAction() {
-    console.log("hello-world");
+    // render.renderSingleMovie(singleMovie);
+    render.renderReviews(reviewsMovie);
   });
 
 // error on unknown commands
