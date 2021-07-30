@@ -1,0 +1,1411 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "adult": false,
+            "gender": 1,
+            "id": 1245,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/nNmJRkg8wWnRmzQDe2FwKbPIsJV.jpg",
+                    "genre_ids": [
+                        878,
+                        28,
+                        12
+                    ],
+                    "id": 24428,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "The Avengers",
+                    "overview": "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
+                    "poster_path": "/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
+                    "release_date": "2012-04-25",
+                    "title": "The Avengers",
+                    "video": false,
+                    "vote_average": 7.7,
+                    "vote_count": 25069
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/lmZFxXgJE3vgrciwuDib0N8CfQo.jpg",
+                    "genre_ids": [
+                        12,
+                        28,
+                        878
+                    ],
+                    "id": 299536,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Avengers: Infinity War",
+                    "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+                    "poster_path": "/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+                    "release_date": "2018-04-25",
+                    "title": "Avengers: Infinity War",
+                    "video": false,
+                    "vote_average": 8.3,
+                    "vote_count": 22297
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg",
+                    "genre_ids": [
+                        12,
+                        878,
+                        28
+                    ],
+                    "id": 299534,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Avengers: Endgame",
+                    "overview": "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+                    "poster_path": "/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+                    "release_date": "2019-04-24",
+                    "title": "Avengers: Endgame",
+                    "video": false,
+                    "vote_average": 8.3,
+                    "vote_count": 18682
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Scarlett Johansson",
+            "popularity": 58.249,
+            "profile_path": "/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 1,
+            "id": 109513,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/mMoG4nPSDupXIXOwVvpexZY2W0N.jpg",
+                    "genre_ids": [
+                        28,
+                        18,
+                        53
+                    ],
+                    "id": 254128,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "San Andreas",
+                    "overview": "In the aftermath of a massive earthquake in California, a rescue-chopper pilot makes a dangerous journey across the state in order to rescue his estranged daughter.",
+                    "poster_path": "/2Gfjn962aaFSD6eST6QU3oLDZTo.jpg",
+                    "release_date": "2015-05-27",
+                    "title": "San Andreas",
+                    "video": false,
+                    "vote_average": 6.2,
+                    "vote_count": 6690
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/6QmX2BDVr1hIOIPHqnxvp1C1ZZp.jpg",
+                    "genre_ids": [
+                        35,
+                        28,
+                        80
+                    ],
+                    "id": 339846,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Baywatch",
+                    "overview": "Devoted lifeguard Mitch Buchannon butts heads with a brash new recruit. Together, they uncover a local criminal plot that threatens the future of the Bay.",
+                    "poster_path": "/6HE4xd8zloDqmjMZuhUCCw2UcY1.jpg",
+                    "release_date": "2017-05-12",
+                    "title": "Baywatch",
+                    "video": false,
+                    "vote_average": 6.1,
+                    "vote_count": 6486
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/sEyNWq9985lyUrwayWnvicT4FHA.jpg",
+                    "genre_ids": [
+                        12,
+                        14,
+                        10751
+                    ],
+                    "id": 32657,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Percy Jackson & the Olympians: The Lightning Thief",
+                    "overview": "Accident prone teenager, Percy discovers he's actually a demi-God, the son of Poseidon, and he is needed when Zeus' lightning is stolen. Percy must master his new found skills in order to prevent a war between the Gods that could devastate the entire world.",
+                    "poster_path": "/nmyrUTjmvZ3OQYZJrUKAoiBfMq5.jpg",
+                    "release_date": "2010-02-01",
+                    "title": "Percy Jackson & the Olympians: The Lightning Thief",
+                    "video": false,
+                    "vote_average": 6.2,
+                    "vote_count": 5845
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Alexandra Daddario",
+            "popularity": 53.167,
+            "profile_path": "/lh5zibQXYH1MNqkuX8TmxyNYHhK.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 2,
+            "id": 12835,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/ko4N6wWp0UYlMmsVyfIfLyRAZtP.jpg",
+                    "genre_ids": [
+                        28,
+                        878,
+                        12
+                    ],
+                    "id": 118340,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Guardians of the Galaxy",
+                    "overview": "Light years from Earth, 26 years after being abducted, Peter Quill finds himself the prime target of a manhunt after discovering an orb wanted by Ronan the Accuser.",
+                    "poster_path": "/r7vmZjiyZw9rpJMQJdXpjgiCOk9.jpg",
+                    "release_date": "2014-07-30",
+                    "title": "Guardians of the Galaxy",
+                    "video": false,
+                    "vote_average": 7.9,
+                    "vote_count": 22817
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/lmZFxXgJE3vgrciwuDib0N8CfQo.jpg",
+                    "genre_ids": [
+                        12,
+                        28,
+                        878
+                    ],
+                    "id": 299536,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Avengers: Infinity War",
+                    "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+                    "poster_path": "/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+                    "release_date": "2018-04-25",
+                    "title": "Avengers: Infinity War",
+                    "video": false,
+                    "vote_average": 8.3,
+                    "vote_count": 22278
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg",
+                    "genre_ids": [
+                        12,
+                        878,
+                        28
+                    ],
+                    "id": 299534,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Avengers: Endgame",
+                    "overview": "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+                    "poster_path": "/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+                    "release_date": "2019-04-24",
+                    "title": "Avengers: Endgame",
+                    "video": false,
+                    "vote_average": 8.3,
+                    "vote_count": 18655
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Vin Diesel",
+            "popularity": 46.129,
+            "profile_path": "/7rwSXluNWZAluYMOEWBxkPmckES.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 1,
+            "id": 3967,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/mXBDQ9n2osF0BqBjXY9JDyadyRb.jpg",
+                    "genre_ids": [
+                        35,
+                        18,
+                        14
+                    ],
+                    "id": 9339,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Click",
+                    "overview": "A married workaholic, Michael Newman doesn't have time for his wife and children, not if he's to impress his ungrateful boss and earn a well-deserved promotion. So when he meets Morty, a loopy sales clerk, he gets the answer to his prayers: a magical remote that allows him to bypass life's little distractions with increasingly hysterical results.",
+                    "poster_path": "/x7rM5dwQefvpXqHKQs4TrpoRyz3.jpg",
+                    "release_date": "2006-06-23",
+                    "title": "Click",
+                    "video": false,
+                    "vote_average": 6.2,
+                    "vote_count": 5430
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/kGhk3N1Q3AfO3uLB2zWcysj3Ddz.jpg",
+                    "genre_ids": [
+                        14,
+                        28,
+                        53
+                    ],
+                    "id": 277,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Underworld",
+                    "overview": "Vampires and werewolves have waged a nocturnal war against each other for centuries. But all bets are off when a female vampire warrior named Selene, who's famous for her strength and werewolf-hunting prowess, becomes smitten with a peace-loving male werewolf, Michael, who wants to end the war.",
+                    "poster_path": "/zsnQ41UZ3jo1wEeemF0eA9cAIU0.jpg",
+                    "release_date": "2003-09-19",
+                    "title": "Underworld",
+                    "video": false,
+                    "vote_average": 6.8,
+                    "vote_count": 4910
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/zv1xOEQzebKyku349qDZ085FZlO.jpg",
+                    "genre_ids": [
+                        10752,
+                        36,
+                        10749,
+                        18
+                    ],
+                    "id": 676,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Pearl Harbor",
+                    "overview": "The lifelong friendship between Rafe McCawley and Danny Walker is put to the ultimate test when the two ace fighter pilots become entangled in a love triangle with beautiful Naval nurse Evelyn Johnson. But the rivalry between the friends-turned-foes is immediately put on hold when they find themselves at the center of Japan's devastating attack on Pearl Harbor on Dec. 7, 1941.",
+                    "poster_path": "/ftkKVbk4sQEcekuaGJvpvXcNs32.jpg",
+                    "release_date": "2001-05-21",
+                    "title": "Pearl Harbor",
+                    "video": false,
+                    "vote_average": 6.9,
+                    "vote_count": 4849
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Kate Beckinsale",
+            "popularity": 44.642,
+            "profile_path": "/1mdRhTJGqFwo9Xuul7XO6oXpzhb.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 2,
+            "id": 91606,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/nNmJRkg8wWnRmzQDe2FwKbPIsJV.jpg",
+                    "genre_ids": [
+                        878,
+                        28,
+                        12
+                    ],
+                    "id": 24428,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "The Avengers",
+                    "overview": "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
+                    "poster_path": "/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
+                    "release_date": "2012-04-25",
+                    "title": "The Avengers",
+                    "video": false,
+                    "vote_average": 7.7,
+                    "vote_count": 25069
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/lmZFxXgJE3vgrciwuDib0N8CfQo.jpg",
+                    "genre_ids": [
+                        12,
+                        28,
+                        878
+                    ],
+                    "id": 299536,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Avengers: Infinity War",
+                    "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+                    "poster_path": "/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+                    "release_date": "2018-04-25",
+                    "title": "Avengers: Infinity War",
+                    "video": false,
+                    "vote_average": 8.3,
+                    "vote_count": 22297
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg",
+                    "genre_ids": [
+                        12,
+                        878,
+                        28
+                    ],
+                    "id": 299534,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Avengers: Endgame",
+                    "overview": "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+                    "poster_path": "/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+                    "release_date": "2019-04-24",
+                    "title": "Avengers: Endgame",
+                    "video": false,
+                    "vote_average": 8.3,
+                    "vote_count": 18682
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Tom Hiddleston",
+            "popularity": 42.089,
+            "profile_path": "/mclHxMm8aPlCPKptP67257F5GPo.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 1,
+            "id": 1734,
+            "known_for": [
+                {
+                    "backdrop_path": "/iDbIEpCM9nhoayUDTwqFL1iVwzb.jpg",
+                    "first_air_date": "2017-09-25",
+                    "genre_ids": [
+                        18
+                    ],
+                    "id": 71712,
+                    "media_type": "tv",
+                    "name": "The Good Doctor",
+                    "origin_country": [
+                        "US"
+                    ],
+                    "original_language": "en",
+                    "original_name": "The Good Doctor",
+                    "overview": "A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives",
+                    "poster_path": "/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg",
+                    "vote_average": 8.6,
+                    "vote_count": 8906
+                },
+                {
+                    "backdrop_path": "/8A2IYYRLM5rR0hYwbWJr9KLPnUu.jpg",
+                    "first_air_date": "2001-10-16",
+                    "genre_ids": [
+                        10765,
+                        10759,
+                        18
+                    ],
+                    "id": 4604,
+                    "media_type": "tv",
+                    "name": "Smallville",
+                    "origin_country": [
+                        "US"
+                    ],
+                    "original_language": "en",
+                    "original_name": "Smallville",
+                    "overview": "The origins of the world’s greatest hero–from Krypton refugee Kal-el’s arrival on Earth through his tumultuous teen years to Clark Kent’s final steps toward embracing his destiny as the Man of Steel.",
+                    "poster_path": "/pUhJGETy2sec4vEkiqJ9eGeIywc.jpg",
+                    "vote_average": 8.2,
+                    "vote_count": 2591
+                },
+                {
+                    "backdrop_path": "/1ot3DeWBHaI3cbfQtqZqOI1VoPI.jpg",
+                    "first_air_date": "1990-11-18",
+                    "genre_ids": [
+                        18,
+                        9648,
+                        10765
+                    ],
+                    "id": 19614,
+                    "media_type": "tv",
+                    "name": "It",
+                    "origin_country": [
+                        "US"
+                    ],
+                    "original_language": "en",
+                    "original_name": "It",
+                    "overview": "In 1960, seven outcast kids known as \"The Losers' Club\" fight an evil demon who poses as a child-killing clown. Thirty years later, they reunite to stop the demon once and for all when it returns to their hometown.",
+                    "poster_path": "/4ybQ6gopB3H3cu0seVZLznDnIKo.jpg",
+                    "vote_average": 6.9,
+                    "vote_count": 2273
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Annette O'Toole",
+            "popularity": 41.629,
+            "profile_path": "/z5BS5EeuhpM2KGFfUjOhVXtjmMy.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 2,
+            "id": 1991255,
+            "known_for": [
+                {
+                    "backdrop_path": "/A4V6jJNHNNvMdICvs3CaH70zIvh.jpg",
+                    "first_air_date": "2017-03-25",
+                    "genre_ids": [
+                        18
+                    ],
+                    "id": 76560,
+                    "media_type": "tv",
+                    "name": "Mrs. Fazilet and Her Daughters",
+                    "origin_country": [
+                        "TR"
+                    ],
+                    "original_language": "tr",
+                    "original_name": "Fazilet Hanım ve Kızları",
+                    "overview": "The story of Fazilet, mother of Hazan and Ece, eager to make money using the modeling skills of her younger daughter, Ece. While Hazan pursues a career as a coach in sports, far from her mother's wishes and falls in love with a rich spoiled man.",
+                    "poster_path": "/hJe1m8eKqb14xE0ers6dAZm1QrS.jpg",
+                    "vote_average": 9.4,
+                    "vote_count": 5
+                },
+                {
+                    "backdrop_path": "/lDbRMHVAGdkySaabD7KyyEbouoG.jpg",
+                    "first_air_date": "2018-07-22",
+                    "genre_ids": [
+                        18
+                    ],
+                    "id": 80229,
+                    "media_type": "tv",
+                    "name": "Never Let My Hand Go",
+                    "origin_country": [
+                        "TR"
+                    ],
+                    "original_language": "tr",
+                    "original_name": "Elimi Bırakma",
+                    "overview": "The story revolves around a girl named Azra who is studying abroad in America to be a professional cook like her father. She met Cenk, the grandson of Ferida Celen, on the plane and took his bag instead of hers at the airport by mistake. Cenk who was expelled from his university in America and struggling to choose his own destiny will get to witness the huge turn in Azra's life when her father dies in a fire accident leaving her and his autistic son with his greedy wife.",
+                    "poster_path": "/v4mhRAhCh8JYUqN7YdiHwZ61r0Y.jpg",
+                    "vote_average": 10,
+                    "vote_count": 4
+                },
+                {
+                    "backdrop_path": "/jAyGGji9j9pF6EUFEjMOh4hKbzN.jpg",
+                    "first_air_date": "2021-06-15",
+                    "genre_ids": [
+                        10766,
+                        18,
+                        35
+                    ],
+                    "id": 126255,
+                    "media_type": "tv",
+                    "name": "Bir Ada Masali",
+                    "origin_country": [
+                        "TR"
+                    ],
+                    "original_language": "tr",
+                    "original_name": "Ada Masalı",
+                    "overview": "",
+                    "poster_path": "/1HTkpyo3UskzeLnRw0w9ofMJ0Na.jpg",
+                    "vote_average": 10,
+                    "vote_count": 1
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Alp Navruz",
+            "popularity": 41.008,
+            "profile_path": "/xUWOeOIuRhA8EjMXW6wRQ2z6SN3.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 1,
+            "id": 5081,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/auZIuHEUec5tBTns3tCRXfayxZq.jpg",
+                    "genre_ids": [
+                        28,
+                        878
+                    ],
+                    "id": 137113,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Edge of Tomorrow",
+                    "overview": "Major Bill Cage is an officer who has never seen a day of combat when he is unceremoniously demoted and dropped into combat. Cage is killed within minutes, managing to take an alpha alien down with him. He awakens back at the beginning of the same day and is forced to fight and die again... and again - as physical contact with the alien has thrown him into a time loop.",
+                    "poster_path": "/uUHvlkLavotfGsNtosDy8ShsIYF.jpg",
+                    "release_date": "2014-05-27",
+                    "title": "Edge of Tomorrow",
+                    "video": false,
+                    "vote_average": 7.6,
+                    "vote_count": 10803
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/roYyPiQDQKmIKUEhO912693tSja.jpg",
+                    "genre_ids": [
+                        27,
+                        18,
+                        878
+                    ],
+                    "id": 447332,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "A Quiet Place",
+                    "overview": "A family is forced to live in silence while hiding from creatures that hunt by sound.",
+                    "poster_path": "/nAU74GmpUk7t5iklEp3bufwDq4n.jpg",
+                    "release_date": "2018-04-03",
+                    "title": "A Quiet Place",
+                    "video": false,
+                    "vote_average": 7.4,
+                    "vote_count": 10428
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/3tWw50B1xXlCnJ9A7NX4nNzZF4j.jpg",
+                    "genre_ids": [
+                        35,
+                        18,
+                        10749
+                    ],
+                    "id": 350,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "The Devil Wears Prada",
+                    "overview": "Andy moves to New York to work in the fashion industry. Her boss is extremely demanding, cruel and won't let her succeed if she doesn't fit into the high class elegant look of their magazine.",
+                    "poster_path": "/8912AsVuS7Sj915apArUFbv6F9L.jpg",
+                    "release_date": "2006-06-30",
+                    "title": "The Devil Wears Prada",
+                    "video": false,
+                    "vote_average": 7.4,
+                    "vote_count": 9379
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Emily Blunt",
+            "popularity": 37.177,
+            "profile_path": "/nPJXaRMvu1vh3COG16GzmdsBySQ.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 2,
+            "id": 976,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/mRfI3y2oAd7ejur2di09xC9niqp.jpg",
+                    "genre_ids": [
+                        28,
+                        53,
+                        80
+                    ],
+                    "id": 82992,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Fast & Furious 6",
+                    "overview": "Hobbs has Dominic and Brian reassemble their crew to take down a team of mercenaries: Dominic unexpectedly gets convoluted also facing his presumed deceased girlfriend, Letty.",
+                    "poster_path": "/n31VRDodbaZxkrZmmzyYSFNVpW5.jpg",
+                    "release_date": "2013-05-21",
+                    "title": "Fast & Furious 6",
+                    "video": false,
+                    "vote_average": 6.8,
+                    "vote_count": 8777
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/cHkhb5A4gQRK6zs6Pv7zorHs8Nk.jpg",
+                    "genre_ids": [
+                        28,
+                        53,
+                        80,
+                        18
+                    ],
+                    "id": 168259,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Furious 7",
+                    "overview": "Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother.",
+                    "poster_path": "/wurKlC3VKUgcfsn0K51MJYEleS2.jpg",
+                    "release_date": "2015-04-01",
+                    "title": "Furious 7",
+                    "video": false,
+                    "vote_average": 7.3,
+                    "vote_count": 8534
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/jzdnhRhG0dsuYorwvSqPqqnM1cV.jpg",
+                    "genre_ids": [
+                        28,
+                        80,
+                        53
+                    ],
+                    "id": 337339,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "The Fate of the Furious",
+                    "overview": "When a mysterious woman seduces Dom into the world of crime and a betrayal of those closest to him, the crew face trials that will test them as never before.",
+                    "poster_path": "/dImWM7GJqryWJO9LHa3XQ8DD5NH.jpg",
+                    "release_date": "2017-04-12",
+                    "title": "The Fate of the Furious",
+                    "video": false,
+                    "vote_average": 6.9,
+                    "vote_count": 8382
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Jason Statham",
+            "popularity": 34.531,
+            "profile_path": "/lldeQ91GwIVff43JBrpdbAAeYWj.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 1,
+            "id": 1373737,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/lqxxwTRk0l7CubY6JkJdhnwJEkn.jpg",
+                    "genre_ids": [
+                        18,
+                        10749
+                    ],
+                    "id": 331482,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Little Women",
+                    "overview": "Four sisters come of age in America in the aftermath of the Civil War.",
+                    "poster_path": "/yn5ihODtZ7ofn8pDYfxCmxh8AXI.jpg",
+                    "release_date": "2019-12-25",
+                    "title": "Little Women",
+                    "video": false,
+                    "vote_average": 7.9,
+                    "vote_count": 3929
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/g6GtOfXtzDpY73ef7wludoorTti.jpg",
+                    "genre_ids": [
+                        27,
+                        18,
+                        9648
+                    ],
+                    "id": 530385,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Midsommar",
+                    "overview": "Several friends travel to Sweden to study as anthropologists a summer festival that is held every ninety years in the remote hometown of one of them. What begins as a dream vacation in a place where the sun never sets, gradually turns into a dark nightmare as the mysterious inhabitants invite them to participate in their disturbing festive activities.",
+                    "poster_path": "/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg",
+                    "release_date": "2019-07-03",
+                    "title": "Midsommar",
+                    "video": false,
+                    "vote_average": 7.1,
+                    "vote_count": 3899
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/clmYuR1t4TtKcakIOvYIPrjyxDc.jpg",
+                    "genre_ids": [
+                        28,
+                        53
+                    ],
+                    "id": 399035,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "The Commuter",
+                    "overview": "A businessman, on his daily commute home, gets unwittingly caught up in a criminal conspiracy that threatens not only his life but the lives of those around him.",
+                    "poster_path": "/rDeGK6FIUfVcXmuBdEORPAGPMNg.jpg",
+                    "release_date": "2018-01-11",
+                    "title": "The Commuter",
+                    "video": false,
+                    "vote_average": 6.3,
+                    "vote_count": 3446
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Florence Pugh",
+            "popularity": 34.37,
+            "profile_path": "/75PvULemW8BvheSKtPMoBBsvPLh.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 2,
+            "id": 13240,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/9RuC3UD6mNZ0p1J6RbfJDUkQ03i.jpg",
+                    "genre_ids": [
+                        18,
+                        53,
+                        80
+                    ],
+                    "id": 1422,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "The Departed",
+                    "overview": "To take down South Boston's Irish Mafia, the police send in one of their own to infiltrate the underworld, not realizing the syndicate has done likewise. While an undercover cop curries favor with the mob kingpin, a career criminal rises through the police ranks. But both sides soon discover there's a mole among them.",
+                    "poster_path": "/kWWAt2FMRbqLFFy8o5R4Zr8cMAb.jpg",
+                    "release_date": "2006-10-05",
+                    "title": "The Departed",
+                    "video": false,
+                    "vote_average": 8.2,
+                    "vote_count": 11370
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/nEcEy7iVOh04dzZWP2e6AcwpLvI.jpg",
+                    "genre_ids": [
+                        35,
+                        14
+                    ],
+                    "id": 72105,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Ted",
+                    "overview": "John Bennett, a man whose childhood wish of bringing his teddy bear to life came true, now must decide between keeping the relationship with the bear or his girlfriend, Lori.",
+                    "poster_path": "/osJNr64CNyGhCzdlg6oHt3a6vNA.jpg",
+                    "release_date": "2012-06-29",
+                    "title": "Ted",
+                    "video": false,
+                    "vote_average": 6.4,
+                    "vote_count": 9905
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/alItugxBbjNC10ezLSisplhSKJ.jpg",
+                    "genre_ids": [
+                        878,
+                        28,
+                        12
+                    ],
+                    "id": 91314,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Transformers: Age of Extinction",
+                    "overview": "As humanity picks up the pieces, following the conclusion of \"Transformers: Dark of the Moon,\" Autobots and Decepticons have all but vanished from the face of the planet. However, a group of powerful, ingenious businessman and scientists attempt to learn from past Transformer incursions and push the boundaries of technology beyond what they can control - all while an ancient, powerful Transformer menace sets Earth in his cross-hairs.",
+                    "poster_path": "/jyzrfx2WaeY60kYZpPYepSjGz4S.jpg",
+                    "release_date": "2014-06-25",
+                    "title": "Transformers: Age of Extinction",
+                    "video": false,
+                    "vote_average": 5.9,
+                    "vote_count": 6226
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Mark Wahlberg",
+            "popularity": 33.914,
+            "profile_path": "/bTEFpaWd7A6AZVWOqKKBWzKEUe8.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 2,
+            "id": 18918,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/zJDMuXQDraHjtF53wikmyBQIcYe.jpg",
+                    "genre_ids": [
+                        28,
+                        12,
+                        35,
+                        14
+                    ],
+                    "id": 353486,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Jumanji: Welcome to the Jungle",
+                    "overview": "The tables are turned as four teenagers are sucked into Jumanji's world - pitted against rhinos, black mambas and an endless variety of jungle traps and puzzles. To survive, they'll play as characters from the game.",
+                    "poster_path": "/pSgXKPU5h6U89ipF7HBYajvYt7j.jpg",
+                    "release_date": "2017-12-09",
+                    "title": "Jumanji: Welcome to the Jungle",
+                    "video": false,
+                    "vote_average": 6.8,
+                    "vote_count": 10854
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/oWU6dgu3RgdSZElkhbZuoPtkWAJ.jpg",
+                    "genre_ids": [
+                        12,
+                        35,
+                        10751,
+                        16
+                    ],
+                    "id": 277834,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Moana",
+                    "overview": "In Ancient Polynesia, when a terrible curse incurred by Maui reaches an impetuous Chieftain's daughter's island, she answers the Ocean's call to seek out the demigod to set things right.",
+                    "poster_path": "/4JeejGugONWpJkbnvL12hVoYEDa.jpg",
+                    "release_date": "2016-11-23",
+                    "title": "Moana",
+                    "video": false,
+                    "vote_average": 7.6,
+                    "vote_count": 9662
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/mRfI3y2oAd7ejur2di09xC9niqp.jpg",
+                    "genre_ids": [
+                        28,
+                        53,
+                        80
+                    ],
+                    "id": 82992,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Fast & Furious 6",
+                    "overview": "Hobbs has Dominic and Brian reassemble their crew to take down a team of mercenaries: Dominic unexpectedly gets convoluted also facing his presumed deceased girlfriend, Letty.",
+                    "poster_path": "/n31VRDodbaZxkrZmmzyYSFNVpW5.jpg",
+                    "release_date": "2013-05-21",
+                    "title": "Fast & Furious 6",
+                    "video": false,
+                    "vote_average": 6.8,
+                    "vote_count": 8786
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Dwayne Johnson",
+            "popularity": 33.881,
+            "profile_path": "/cgoy7t5Ve075naBPcewZrc08qGw.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 1,
+            "id": 2472427,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/ejaldIt8gb0t6nNU1xtgQEwEY2l.jpg",
+                    "genre_ids": [
+                        10749
+                    ],
+                    "id": 656273,
+                    "media_type": "movie",
+                    "original_language": "ko",
+                    "original_title": "막내 형수 2",
+                    "overview": "Hwa-jeong and Geon-woo are getting married soon. Geon-woo introduces his friends, Jae-kyeong and Yi-soo, to Hwa-jeong. After a few drinks, everyone goes to Yi-soo's house for a second round. The party ends late at night and Jae-kyeong, who is a lightweight, staggers to the bathroom. He then mixes up the rooms and falls asleep in the room Hwa-jeong is sleeping in. By accident, Jae-kyeong ends up sleeping with his friend's bride.",
+                    "poster_path": "/6wv4PGxeNdNqtuoZ8sYdr319kyW.jpg",
+                    "release_date": "2019-11-27",
+                    "title": "Youngest Sister-in-law 2",
+                    "video": false,
+                    "vote_average": 6,
+                    "vote_count": 1
+                },
+                {
+                    "adult": false,
+                    "genre_ids": [
+                        53
+                    ],
+                    "id": 673407,
+                    "media_type": "movie",
+                    "original_language": "ko",
+                    "original_title": "불량탐정: 먹이사슬",
+                    "overview": "Jeong-mi, a pickpocket ex-convict, ends up pickpocketing again to repay Dae-sik off of her father's debt. One day, Hae-joo, who is secretly meeting a detective, has been kidnapped and turned into Dae-sik's prey.  The detective then went on a search to find Hae-joo's whereabouts.",
+                    "poster_path": "/wyGNUFVpXSVGTRHSylyPqn3qZcT.jpg",
+                    "release_date": "2020-01-22",
+                    "title": "Bad Detective: Food Chain",
+                    "video": false,
+                    "vote_average": 6,
+                    "vote_count": 1
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/4mFrNiawrfHz2W9yryFcsrahYxA.jpg",
+                    "genre_ids": [
+                        10749
+                    ],
+                    "id": 658228,
+                    "media_type": "movie",
+                    "original_language": "ko",
+                    "original_title": "딸의 애인 3",
+                    "overview": "Mi-seon loves her family, but she loves having sex with younger men. One day, she hears her sex partner, Jeong-woo, has a brother and she feels more attracted to the younger man.  Mi-seon goes to Jeong-woo's house and tries to seduce his brother when he's alone.  However, her new sex partner is her daughter's boyfriend.",
+                    "poster_path": "/4zqJPk4NghDpBKWtPOa5fC74tKx.jpg",
+                    "release_date": "2019-12-05",
+                    "title": "My Daughter's Lover 3",
+                    "video": false,
+                    "vote_average": 0,
+                    "vote_count": 0
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Tae Joo",
+            "popularity": 33.302,
+            "profile_path": "/nGpa3za6yxSciko2J8tY8gbsgyT.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 2,
+            "id": 5009,
+            "known_for": [
+                {
+                    "backdrop_path": "/iDbIEpCM9nhoayUDTwqFL1iVwzb.jpg",
+                    "first_air_date": "2017-09-25",
+                    "genre_ids": [
+                        18
+                    ],
+                    "id": 71712,
+                    "media_type": "tv",
+                    "name": "The Good Doctor",
+                    "origin_country": [
+                        "US"
+                    ],
+                    "original_language": "en",
+                    "original_name": "The Good Doctor",
+                    "overview": "A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives",
+                    "poster_path": "/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg",
+                    "vote_average": 8.6,
+                    "vote_count": 8906
+                },
+                {
+                    "backdrop_path": "/nVRyd8hlg0ZLxBn9RaI7mUMQLnz.jpg",
+                    "first_air_date": "2005-09-13",
+                    "genre_ids": [
+                        18,
+                        9648,
+                        10765
+                    ],
+                    "id": 1622,
+                    "media_type": "tv",
+                    "name": "Supernatural",
+                    "origin_country": [
+                        "US"
+                    ],
+                    "original_language": "en",
+                    "original_name": "Supernatural",
+                    "overview": "When they were boys, Sam and Dean Winchester lost their mother to a mysterious and demonic supernatural force. Subsequently, their father raised them to be soldiers. He taught them about the paranormal evil that lives in the dark corners and on the back roads of America ... and he taught them how to kill it. Now, the Winchester brothers crisscross the country in their '67 Chevy Impala, battling every kind of supernatural threat they encounter along the way. ",
+                    "poster_path": "/KoYWXbnYuS3b0GyQPkbuexlVK9.jpg",
+                    "vote_average": 8.2,
+                    "vote_count": 5269
+                },
+                {
+                    "backdrop_path": "/4o0keepwKfyYoziJOmRZS24Omqa.jpg",
+                    "first_air_date": "2012-10-10",
+                    "genre_ids": [
+                        80,
+                        18,
+                        9648,
+                        10759
+                    ],
+                    "id": 1412,
+                    "media_type": "tv",
+                    "name": "Arrow",
+                    "origin_country": [
+                        "US"
+                    ],
+                    "original_language": "en",
+                    "original_name": "Arrow",
+                    "overview": "Spoiled billionaire playboy Oliver Queen is missing and presumed dead when his yacht is lost at sea. He returns five years later a changed man, determined to clean up the city as a hooded vigilante armed with a bow.",
+                    "poster_path": "/gKG5QGz5Ngf8fgWpBsWtlg5L2SF.jpg",
+                    "vote_average": 6.7,
+                    "vote_count": 4642
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Peter Benson",
+            "popularity": 33.004,
+            "profile_path": "/btcuZXvGZcO1AyCQXcAeWWLf0jI.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 1,
+            "id": 2374721,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/h1BoDAepuEmEMC2qhjBONAYhre7.jpg",
+                    "genre_ids": [
+                        10749
+                    ],
+                    "id": 698009,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "어린 처제 3",
+                    "overview": "Yoo-jin and Myeong-seok get a call from Hye-jin in the middle of the night. She finally escapes from domestic violence and comes to live with her sister. However, Myeong-seok is nice to her and Hye-jin starts to feel fond of him...",
+                    "poster_path": "/swEYylf53k2aGZHjv9PuIxalWQE.jpg",
+                    "release_date": "2019-05-24",
+                    "title": "Young Sister-in-law 3 - 2019",
+                    "video": false,
+                    "vote_average": 5,
+                    "vote_count": 2
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/ejaldIt8gb0t6nNU1xtgQEwEY2l.jpg",
+                    "genre_ids": [
+                        10749
+                    ],
+                    "id": 656273,
+                    "media_type": "movie",
+                    "original_language": "ko",
+                    "original_title": "막내 형수 2",
+                    "overview": "Hwa-jeong and Geon-woo are getting married soon. Geon-woo introduces his friends, Jae-kyeong and Yi-soo, to Hwa-jeong. After a few drinks, everyone goes to Yi-soo's house for a second round. The party ends late at night and Jae-kyeong, who is a lightweight, staggers to the bathroom. He then mixes up the rooms and falls asleep in the room Hwa-jeong is sleeping in. By accident, Jae-kyeong ends up sleeping with his friend's bride.",
+                    "poster_path": "/6wv4PGxeNdNqtuoZ8sYdr319kyW.jpg",
+                    "release_date": "2019-11-27",
+                    "title": "Youngest Sister-in-law 2",
+                    "video": false,
+                    "vote_average": 6,
+                    "vote_count": 1
+                },
+                {
+                    "adult": false,
+                    "genre_ids": [
+                        10749
+                    ],
+                    "id": 699173,
+                    "media_type": "movie",
+                    "original_language": "ko",
+                    "original_title": "유부녀들: 남편 바꾸기",
+                    "overview": "After marriage, Sun-ah and Joo-hee seem to have become bored with their husbands. They meet and talked about their worries. Because their husbands coldness, they can't even remember when was the last time they had sex. Joo-hee says she can't take it anymore so she tried to find someone through a dating app but Sun-ah stopped her. After contemplating, they both wore sexy lingeries and tried to seduce their husbands, but it didn't work. Finally, as a last resort, they change husbands for a night and make love...",
+                    "poster_path": "/1XyStZnmbSlDQ4muChXiUawe4Q3.jpg",
+                    "release_date": "2020-01-23",
+                    "title": "Married Women: Husband Change",
+                    "video": false,
+                    "vote_average": 5,
+                    "vote_count": 1
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Han Seo-ah",
+            "popularity": 33.002,
+            "profile_path": "/x2aYtUJN3bHwvvyISrwNx5uJ41k.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 1,
+            "id": 1439922,
+            "known_for": [
+                {
+                    "backdrop_path": "/n5h1JNlTm3AdWoKZnGcZMgemt8S.jpg",
+                    "first_air_date": "2018-12-14",
+                    "genre_ids": [
+                        10759
+                    ],
+                    "id": 79026,
+                    "media_type": "tv",
+                    "name": "The Protector",
+                    "origin_country": [
+                        "TR"
+                    ],
+                    "original_language": "tr",
+                    "original_name": "Hakan: Muhafız",
+                    "overview": "The epic adventure of Hakan, a young shopkeeper whose modern world gets turned upside down when he learns he’s connected to a secret, ancient order, tasked with protecting Istanbul.",
+                    "poster_path": "/xoN4wJRzeaWBfuQDYPngJgN6y9t.jpg",
+                    "vote_average": 7.5,
+                    "vote_count": 278
+                },
+                {
+                    "adult": false,
+                    "genre_ids": [
+                        10749,
+                        35
+                    ],
+                    "id": 325134,
+                    "media_type": "movie",
+                    "original_language": "tr",
+                    "original_title": "Sevimli Tehlikeli",
+                    "overview": "Directed by  Özcan Deniz.",
+                    "poster_path": "/u1Xg9OyQQqw8SOld06FSSXr2OFF.jpg",
+                    "release_date": "2015-02-06",
+                    "title": "Cute and Dangerous",
+                    "video": false,
+                    "vote_average": 6.6,
+                    "vote_count": 22
+                },
+                {
+                    "backdrop_path": "/jtM45bTIareE0qNraP5tN13qAZb.jpg",
+                    "first_air_date": "2013-03-29",
+                    "genre_ids": [
+                        18
+                    ],
+                    "id": 50236,
+                    "media_type": "tv",
+                    "name": "Black Rose",
+                    "origin_country": [
+                        "TR"
+                    ],
+                    "original_language": "tr",
+                    "original_name": "Karagül",
+                    "overview": "A married women has to fight for the things she lost because of the revealed secrets of her husband.",
+                    "poster_path": "/3MGWHmUR0ezgQS5FQbjydG2nfLC.jpg",
+                    "vote_average": 8.8,
+                    "vote_count": 5
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Ayça Ayşin Turan",
+            "popularity": 32.897,
+            "profile_path": "/nahCmyU5UzreRM5aWzSaC92sGHh.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 2,
+            "id": 10859,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/en971MEXui9diirXlogOrPKmsEn.jpg",
+                    "genre_ids": [
+                        28,
+                        12,
+                        35
+                    ],
+                    "id": 293660,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Deadpool",
+                    "overview": "Deadpool tells the origin story of former Special Forces operative turned mercenary Wade Wilson, who after being subjected to a rogue experiment that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his life.",
+                    "poster_path": "/3E53WEZJqP6aM84D8CckXx4pIHw.jpg",
+                    "release_date": "2016-02-09",
+                    "title": "Deadpool",
+                    "video": false,
+                    "vote_average": 7.6,
+                    "vote_count": 25222
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/3P52oz9HPQWxcwHOwxtyrVV1LKi.jpg",
+                    "genre_ids": [
+                        28,
+                        35,
+                        12
+                    ],
+                    "id": 383498,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Deadpool 2",
+                    "overview": "Wisecracking mercenary Deadpool battles the evil and powerful Cable and other bad guys to save a boy's life.",
+                    "poster_path": "/to0spRl1CMDvyUbOnbb4fTk3VAd.jpg",
+                    "release_date": "2018-05-10",
+                    "title": "Deadpool 2",
+                    "video": false,
+                    "vote_average": 7.5,
+                    "vote_count": 13488
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/nEcEy7iVOh04dzZWP2e6AcwpLvI.jpg",
+                    "genre_ids": [
+                        35,
+                        14
+                    ],
+                    "id": 72105,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Ted",
+                    "overview": "John Bennett, a man whose childhood wish of bringing his teddy bear to life came true, now must decide between keeping the relationship with the bear or his girlfriend, Lori.",
+                    "poster_path": "/osJNr64CNyGhCzdlg6oHt3a6vNA.jpg",
+                    "release_date": "2012-06-29",
+                    "title": "Ted",
+                    "video": false,
+                    "vote_average": 6.4,
+                    "vote_count": 9905
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Ryan Reynolds",
+            "popularity": 32.897,
+            "profile_path": "/yk6lt6KYeYE8QjQr2SXTGEssBGL.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 1,
+            "id": 6161,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/tTlAA0REGPXSZPBfWyTW9ipIv1I.jpg",
+                    "genre_ids": [
+                        28,
+                        12,
+                        878,
+                        18
+                    ],
+                    "id": 315635,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Spider-Man: Homecoming",
+                    "overview": "Following the events of Captain America: Civil War, Peter Parker, with the help of his mentor Tony Stark, tries to balance his life as an ordinary high school student in Queens, New York City, with fighting crime as his superhero alter ego Spider-Man as a new threat, the Vulture, emerges.",
+                    "poster_path": "/c24sv2weTHPsmDa7jEMN0m2P3RT.jpg",
+                    "release_date": "2017-07-05",
+                    "title": "Spider-Man: Homecoming",
+                    "video": false,
+                    "vote_average": 7.4,
+                    "vote_count": 16504
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/vVBcIN68kFq681b4lObiNJhEVro.jpg",
+                    "genre_ids": [
+                        18,
+                        10749
+                    ],
+                    "id": 453,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "A Beautiful Mind",
+                    "overview": "John Nash is a brilliant but asocial mathematician fighting schizophrenia. After he accepts secret work in cryptography, his life takes a turn for the nightmarish.",
+                    "poster_path": "/zwzWCmH72OSC9NA0ipoqw5Zjya8.jpg",
+                    "release_date": "2001-12-11",
+                    "title": "A Beautiful Mind",
+                    "video": false,
+                    "vote_average": 7.8,
+                    "vote_count": 7795
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/c5g1Dn1tF22CS2oOvHDNKr1Ve2U.jpg",
+                    "genre_ids": [
+                        80,
+                        18,
+                        53
+                    ],
+                    "id": 641,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Requiem for a Dream",
+                    "overview": "The hopes and dreams of four ambitious people are shattered when their drug addictions begin spiraling out of control. A look into addiction and how it overcomes the mind and body.",
+                    "poster_path": "/nOd6vjEmzCT0k4VYqsA2hwyi87C.jpg",
+                    "release_date": "2000-10-06",
+                    "title": "Requiem for a Dream",
+                    "video": false,
+                    "vote_average": 8,
+                    "vote_count": 7370
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Jennifer Connelly",
+            "popularity": 31.787,
+            "profile_path": "/p17ymzw1sb9eo2SOp88jnwyryan.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 1,
+            "id": 10431,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/7gfDVfaw0VaIkUGiEH13o3TIC7A.jpg",
+                    "genre_ids": [
+                        80,
+                        18,
+                        9648,
+                        37
+                    ],
+                    "id": 273248,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "The Hateful Eight",
+                    "overview": "Bounty hunters seek shelter from a raging blizzard and get caught up in a plot of betrayal and deception.",
+                    "poster_path": "/k61oZC6IPUhgACGFwxNqdkbrf2M.jpg",
+                    "release_date": "2015-12-25",
+                    "title": "The Hateful Eight",
+                    "video": false,
+                    "vote_average": 7.7,
+                    "vote_count": 11232
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/gDbNf0JpmG46fFTHJIPdFga9RRg.jpg",
+                    "genre_ids": [
+                        878,
+                        27
+                    ],
+                    "id": 300668,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Annihilation",
+                    "overview": "A biologist signs up for a dangerous, secret expedition into a mysterious zone where the laws of nature don't apply.",
+                    "poster_path": "/4YRplSk6BhH6PRuE9gfyw9byUJ6.jpg",
+                    "release_date": "2018-02-22",
+                    "title": "Annihilation",
+                    "video": false,
+                    "vote_average": 6.3,
+                    "vote_count": 6602
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/hi3lxLd93iKwCmVAfhMV9m1k2jr.jpg",
+                    "genre_ids": [
+                        53,
+                        18
+                    ],
+                    "id": 4553,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "The Machinist",
+                    "overview": "The Machinist is the story of Trevor Reznik, a lathe-operator who is suffering from insomnia. In a machine shop, occupational hazards are bad enough under normal circumstances; yet for Trevor the risks are compounded by fatigue. Trevor has lost the ability to sleep. This is no ordinary insomnia...",
+                    "poster_path": "/diAYqR4xdF9Hnj7qun6DEQhRrT2.jpg",
+                    "release_date": "2004-02-09",
+                    "title": "The Machinist",
+                    "video": false,
+                    "vote_average": 7.5,
+                    "vote_count": 3863
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Jennifer Jason Leigh",
+            "popularity": 31.464,
+            "profile_path": "/esyL4vTOy7nd4S2tCPcnkL8rmxP.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 1,
+            "id": 58369,
+            "known_for": [
+                {
+                    "backdrop_path": "/wvdWb5kTQipdMDqCclC6Y3zr4j3.jpg",
+                    "first_air_date": "2010-10-31",
+                    "genre_ids": [
+                        10759,
+                        18,
+                        10765
+                    ],
+                    "id": 1402,
+                    "media_type": "tv",
+                    "name": "The Walking Dead",
+                    "origin_country": [
+                        "US"
+                    ],
+                    "original_language": "en",
+                    "original_name": "The Walking Dead",
+                    "overview": "Sheriff's deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.",
+                    "poster_path": "/w21lgYIi9GeUH5dO8l3B9ARZbCB.jpg",
+                    "vote_average": 8.1,
+                    "vote_count": 11209
+                },
+                {
+                    "backdrop_path": "/1gGRY9bnIc0Jaohgc6jNFidjgLK.jpg",
+                    "first_air_date": "2011-10-05",
+                    "genre_ids": [
+                        18,
+                        9648,
+                        10765
+                    ],
+                    "id": 1413,
+                    "media_type": "tv",
+                    "name": "American Horror Story",
+                    "origin_country": [
+                        "US"
+                    ],
+                    "original_language": "en",
+                    "original_name": "American Horror Story",
+                    "overview": "An anthology horror drama series centering on different characters and locations, including a house with a murderous past, an asylum, a witch coven, a freak show, a hotel, a farmhouse in Roanoke and a cult.",
+                    "poster_path": "/8NMACR0OE5bwC27rE15f8ManNBO.jpg",
+                    "vote_average": 8.1,
+                    "vote_count": 3770
+                },
+                {
+                    "backdrop_path": "/jbTqU6BJMufoMnPSlO4ThrcXs3Y.jpg",
+                    "first_air_date": "1999-01-31",
+                    "genre_ids": [
+                        16,
+                        35
+                    ],
+                    "id": 1434,
+                    "media_type": "tv",
+                    "name": "Family Guy",
+                    "origin_country": [
+                        "US"
+                    ],
+                    "original_language": "en",
+                    "original_name": "Family Guy",
+                    "overview": "Sick, twisted, politically incorrect and Freakin' Sweet animated series featuring the adventures of the dysfunctional Griffin family. Bumbling Peter and long-suffering Lois have three kids. Stewie (a brilliant but sadistic baby bent on killing his mother and taking over the world), Meg (the oldest, and is the most unpopular girl in town) and Chris (the middle kid, he's not very bright but has a passion for movies). The final member of the family is Brian - a talking dog and much more than a pet, he keeps Stewie in check whilst sipping Martinis and sorting through his own life issues.",
+                    "poster_path": "/eWWCRjBfLyePh2tfZdvNcIvKSJe.jpg",
+                    "vote_average": 7,
+                    "vote_count": 2865
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Alexandra Breckenridge",
+            "popularity": 30.033,
+            "profile_path": "/7HQAXqAELDwzZzxpmp1ZSb4yM5V.jpg"
+        }
+    ],
+    "total_pages": 500,
+    "total_results": 10000
+}
