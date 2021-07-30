@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Imports
 require("dotenv").config({ path: "../.env" });
+const { testFunction, getPersons } = require("./requests.js");
 const { Command } = require("commander");
 const chalk = require("chalk");
 const program = new Command();
@@ -9,6 +10,7 @@ const program = new Command();
 const apiKey = process.env.API_KEY;
 let opts;
 
+testFunction();
 /* -------------------------------------------------------------------------- */
 /*                                    Test                                    */
 /* -------------------------------------------------------------------------- */
