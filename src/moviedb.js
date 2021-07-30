@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Imports
 require("dotenv").config({ path: "../.env" });
-const { testFunction, getPersons } = require("./requests.js");
+const { getPersons } = require("./requests.js");
 const { Command } = require("commander");
 const chalk = require("chalk");
 const program = new Command();
@@ -10,7 +10,6 @@ const program = new Command();
 const apiKey = process.env.API_KEY;
 let opts;
 
-testFunction();
 /* -------------------------------------------------------------------------- */
 /*                                    Test                                    */
 /* -------------------------------------------------------------------------- */
@@ -24,8 +23,11 @@ program
   .description("Make a network request to fetch most popular persons")
   .requiredOption("--page <num>", "The page of persons data results to fetch")
   .requiredOption("-p, --popular", "Fetch the popular persons")
-  .action(function handleAction(options) {
+  .action((options) => {
     console.log(chalk.yellow.bold("Get persons at page: "), options.page);
+    getPersons(options.page).then((result) => {
+      console.log(result.results[0].name);
+    });
   });
 
 program

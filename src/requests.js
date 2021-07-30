@@ -6,7 +6,7 @@ const https = require("https");
 const apiKey = process.env.API_KEY;
 const pageNum = 1;
 
-function getPersons(page, key) {
+function getPersons(page, key = apiKey) {
   const options = {
     hostname: "api.themoviedb.org",
     port: 443,
@@ -42,8 +42,8 @@ function getPersons(page, key) {
   return finalResult;
 }
 
-getPersons(pageNum, apiKey).then((result) => {
-  console.log(result.results[0]);
-});
+// getPersons(pageNum, apiKey).then((result) => {
+//   console.log(result.results[0]);
+// });
 
 module.exports = { getPersons };
