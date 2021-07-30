@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/** @format */
 
 const { Command } = require("commander");
 
@@ -25,9 +26,14 @@ program
     if (option.id) get.PersonById(option.id);
   });
 
+//./moviedb.js get-movies --popular --page 2
+//./moviedb.js get-movies --now-playing --page 2
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
+  .option("-p, --popular", "Fetch the popular movies")
+  .requiredOption("--page <number>", "The page of movies data results to fetch")
+  .option("-n, --now-playing", "Fetch the movies that are playing now")
   .action(function handleAction() {
     console.log("hello-world");
   });
