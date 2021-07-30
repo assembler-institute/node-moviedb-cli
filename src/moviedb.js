@@ -98,8 +98,9 @@ program
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("--id <num>", "The id of the movie data result to fetch")
+  .action((options) => {
+    console.log(`Movie ID fetched: `, options.id);
   });
 
 // error on unknown commands
