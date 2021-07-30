@@ -39,8 +39,9 @@ program
   .action(function handleAction(programOptions) {
     const spinner = ora("Fetching the popular person's data...").start();
 
-    requestOptions.path = `/3/person/popular?page=${programOptions.page}`,
-    getPersons(requestOptions);
+    requestOptions.path = `/3/person/popular?page=${programOptions.page}`;
+    persons = getPersons(requestOptions);
+    console.log(persons);
 
     spinner.succeed("Popular persons data loaded");
   });

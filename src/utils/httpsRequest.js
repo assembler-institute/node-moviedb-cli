@@ -10,7 +10,8 @@ function getPersons(options) {
 
     res.on("end", function onEnd() {
       const data = JSON.parse(response);
-      console.log(data.page);
+      console.log(data);
+      return data;
     });
   });
 
