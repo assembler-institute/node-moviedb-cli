@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
-const https = require("https");
 const req = require("./utils/httprequest");
-const date = require("./utils/httprequest");
 require("dotenv/config");
 
 const program = new Command();
@@ -12,9 +10,13 @@ program.version("0.0.1");
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
+  .requiredOption("-p, --popular", "Fetch the popular persons")
+  .requiredOption(
+    "--page <pageNum>",
+    "The page of persons data results to fetch"
+  )
   .action(function handleAction() {
-    const personsData = req.httpRequest("person/popular", "page=1");
-    /* console.log(personsData); */
+    req.httpRequest("person/popular", "page=1");
   });
 
 program
