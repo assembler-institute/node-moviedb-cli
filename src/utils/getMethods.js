@@ -47,7 +47,7 @@ function JsonPersonByPage(page = 1) {
     if (fs.existsSync(path)) {
 
       fs.readFile(path, 'utf-8', (err, data) => {
-        const user = JSON.parse(data.toString());
+        const user = JSON.parse(data.toString(),null, 4);
         chalkPeople(user, spinner);
       });
 
