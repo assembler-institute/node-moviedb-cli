@@ -2,6 +2,13 @@ import chalk from "chalk";
 
 const log = console.log;
 
+function personPagination(page, totalPages) {
+  if (totalPages > page) {
+    log(chalk.white(`----------------------------------------`));
+    log(`Page: ${page} of: ${totalPages}`);
+  }
+}
+
 function renderPersons(persons) {
   persons.foreach(function renderPerson(person) {
     log(chalk.white(`----------------------------------------`));
@@ -30,6 +37,7 @@ function renderPersons(persons) {
   });
 }
 
-// function renderPerson() {}
-
-module.exports = { renderPersons: renderPersons };
+module.exports = {
+  renderPersons: renderPersons,
+  personPagination: personPagination,
+};
