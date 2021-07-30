@@ -31,13 +31,13 @@ program
   .action(async function handleAction(options) {
     //default popular movies
     // const options = program.opts();
-    const page = options.page;
+    const page = parseInt(options.page);
     if (options.nowPlaying === true) {
-    } else if (options.popular === true) {
+      const json = await request.getNowPlayingMovies(page);
+      console.log(json);
+    } else {
       const json = await request.getPopularMovies(page);
       console.log(json);
-      // console.log("now-playing");
-    } else {
     }
   });
 

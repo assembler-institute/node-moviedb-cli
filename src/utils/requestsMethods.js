@@ -13,7 +13,7 @@ async function getPopularMovies(page = 1) {
   const options = {
     ...globalOptions,
     method: "GET",
-    path: "/3/movie/now_playing",
+    path: `/3/movie/popular?page=${page}`,
   };
   let promise = new Promise((resolve, reject) => {
     const req = https.request(options, function (res) {
@@ -37,4 +37,34 @@ async function getPopularMovies(page = 1) {
   return await promise;
 }
 
-module.exports = { getPopularMovies: getPopularMovies };
+async function getNowPlayingMovies(page = 1) {
+  const options = {
+    ...globalOptions,
+    method: "GET",
+    path: `/3/movie/now_playing?page=${page}`,
+  };
+  let promise = new Promise((resolve, reject) => {
+    const req = https.request(options, function (res) {
+      let chunks = [];
+
+      res.on("data", function (chunk) {
+        chunks.push(chunk);
+      });
+
+      res.on("end", function (chunk) {
+        resolve(JSON.parse(Buffer.concat(chunks).toString()));
+      });
+
+      res.on("error", function (error) {
+        reject(error);
+      });
+    });
+
+    req.end();
+  });
+  return await promise;
+}
+module.exports = {
+  getPopularMovies: getPopularMovies,
+  getNowPlayingMovies: getNowPlayingMovies,
+};
