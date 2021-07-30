@@ -16,6 +16,33 @@ const apiKey = process.env.API_KEY;
 /* -------------------------------------------------------------------------- */
 console.log("This is the API key: ", chalk.blue(apiKey));
 
+function l(text, color) {
+  switch (color) {
+    case "black":
+      console.log(chalk.black(text));
+      break;
+    case "red":
+      console.log(chalk.red(text));
+      break;
+    case "green":
+      console.log(chalk.green(text));
+      break;
+    case "yellow":
+      console.log(chalk.yellow(text));
+      break;
+    case "blue":
+      console.log(chalk.blue(text));
+      break;
+    case "magenta":
+      console.log(chalk.magenta(text));
+      break;
+    case "cyan":
+      console.log(chalk.cyan(text));
+      break;
+    default:
+      console.log(chalk.white(text));
+  }
+}
 // General
 // ---------------------------------------------------
 program.version("0.0.1").description("MovieDb database using CLI");
@@ -30,7 +57,27 @@ program
   .action((options) => {
     console.log(chalk.yellow.bold("Get persons at page: "), options.page);
     getPersons(options.page).then((result) => {
-      console.log(result.results[0].name);
+      result.results.forEach((person) => {
+        l("----------------------------------------\n");
+        l(person.id);
+        l(`Name: ${person.name}`, "blue");
+        if (person.known_for_department) {
+          l(`Deparment: ${person.known_for_department}`, "magenta");
+        }
+        if (person.known_for !== undefined) {
+          l("Appearing in: ");
+          l("\n");
+          person.known_for.forEach((movie) => {
+            l(`\t${movie.id}`);
+            l(`\t${movie.title}`);
+            l(`\t${movie.release_date}`);
+            l("\n");
+          });
+        } else {
+          l(`${person.name} doesn’t appear in any movie. \n`);
+        }
+        // console.log(person.name);
+      });
     });
   });
 
