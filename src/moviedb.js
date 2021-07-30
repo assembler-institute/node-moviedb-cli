@@ -39,21 +39,21 @@ program
     // console.log(chalk.yellow.bold("Get persons at page: "), options.page);
 
     getPersons(options.page).then((apiResponse) => {
-      l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
       l(`Page: ${options.page} of ${apiResponse.total_pages}\n`);
+      l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
 
       apiResponse.results.forEach((person) => {
-        l("----------------------------------------");
-        l("PERSON \n");
+        l("----------------------------------------\n");
+        l("PERSON \n\n");
         l("Id: ", "white", true);
-        l(person.id);
+        l(person.id + "\n");
         l("Name: ", "white", true);
-        l(person.name, "blue", true);
+        l(person.name + "\n", "blue", true);
         if (person.known_for_department === "Acting") {
           l("Deparment: ", "white", true);
-          l(person.known_for_department, "magenta");
+          l(person.known_for_department + "\n", "magenta");
         }
-        l("Movie carreer: ", "white", true);
 
         // Get all movies names
         let movies = new Array();
@@ -61,16 +61,14 @@ program
 
         // Check if all are titles undefined
         if (!movies.every(undefinedTitle)) {
-          l("Appearing in: ");
-          l("\n");
+          l("Movie carreer: \n", "white", true);
           person.known_for.forEach((movie) => {
             // Only show not undefined titles
             if (movie.title != undefined) {
               l("\tMovie:");
               l(`\t${movie.id}`);
               l(`\t${movie.title}`);
-              l(`\t${movie.release_date}`);
-              l("\n");
+              l(`\t${movie.release_date} \n`);
             }
           });
         } else {
@@ -89,7 +87,7 @@ program
     getPersonById(options.id).then((apiResponse) => {
       let person = apiResponse;
       l("----------------------------------------\n");
-      l("PERSON \n");
+      l("PERSON \n\n");
       l("Id: ", "white", true);
       l(person.id + "\n");
       l("Name: ", "white", true);
