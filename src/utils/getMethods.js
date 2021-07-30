@@ -1,19 +1,17 @@
 const https = require("https");
 const ora = require("ora");
 
+const httpConstants = require("./httpConstants.js");
+const { chalkPeople, chalkPersonId } = require("./chalks.js");
+
 /**
- * Persons by Pages
+ * get People by Pages
+ * @param page: number of page to render
  */
 function PersonsByPage(page = 1) {
   const options = {
-    host: "api.themoviedb.org",
-    protocol: "https:",
+    ...httpConstants,
     path: `/3/person/popular?page=${page}&api_key=${process.env.API_KEY}`,
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.API_KEY}`,
-    },
   };
 
   const spinner = ora("Loading popular people").start();
@@ -21,28 +19,41 @@ function PersonsByPage(page = 1) {
   const req = https.request(options, (res) => {
     let body = "";
 
-    res.on("data", (chunk) => {
-      body += chunk;
-    });
-
-    res.on("end", () => {
-      try {
-        let json = JSON.parse(body);
-        setTimeout(() => {
-          console.log("\n", json);
-          spinner.succeed("Data fetched successfully");
-        }, 2000);
-      } catch (error) {
-        spinner.fail(error.message);
-      }
-    });
+    res.on("data", (chunk) => (body += chunk));
+    res.on("end", () => chalkPeople(JSON.parse(body), spinner));
   });
 
-  req.on("error", (e) => {
-    spinner.fail(e.message);
-  });
-
+  req.on("error", (e) => spinner.fail(e.message));
   req.end();
 }
 
-module.exports = { PersonsByPage };
+/**
+ * Popular functions
+ */
+function getPopularPersons() {
+  console.log("personas populares como Einar ");
+}
+
+/**
+ * Person by ID functions
+ */
+function PersonById(id) {
+  const options = {
+    ...httpConstants,
+    path: `/3/person/${id}?&api_key=${process.env.API_KEY}`,
+  };
+
+  const spinner = ora("Fetching the person data...\n").start();
+
+  const req = https.request(options, (res) => {
+    let body = "";
+
+    res.on("data", (chunk) => {body += chunk;});
+    res.on("end", () => chalkPersonId(JSON.parse(body), spinner));
+  });
+
+  req.on("error", (e) => spinner.fail(e.message));
+    req.end();
+}
+
+module.exports = { PersonById, PersonsByPage};
