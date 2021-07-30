@@ -88,30 +88,30 @@ program
   .action((options) => {
     getPersonById(options.id).then((apiResponse) => {
       let person = apiResponse;
-      l("----------------------------------------");
+      l("----------------------------------------\n");
       l("PERSON \n");
       l("Id: ", "white", true);
-      l(person.id);
+      l(person.id + "\n");
       l("Name: ", "white", true);
-      l(person.name, "blue", true);
+      l(person.name + "\n", "blue", true);
       l("Birthday: ", "white", true);
       if (person.birthday && person.place_of_birth) {
-        l(person.birthday + " | " + person.place_of_birth);
+        l(person.birthday + " | " + person.place_of_birth + "\n");
       } else {
-        l(`No birthday data of ${person.name}.`, "red", true);
+        l(`No birthday data of ${person.name}.\n`, "red", true);
       }
       if (person.known_for_department === "Acting") {
         l("Deparment: ", "white", true);
-        l(person.known_for_department, "magenta");
+        l(person.known_for_department + "\n", "magenta");
       }
       if (person.biography) {
         l("Biography: ", "white", true);
-        l(person.biography, "blue", true);
+        l(person.biography + "\n", "blue", true);
       }
-      l("Also known as: ", "white", true);
+      l("Also known as: \n", "white", true);
       if (person.also_known_as != undefined) {
         person.also_known_as.forEach((aka) => {
-          l(`\t · ${aka}`);
+          l(`\t · ${aka}\n`);
         });
       } else {
         l(`\n${person.name} doesn’t have any alternate names\n`, "red", true);

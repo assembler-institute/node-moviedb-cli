@@ -8,58 +8,58 @@ function l(text, color, bold = false) {
   switch (color) {
     case "black":
       if (bold) {
-        console.log(chalk.black.bold(text));
+        process.stdout.write(chalk.black.bold(text));
       } else {
-        console.log(chalk.black(text));
+        process.stdout.write(chalk.black(text));
       }
       break;
     case "red":
       if (bold) {
-        console.log(chalk.red.bold(text));
+        process.stdout.write(chalk.red.bold(text));
       } else {
-        console.log(chalk.red(text));
+        process.stdout.write(chalk.red(text));
       }
       break;
     case "green":
       if (bold) {
-        console.log(chalk.green.bold(text));
+        process.stdout.write(chalk.green.bold(text));
       } else {
-        console.log(chalk.green(text));
+        process.stdout.write(chalk.green(text));
       }
       break;
     case "yellow":
       if (bold) {
-        console.log(chalk.yellow.bold(text));
+        process.stdout.write(chalk.yellow.bold(text));
       } else {
-        console.log(chalk.yellow(text));
+        process.stdout.write(chalk.yellow(text));
       }
       break;
     case "blue":
       if (bold) {
-        console.log(chalk.blue.bold(text));
+        process.stdout.write(chalk.blue.bold(text));
       } else {
-        console.log(chalk.blue(text));
+        process.stdout.write(chalk.blue(text));
       }
       break;
     case "magenta":
       if (bold) {
-        console.log(chalk.magenta.bold(text));
+        process.stdout.write(chalk.magenta.bold(text));
       } else {
-        console.log(chalk.magenta(text));
+        process.stdout.write(chalk.magenta(text));
       }
       break;
     case "cyan":
       if (bold) {
-        console.log(chalk.cyan.bold(text));
+        process.stdout.write(chalk.cyan.bold(text));
       } else {
-        console.log(chalk.cyan(text));
+        process.stdout.write(chalk.cyan(text));
       }
       break;
     default:
       if (bold) {
-        console.log(chalk.white.bold(text));
+        process.stdout.write(chalk.white.bold(text));
       } else {
-        console.log(chalk.white(text));
+        process.stdout.write(chalk.white(text));
       }
   }
 }
