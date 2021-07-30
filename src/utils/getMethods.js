@@ -28,13 +28,6 @@ function PersonsByPage(page = 1) {
 }
 
 /**
- * Popular functions
- */
-function getPopularPersons() {
-  console.log("personas populares como Einar ");
-}
-
-/**
  * Person by ID functions
  */
 function PersonById(id) {
@@ -48,12 +41,14 @@ function PersonById(id) {
   const req = https.request(options, (res) => {
     let body = "";
 
-    res.on("data", (chunk) => {body += chunk;});
+    res.on("data", (chunk) => {
+      body += chunk;
+    });
     res.on("end", () => chalkPersonId(JSON.parse(body), spinner));
   });
 
   req.on("error", (e) => spinner.fail(e.message));
-    req.end();
+  req.end();
 }
 
-module.exports = { PersonById, PersonsByPage};
+module.exports = { PersonById, PersonsByPage };
