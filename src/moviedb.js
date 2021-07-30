@@ -4,11 +4,10 @@ const { Command } = require("commander");
 const ora = require("ora");
 const dotenv = require("dotenv");
 dotenv.config();
-const https = require("https");
 
 const chalk = require("chalk");
 
-const { getPersons, getPerson } = require("./utils/httpsRequest");
+const { getPersons, getPerson, getMovies } = require("./utils/httpsRequest");
 
 const requestOptions = {
   href: "https://api.themoviedb.org",
@@ -82,14 +81,78 @@ program
     const id = programOptions.args.toString();
     requestOptions.path = `/3/person/${id}`;
     data = await getPerson(requestOptions);
+    console.log(
+      chalk.white(
+        `\n-----------------------------------------------------------------`
+      )
+    );
+    console.log(chalk.white("Person:\n"));
+    console.log(chalk.white("ID: ", data.id));
+    console.log("Name: ", chalk.blue(data.name));
+    console.log(
+      chalk.white("Birthday: ", data.birthday),
+      chalk.gray("|"),
+      chalk.white(data.place_of_birth)
+    );
+    if (data.known_for_department === "Acting") {
+      console.log("Department: ", chalk.magenta(data.known_for_department));
+    } else {
+      console.log("");
+    }
+    console.log("Biography: ", chalk.bold.blue(data.biography));
+    if (data.also_known_as) {
+      console.log(`\n`);
+      console.log(chalk.white("Also known as: \n"));
+      data.also_known_as.map((name) => console.log(chalk.white(name)));
+      console.log(`\n`);
+    } else {
+      console.log(`\n`);
+      console.log(
+        chalk.yellow(data.name),
+        "doesn't have any alternate names\n"
+      );
+    }
     spinner.succeed("Person data loaded");
   });
 
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("--page", "The page of movies data results to fetch")
+  .option("-p, --popular", "Fetch the popular movies")
+  .option("-n, --now-playing", "Fetch the movies that are playing now")
+  .action(async function handleAction(programOptions) {
+    const spinner = ora("Fetching the movies data...").start();
+    const page = programOptions.args.toString();
+    let data = "";
+    if (
+      programOptions.popular ||
+      (!programOptions.popular && !programOptions.nowPlaying)
+    ) {
+      requestOptions.path = `/3/movie/popular?page=${page}`;
+      data = await getMovies(requestOptions);
+    } else if (programOptions.nowPlaying) {
+      requestOptions.path = `/3/movie/now_playing?page=${page}`;
+      data = await getMovies(requestOptions);
+    }
+    console.log(
+      chalk.white(
+        `\n-----------------------------------------------------------------`
+      )
+    );
+    console.log("Page: ", chalk.white(data.page, " of ", data.total_pages));
+    data.results.map((movie) => {
+      console.log(
+        chalk.white(
+          `\n-----------------------------------------------------------------\n`
+        )
+      );
+      console.log(chalk.white("Movie:\n"));
+      console.log("ID: ", chalk.white(movie.id));
+      console.log("Title: ", chalk.bold.blue(movie.title));
+      console.log("Release Data: ", chalk.white(movie.release_date, "\n"));
+    });
+    spinner.succeed("Movies data loaded");
   });
 
 program

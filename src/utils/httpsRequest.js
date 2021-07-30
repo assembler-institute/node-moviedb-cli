@@ -24,27 +24,79 @@ async function getPersons(options) {
   return await promise;
 }
 
-function getPerson(options) {
-  const req = https.request(options, (res) => {
-    let response = "";
+async function getPerson(options) {
+  let promise = new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      let response = "";
 
-    res.on("data", function onData(chunk) {
-      response += chunk;
+      res.on("data", function onData(chunk) {
+        response += chunk;
+      });
+
+      res.on("end", function onEnd() {
+        const data = JSON.parse(response);
+        resolve(data);
+      });
     });
 
-    res.on("end", function onEnd() {
-      const data = JSON.parse(response);
-      console.log(data);
+    req.on("error", (error) => {
+      reject(error);
     });
+    req.end();
   });
+  return await promise;
+}
 
-  req.on("error", (e) => {
-    console.error(e);
+async function getPopularMovies(options) {
+  let promise = new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      let response = "";
+
+      res.on("data", function onData(chunk) {
+        response += chunk;
+      });
+
+      res.on("end", function onEnd() {
+        const data = JSON.parse(response);
+        resolve(data);
+      });
+
+      res.on("error", function (error) {
+        reject(error);
+      });
+    });
+
+    req.end();
   });
-  req.end();
+  return await promise;
+}
+
+async function getMovies(options) {
+  let promise = new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      let response = "";
+
+      res.on("data", function onData(chunk) {
+        response += chunk;
+      });
+
+      res.on("end", function onEnd() {
+        const data = JSON.parse(response);
+        resolve(data);
+      });
+
+      res.on("error", function (error) {
+        reject(error);
+      });
+    });
+
+    req.end();
+  });
+  return await promise;
 }
 
 module.exports = {
   getPersons: getPersons,
   getPerson,
+  getMovies,
 };
