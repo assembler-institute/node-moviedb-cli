@@ -17,7 +17,7 @@
   },
   "scripts": {},
   "bin": {
-    "./moviedb.js": "./src/moviedb.js"
+    "moviedb.js": "./src/moviedb.js"
   },
   "dependencies": {
     "chalk": "^4.1.0",

@@ -1,6 +1,9 @@
+/** @format */
+
 const chalk = require("chalk");
 
 const Person = require("./entities/Person.js");
+const Movie = require("./entities/Movie.js");
 
 const log = console.log;
 
@@ -48,4 +51,29 @@ function chalkPersonId(person, spinner) {
   }
 }
 
-module.exports = { chalkPeople, chalkPersonId };
+function chalkMovie(page, spinner) {
+  try {
+    setTimeout(() => {
+      page.results.forEach((movie, index, array) => {
+        const chalkMovie = new Movie(movie);
+        chalkMovie.renderPopular();
+
+        if (index == array.length - 1) {
+          log(chalk.white("---------------------------------------------"));
+          log(chalk.white(`Page: ${page.page} of: ${page.total_pages}`));
+          log("\n");
+          return;
+        }
+
+        log(chalk.white("----------------------"));
+      });
+
+      spinner.succeed("Popular Movie data loaded");
+      log("\n");
+    }, 1000);
+  } catch (error) {
+    spinner.fail(error.message);
+  }
+}
+
+module.exports = { chalkPeople, chalkMovie, chalkPersonId };

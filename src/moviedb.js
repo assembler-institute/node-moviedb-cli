@@ -31,11 +31,14 @@ program
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
-  .option("-p, --popular", "Fetch the popular movies")
   .requiredOption("--page <number>", "The page of movies data results to fetch")
+  .option("-p, --popular", "Fetch the popular movies")
   .option("-n, --now-playing", "Fetch the movies that are playing now")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .action(function handleAction(opt) {
+    // if (opt.page && opt.popular && opt.nowPlaying) get.MoviesByPage(opt.page);
+    // if ((opt.page && opt.popular) || opt.nowPlaying) get.MoviesByPage(opt.page);
+    //get.MoviesByPage(opt.page, opt.nowPlaying);
+    console.log(opt.nowPlaying); // if nP is true, ...
   });
 
 program

@@ -1,8 +1,10 @@
+/** @format */
+
 const https = require("https");
 const ora = require("ora");
 
 const httpConstants = require("./httpConstants.js");
-const { chalkPeople, chalkPersonId } = require("./chalks.js");
+const { chalkMovie, chalkPeople, chalkPersonId } = require("./chalks.js");
 
 /**
  * get People by Pages
@@ -28,10 +30,45 @@ function PersonsByPage(page = 1) {
 }
 
 /**
- * Popular functions
+ * Movies functions - Movies Pagination
  */
-function getPopularPersons() {
-  console.log("personas populares como Einar ");
+//https://api.themoviedb.org/3/movie/popular?page=1&api_key=b103cea4e07be4e6b9e24670e40350a5
+function MoviesByPage(page = 1) {
+  const options = {
+    ...httpConstants,
+    path: `/3/movie/popular?page=${page}&api_key=${process.env.API_KEY}`,
+  };
+
+  const spinner = ora("Loading popular movie").start();
+
+  const req = https.request(options, (res) => {
+    let body = "";
+
+    res.on("data", (chunk) => (body += chunk));
+    res.on("end", () => chalkMovie(JSON.parse(body), spinner));
+  });
+
+  req.on("error", (e) => spinner.fail(e.message));
+  req.end();
+}
+
+function MoviesByPage(page = 1) {
+  const options = {
+    ...httpConstants,
+    path: `/3/movie/popular?page=${page}&api_key=${process.env.API_KEY}`,
+  };
+
+  const spinner = ora("Loading popular movie").start();
+
+  const req = https.request(options, (res) => {
+    let body = "";
+
+    res.on("data", (chunk) => (body += chunk));
+    res.on("end", () => chalkMovie(JSON.parse(body), spinner));
+  });
+
+  req.on("error", (e) => spinner.fail(e.message));
+  req.end();
 }
 
 /**
@@ -48,12 +85,14 @@ function PersonById(id) {
   const req = https.request(options, (res) => {
     let body = "";
 
-    res.on("data", (chunk) => {body += chunk;});
+    res.on("data", (chunk) => {
+      body += chunk;
+    });
     res.on("end", () => chalkPersonId(JSON.parse(body), spinner));
   });
 
   req.on("error", (e) => spinner.fail(e.message));
-    req.end();
+  req.end();
 }
 
-module.exports = { PersonById, PersonsByPage};
+module.exports = { PersonById, PersonsByPage, MoviesByPage };
