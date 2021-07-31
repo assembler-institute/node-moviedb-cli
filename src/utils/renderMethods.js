@@ -31,7 +31,7 @@ function renderPersons(persons) {
       log(`${chalk.white(`Also know as:\n`)}`);
     } else {
       log(`\n`);
-      log(`${chalk.yellow(person.name)}doesn’t have any alternate names\n);
+      log(`${chalk.yellow(person.name)} doesn’t have any alternate names\n);
       `);
     }
   });
