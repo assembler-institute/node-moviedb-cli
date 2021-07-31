@@ -93,9 +93,9 @@ program
   .description("Make a network request to fetch movies")
   .requiredOption("--page <num>", "The page of movies data results to fetch")
   .option("-p, --popular", "Fetch the popular movies")
-  .option("-n, --now-playing", "Fetch the movies that are playing now")
+  .option("-n, --nowPlaying", "Fetch the movies that are playing now")
   .action((options) => {
-    getMovies(options.page).then((apiResult) => {
+    getMovies(options.page, options.nowPlaying).then((apiResult) => {
       // Formatting and printing output on console
       l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       l(`Page: ${options.page} of ${apiResult.total_pages}\n`);
