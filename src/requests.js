@@ -52,6 +52,48 @@ function getPersons(page, key = apiKey) {
   return finalResult;
 }
 
+function getMovie(movieId, key = apiKey) {
+  const options = {
+    hostname: "api.themoviedb.org",
+    port: 443,
+    path: `/3/movie/${movieId}?api_key=${key}`,
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const spinner = ora("Fetching the requested movie data...").start();
+  spinner;
+
+  let finalResult = new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      res.setEncoding("utf8");
+      let responseBody = "";
+
+      res.on("data", (chunk) => {
+        responseBody += chunk;
+      });
+
+      res.on("end", () => {
+        resolve(JSON.parse(responseBody));
+        // console.log("This is the response ", responseBody);
+        spinner.succeed(`Loaded requested movie with ID:  ${movieId}`);
+      });
+    });
+
+    req.on("error", (err) => {
+      reject(err);
+      spinner.fail(`Couldn't load requested movie with ID: ${movieId}`);
+    });
+
+    req.end();
+  });
+
+  return finalResult;
+}
+
 // Exports
 // ---------------------------------------------------
-module.exports = { getPersons };
+module.exports = { getPersons, getMovie };
+// module.exports = { getMovie };
