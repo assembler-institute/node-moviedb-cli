@@ -3,6 +3,7 @@
 // ---------------------------------------------------
 require("dotenv").config({ path: "../.env" });
 const { getPersons, getPersonById } = require("./requests.js");
+const { asciiPrompt } = require("./asciiPrompt.js");
 const { Command } = require("commander");
 const { l } = require("./chalk.js");
 const chalk = require("chalk");
@@ -37,11 +38,12 @@ program
   .requiredOption("-p, --popular", "Fetch the popular persons")
   .action((options) => {
     // console.log(chalk.yellow.bold("Get persons at page: "), options.page);
-
     getPersons(options.page).then((apiResponse) => {
+      asciiPrompt("Popular persons");
+
       l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
       l(`Page: ${options.page} of ${apiResponse.total_pages}\n`);
-      l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
+      l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
 
       apiResponse.results.forEach((person) => {
         l("----------------------------------------\n");
@@ -86,8 +88,9 @@ program
   .action((options) => {
     getPersonById(options.id).then((apiResponse) => {
       let person = apiResponse;
-      l("----------------------------------------\n");
-      l("PERSON \n\n");
+      asciiPrompt(person.name);
+      // l("----------------------------------------\n");
+      // l("PERSON \n\n");
       l("Id: ", "white", true);
       l(person.id + "\n");
       l("Name: ", "white", true);
