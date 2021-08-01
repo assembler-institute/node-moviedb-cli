@@ -115,6 +115,14 @@ program
     spinner.succeed("Person data loaded");
   });
 
+/*
+************ test it with **************
+1. popular movies : 
+node src/moviedb.js get-movies --page 6
+2. now playing movies : 
+node src/moviedb.js get-movies -n --page 1 
+*/
+
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
@@ -125,34 +133,40 @@ program
     const spinner = ora("Fetching the movies data...").start();
     const page = programOptions.args.toString();
     let data = "";
+
+    function renderMovies(msg) {
+      console.log(
+        chalk.white(
+          `\n-----------------------------------------------------------------`
+        )
+      );
+      console.log("Page: ", chalk.white(data.page, " of ", data.total_pages));
+      data.results.map((movie) => {
+        console.log(
+          chalk.white(
+            `\n-----------------------------------------------------------------\n`
+          )
+        );
+        console.log(chalk.white("Movie:\n"));
+        console.log("ID: ", chalk.white(movie.id));
+        console.log("Title: ", chalk.bold.blue(movie.title));
+        console.log("Release Date: ", chalk.white(movie.release_date, "\n"));
+      });
+      spinner.succeed(msg);
+    }
+
     if (
       programOptions.popular ||
       (!programOptions.popular && !programOptions.nowPlaying)
     ) {
       requestOptions.path = `/3/movie/popular?page=${page}`;
       data = await getMovies(requestOptions);
+      renderMovies("Popular movies data loaded");
     } else if (programOptions.nowPlaying) {
       requestOptions.path = `/3/movie/now_playing?page=${page}`;
       data = await getMovies(requestOptions);
+      renderMovies("Movies playing now data loaded");
     }
-    console.log(
-      chalk.white(
-        `\n-----------------------------------------------------------------`
-      )
-    );
-    console.log("Page: ", chalk.white(data.page, " of ", data.total_pages));
-    data.results.map((movie) => {
-      console.log(
-        chalk.white(
-          `\n-----------------------------------------------------------------\n`
-        )
-      );
-      console.log(chalk.white("Movie:\n"));
-      console.log("ID: ", chalk.white(movie.id));
-      console.log("Title: ", chalk.bold.blue(movie.title));
-      console.log("Release Data: ", chalk.white(movie.release_date, "\n"));
-    });
-    spinner.succeed("Movies data loaded");
   });
 
 program
