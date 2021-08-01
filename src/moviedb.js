@@ -72,6 +72,15 @@ program
     spinner.succeed("Popular persons data loaded");
   });
 
+/*
+************ test it with **************
+
+node src/moviedb.js get-person -i 990393    
+
+or
+
+node src/moviedb.js get-person -i 1245 
+*/
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
