@@ -1,5 +1,6 @@
 const https = require("https");
 const spinner = require("./spinner_persons");
+const render = require("./render_persons");
 require("dotenv/config");
 
 exports.httpRequest = function (endPoint, option1 = "", option2 = "") {
@@ -15,8 +16,13 @@ exports.httpRequest = function (endPoint, option1 = "", option2 = "") {
         });
 
         response.on("end", () => {
-          console.log(JSON.parse(result));
-          spin.stop();
+          switch (endPoint) {
+            case "person/popular":
+              render.persons(JSON.parse(result));
+              break;
+          }
+
+          spin.succeed("Popular Persons data loaded");
         });
       }
     )
