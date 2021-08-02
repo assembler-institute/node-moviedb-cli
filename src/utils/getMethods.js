@@ -3,6 +3,7 @@
 const https = require("https");
 const ora = require("ora");
 const fs = require("fs");
+const notifier = require("node-notifier");
 const file = require("./fileReader.js");
 const os = require("os");
 
@@ -13,7 +14,6 @@ const {
   chalkPersonId,
   chalkSingleMovie,
 } = require("./chalks.js");
-
 /**
  * get People by Pages
  * @param page: number of page to render
@@ -33,7 +33,11 @@ function PersonsByPage(page = 1, option) {
     res.on("end", () => {
       if (option) {
         file.savePeople(JSON.parse(body));
-        spinner.succeed("Popular Persons data loaded");
+        spinner.succeed("Popular Persons - Loaded");
+        notifier.notify({
+          title: "Popular Persons",
+          message: "Popular Persons data loaded",
+        });
       } else {
         chalkPeople(JSON.parse(body), spinner);
       }
@@ -97,6 +101,10 @@ function MoviesByPage(page = 1, nowPlaying, option) {
       } else if (option){
         file.saveMovies(JSON.parse(body), nowPlaying);
         spinner.succeed("Popular movies data loaded");
+        notifier.notify({
+          title: "Popular Movies - Loaded",
+          message: "Now playing movies data loaded",
+        });
       } else {
         chalkMovie(JSON.parse(body), spinner, nowPlaying);
       }
@@ -153,6 +161,10 @@ function JsonPersonByPage() {
       });
     } else {
       spinner.fail("File doesn't exist");
+      notifier.notify({
+        title: "File Error",
+        message: "File doesn't exist",
+      });
     }
   } catch (err) {
     console.log(err.message);
