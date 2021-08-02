@@ -2,10 +2,11 @@
 // Imports
 // ---------------------------------------------------
 require("dotenv").config({ path: "../.env" });
-const { getPersons, getMovie } = require("./requests.js");
-const { Command } = require("commander");
+const { getPersons, getMovieById, getReviews } = require("./requests.js");
+const { Command, option } = require("commander");
 const { l } = require("./chalk.js");
 const chalk = require("chalk");
+const { yellow } = require("chalk");
 
 const program = new Command();
 
@@ -98,15 +99,58 @@ program
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .requiredOption("--id <num>", "The id of the movie data result to fetch")
+  .requiredOption("-id, --id <num>", "The id of the movie data result to fetch")
+  .option("-r, --reviews", "Fetch the reviews of the movie")
   .action((options) => {
-    // console.log(`Movie ID fetched: `, options.id);
+    console.log("id: ", options.id);
+    console.log("reviews: ", options.reviews);
 
-    getMovie(options.id).then((apiResult) => {
+    getMovieById(options.id).then((apiResult) => {
       l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-      l(`Movie ID: ${options.id}\n`);
-      l(`Movie Title: ${apiResult.original_title}\n`);
-      l(JSON.stringify(apiResult) + `\n`);
+      l("MOVIE \n");
+      l("Id: ", "white", false);
+      l(apiResult.id, "white", false);
+      l("\n");
+      l("Title: ", "blue", false);
+      l(apiResult.original_title, "blue", true);
+      l("\n");
+      l("Release date: ", "white", false);
+      l(apiResult.release_date, "white", true);
+      l("\n");
+      l("Runtime: ", "white", false);
+      l(apiResult.runtime, "white", true);
+      l("\n");
+      l("Votecount: ", "white", false);
+      l(apiResult.vote_count, "white", true);
+      l("\n");
+      l("Overview: ", "white", false);
+      l(apiResult.overview, "white", true);
+      l("\n");
+
+      if (options.reviews) {
+        getReviews(options.id).then((apiResultReviews) => {
+          //l(JSON.stringify(apiResultReviews) + `\n\n\n`);
+          if (apiResultReviews.total_pages > 0) {
+            // l(JSON.stringify(apiResultReviews.results) + `\n\n`);
+            apiResultReviews.results.forEach((review) => {
+              l(`Author: `, "white", false);
+              l(`${review.author}`, "blue", true);
+              l(`Content: `, "white", false);
+              l(`${review.content} `, "white", false);
+              l("\n");
+            });
+          } else {
+            l(
+              `The movie: ${options.id} doesn’t have any reviews`,
+              "yellow",
+              true
+            );
+          }
+        });
+      }
+
+      // l(JSON.stringify(apiResult) + `\n`);
+      // console.log(`Movie reviews: `, apiResult.reviews);
     });
   });
 
