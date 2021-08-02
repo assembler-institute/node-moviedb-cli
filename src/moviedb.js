@@ -5,9 +5,10 @@ const ora = require("ora");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const chalk = require("chalk");
+// const chalk = require("chalk");
 
 const { getPersons, getPerson, getMovies } = require("./utils/httpsRequest");
+const { renderPersons, renderPerson, renderMovies } = require("./utils/renderRequest");
 
 const requestOptions = {
   href: "https://api.themoviedb.org",
@@ -26,6 +27,14 @@ const requestOptions = {
 const program = new Command();
 program.version("0.0.1");
 
+/*
+************ test it with **************
+
+node src/moviedb.js get-persons -p --page 100    
+
+*/
+
+
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
@@ -40,34 +49,8 @@ program
 
     requestOptions.path = `/3/person/popular?page=${programOptions.page}`;
     data = await getPersons(requestOptions);
-    // console.log(persons);
 
-    data.results.forEach((person) => {
-      console.log(
-        `PERSON: 
-    
-    ID: ${person.id}
-    Name: ${chalk.bold.blue(person.name)}
-    Departament: ${chalk.magenta(person.known_for_department)}\n\n`
-      );
-
-      person.known_for.forEach((movies) => {
-        if (movies.original_title == undefined) {
-          console.log(`${chalk.yellow.dim("There's no movive ")}`);
-        } else {
-          console.log(
-            `\tMovie:
-        \tID: ${chalk.green(movies.id)}
-        \tRelease Date: ${chalk.green(movies.release_date)}
-        \tTitle: ${chalk.green(movies.original_title)}`
-          );
-        }
-      });
-
-      console.log(
-        `--------------------------------------------------------\n\n`
-      );
-    });
+    renderPersons(data);
 
     spinner.succeed("Popular persons data loaded");
   });
@@ -89,38 +72,11 @@ program
     const spinner = ora("Fetching the person's data...").start();
     const id = programOptions.args.toString();
     requestOptions.path = `/3/person/${id}`;
+
     data = await getPerson(requestOptions);
-    console.log(
-      chalk.white(
-        `\n-----------------------------------------------------------------`
-      )
-    );
-    console.log(chalk.white("Person:\n"));
-    console.log(chalk.white("ID: ", data.id));
-    console.log("Name: ", chalk.blue(data.name));
-    console.log(
-      chalk.white("Birthday: ", data.birthday),
-      chalk.gray("|"),
-      chalk.white(data.place_of_birth)
-    );
-    if (data.known_for_department === "Acting") {
-      console.log("Department: ", chalk.magenta(data.known_for_department));
-    } else {
-      console.log("");
-    }
-    console.log("Biography: ", chalk.bold.blue(data.biography));
-    if (data.also_known_as) {
-      console.log(`\n`);
-      console.log(chalk.white("Also known as: \n"));
-      data.also_known_as.map((name) => console.log(chalk.white(name)));
-      console.log(`\n`);
-    } else {
-      console.log(`\n`);
-      console.log(
-        chalk.yellow(data.name),
-        "doesn't have any alternate names\n"
-      );
-    }
+
+    renderPerson(data);
+
     spinner.succeed("Person data loaded");
   });
 
@@ -143,38 +99,17 @@ program
     const page = programOptions.args.toString();
     let data = "";
 
-    function renderMovies(msg) {
-      console.log(
-        chalk.white(
-          `\n-----------------------------------------------------------------`
-        )
-      );
-      console.log("Page: ", chalk.white(data.page, " of ", data.total_pages));
-      data.results.map((movie) => {
-        console.log(
-          chalk.white(
-            `\n-----------------------------------------------------------------\n`
-          )
-        );
-        console.log(chalk.white("Movie:\n"));
-        console.log("ID: ", chalk.white(movie.id));
-        console.log("Title: ", chalk.bold.blue(movie.title));
-        console.log("Release Date: ", chalk.white(movie.release_date, "\n"));
-      });
-      spinner.succeed(msg);
-    }
-
     if (
       programOptions.popular ||
       (!programOptions.popular && !programOptions.nowPlaying)
     ) {
       requestOptions.path = `/3/movie/popular?page=${page}`;
       data = await getMovies(requestOptions);
-      renderMovies("Popular movies data loaded");
+      renderMovies(data, "Popular movies data loaded", spinner);
     } else if (programOptions.nowPlaying) {
       requestOptions.path = `/3/movie/now_playing?page=${page}`;
       data = await getMovies(requestOptions);
-      renderMovies("Movies playing now data loaded");
+      renderMovies(data, "Movies playing now data loaded", spinner);
     }
   });
 
