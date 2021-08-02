@@ -1,7 +1,15 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
-const { getPersons } = require("./module/getPersonsRequest");
+const {
+  getPersonsRequest,
+  readLocalGetPersonsData,
+} = require("./module/get_persons");
+const {
+  getMovies,
+  getMoviesNowPlaying,
+  readLocalGetMoviesData,
+} = require("./module/get_movies");
 const { getPerson } = require("./module/getPersonRequest");
 const { getMovie, getMovieReviews } = require("./module/getMovie");
 
@@ -12,13 +20,19 @@ program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
   .action((options) => {
-    getPersons(options);
+    if (options.local) {
+      readLocalGetPersonsData();
+    } else {
+      getPersonsRequest(options);
+    }
   })
   .requiredOption("-p, --popular", "Fetch the popular persons")
   .requiredOption(
     "--page <number>",
     "The page of persons data results to fetch"
-  );
+  )
+  .option("--save", "Save the data in a local file")
+  .option("--local", "Read the data from the local file");
 
 program
   .command("get-person")
@@ -31,9 +45,23 @@ program
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
-  .action(function handleAction() {
-    console.log("hello-world");
-  });
+
+  .action((options) => {
+    if (options.local) {
+      readLocalGetMoviesData();
+    } else {
+      if (options.nowPlaying) {
+        getMoviesNowPlaying(options);
+      } else {
+        getMovies(options);
+      }
+    }
+  })
+  .requiredOption("--page <number>", "The page of movies data results to fetch")
+  .option("-p, --popular", "Fetch the popular movies")
+  .option("-n, --now-playing", "Fetch the movies that are playing now")
+  .option("--save", "Save the data in a local file")
+  .option("--local", "Read the data from the local file");
 
 program
   .command("get-movie")
