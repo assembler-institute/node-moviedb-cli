@@ -108,45 +108,58 @@ program
   .requiredOption("-i, --id <personId>", "The id of the person")
   .action((options) => {
     const spinner = ora("Fetching the person data...").start();
+    const isSave = program.opts().save;
 
     getPersonById(options.id)
       .then((apiResponse) => {
         spinner.stop();
-
-        let person = apiResponse;
-        asciiPrompt(person.name);
-
-        l("Id: ", "white", true);
-        l(person.id + "\n");
-        l("Name: ", "white", true);
-        l(person.name + "\n", "blue", true);
-        l("Birthday: ", "white", true);
-        if (person.birthday && person.place_of_birth) {
-          l(person.birthday + " | " + person.place_of_birth + "\n");
+        if (isSave) {
+          checkFolder("persons", "get-person.json", apiResponse);
+          spinner.succeed(`Saved JSON of person with id ${options.id}`);
         } else {
-          l(`No birthday data of ${person.name}.\n`, "red", true);
+          let person = apiResponse;
+          asciiPrompt(person.name);
+
+          l("Id: ", "white", true);
+          l(person.id + "\n");
+          l("Name: ", "white", true);
+          l(person.name + "\n", "blue", true);
+          l("Birthday: ", "white", true);
+          if (person.birthday && person.place_of_birth) {
+            l(person.birthday + " | " + person.place_of_birth + "\n");
+          } else {
+            l(`No birthday data of ${person.name}.\n`, "red", true);
+          }
+          if (person.known_for_department === "Acting") {
+            l("Deparment: ", "white", true);
+            l(person.known_for_department + "\n", "magenta");
+          }
+          if (person.biography) {
+            l("Biography: ", "white", true);
+            l(person.biography + "\n", "blue", true);
+          }
+          l("Also known as: \n", "white", true);
+          if (person.also_known_as != undefined) {
+            person.also_known_as.forEach((aka) => {
+              l(`\t · ${aka}\n`);
+            });
+          } else {
+            l(
+              `\n${person.name} doesn’t have any alternate names\n`,
+              "red",
+              true
+            );
+          }
+          spinner.succeed(`Loaded person with id ${options.id}`);
         }
-        if (person.known_for_department === "Acting") {
-          l("Deparment: ", "white", true);
-          l(person.known_for_department + "\n", "magenta");
-        }
-        if (person.biography) {
-          l("Biography: ", "white", true);
-          l(person.biography + "\n", "blue", true);
-        }
-        l("Also known as: \n", "white", true);
-        if (person.also_known_as != undefined) {
-          person.also_known_as.forEach((aka) => {
-            l(`\t · ${aka}\n`);
-          });
-        } else {
-          l(`\n${person.name} doesn’t have any alternate names\n`, "red", true);
-        }
-        spinner.succeed(`Loaded person with id ${options.id}`);
       })
       .catch(() => {
         spinner.stop();
-        spinner.fail(`Couldn't load person with id ${options.id}`);
+        if (isSave) {
+          spinner.fail(`Couldn't save JSON of person with id ${options.id}`);
+        } else {
+          spinner.fail(`Couldn't load person with id ${options.id}`);
+        }
       });
   });
 
