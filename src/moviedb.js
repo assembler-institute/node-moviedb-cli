@@ -267,7 +267,7 @@ program
                   if (err) throw err;
                   fs.appendFile(
                     "resources/movies/get-movie.json",
-                    "\n // REVIEWS \n" + JSON.stringify(apiResponseReviews),
+                    "\n// REVIEWS \n" + JSON.stringify(apiResponseReviews),
                     (err) => {
                       if (err) throw err;
                       l("Saved reviews in JSON");
