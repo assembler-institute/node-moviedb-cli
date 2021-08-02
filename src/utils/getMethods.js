@@ -11,6 +11,7 @@ const { chalkMovie, chalkPeople, chalkPersonId } = require("./chalks.js");
 /**
  * get People by Pages
  * @param page: number of page to render
+ * @param option: save option
  */
 function PersonsByPage(page = 1, option) {
   const options = {
@@ -26,11 +27,9 @@ function PersonsByPage(page = 1, option) {
     res.on("data", (chunk) => (body += chunk));
     res.on("end", () => {
       if (option) {
-        //console.log("JSON");
         file.savePeople(JSON.parse(body));
         spinner.succeed("Popular Persons data loaded");
       } else {
-        //console.log("REQUEST");
         chalkPeople(JSON.parse(body), spinner);
       }
     });
@@ -43,7 +42,8 @@ function PersonsByPage(page = 1, option) {
 /**
  * Movies functions - Movies Pagination
  * @param page: number of page to render
- * @param nowPlaying: bool, manage change of path
+ * @param nowPlaying: bool, movies that are playing npw
+ * @param option: bool, save option
  * */
 function MoviesByPage(page = 1, nowPlaying, option) {
   let path = `/3/movie/popular?page=${page}&api_key=${process.env.API_KEY}`;
@@ -64,12 +64,10 @@ function MoviesByPage(page = 1, nowPlaying, option) {
     res.on("data", (chunk) => (body += chunk));
     res.on("end", () => {
       if (option) {
-        //console.log("JSON");
         file.saveMovies(JSON.parse(body), nowPlaying);
         spinner.succeed("Now playing movies data loaded");
       } else {
-        //console.log("REQUEST");
-        chalkMovie(JSON.parse(body), spinner, nowPlaying)
+        chalkMovie(JSON.parse(body), spinner, nowPlaying);
       }
     });
   });
@@ -80,7 +78,8 @@ function MoviesByPage(page = 1, nowPlaying, option) {
 
 /**
  * Person by ID functions
- */
+ * @param id: id of the person
+ * */
 function PersonById(id) {
   const options = {
     ...httpConstants,
@@ -92,7 +91,7 @@ function PersonById(id) {
   const req = https.request(options, (res) => {
     let body = "";
 
-    res.on("data", (chunk) => { body += chunk; });
+    res.on("data", (chunk) => (body += chunk));
     res.on("end", () => chalkPersonId(JSON.parse(body), spinner));
   });
 
@@ -100,10 +99,10 @@ function PersonById(id) {
   req.end();
 }
 
-// * get People by Pages from JSON
-// * @param page: number of page to render
-// */
-
+/**
+ * get People by Pages from JSON
+ * @param page: number of page to render
+ */
 function JsonPersonByPage(page = 1) {
   const spinner = ora("Loading popular people").start();
   const path = "./src/utils/persons/persons.json";
@@ -122,6 +121,11 @@ function JsonPersonByPage(page = 1) {
   }
 }
 
+/**
+ * get Movies by Pages from JSON
+ * @param page: number of page to render
+ * @param nowPlaying: bool, movies that are playing npw
+ */
 function JsonMoviesByPage(page = 1, nowPlaying) {
   const spinner = ora("Loading popular movies").start();
   const path = "./src/utils/movies/movies.json";
@@ -141,4 +145,10 @@ function JsonMoviesByPage(page = 1, nowPlaying) {
   }
 }
 
-module.exports = { PersonById, PersonsByPage, MoviesByPage, JsonPersonByPage, JsonMoviesByPage };
+module.exports = {
+  PersonById,
+  PersonsByPage,
+  MoviesByPage,
+  JsonPersonByPage,
+  JsonMoviesByPage,
+};
