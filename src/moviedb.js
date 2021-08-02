@@ -33,6 +33,7 @@ program
   .option("-p, --popular", "Fetch the popular movies")
   .option("-n, --now-playing", "Fetch the movies that are playing now")
   .option("--save", "Save the movies to /files/movies")
+  .option("--local", "Fetch the movies from /files/movies")
   .action(async function handleAction(options) {
     spinner.start(
       `${chalk.bold(`${chalk.yellow("Fetching the movies data...")}`)}`
@@ -40,25 +41,41 @@ program
     const page = parseInt(options.page);
     let moviesJson = {};
     let spinnerText = "";
-    if (options.nowPlaying === true) {
-      moviesJson = await request.getNowPlayingMovies(page);
-      spinnerText = "Movies playing now data loaded";
-    } else {
-      moviesJson = await request.getPopularMovies(page);
-      spinnerText = "Popular movies data loaded";
+    try {
+      if (options.local === true) {
+        if (options.nowPlaying === true) {
+          moviesJson = await fileSystem.loadMovies(options.nowPlaying);
+          spinnerText = "Movies playing now data loaded";
+        } else {
+          moviesJson = await fileSystem.loadMovies(options.nowPlaying);
+          spinnerText = "Popular movies data loaded";
+        }
+      } else {
+        if (options.nowPlaying === true) {
+          moviesJson = await request.getNowPlayingMovies(page);
+          spinnerText = "Movies playing now data loaded";
+        } else {
+          moviesJson = await request.getPopularMovies(page);
+          spinnerText = "Popular movies data loaded";
+        }
+      }
+      if (options.save === true) {
+        await fileSystem.saveMovies(moviesJson, options.nowPlaying);
+        spinnerText += " and saved to file/movies";
+        notify("Movies saved to file!");
+      } else {
+        render.renderMovies(
+          moviesJson.page,
+          moviesJson.total_pages,
+          moviesJson.results
+        );
+      }
+      spinner.succeed(spinnerText);
+    } catch (error) {
+      setTimeout(() => {
+        spinner.fail(chalk.bold(chalk.red(error)));
+      }, 1000);
     }
-    if (options.save === true) {
-      await fileSystem.saveMovies(moviesJson, options.nowPlaying);
-      spinnerText += " and saved to file/movies";
-      notify("Movies saved to file!");
-    } else {
-      render.renderMovies(
-        moviesJson.page,
-        moviesJson.total_pages,
-        moviesJson.results
-      );
-    }
-    spinner.succeed(spinnerText);
   });
 
 program
