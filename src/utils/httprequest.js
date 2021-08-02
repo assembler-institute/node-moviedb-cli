@@ -25,16 +25,17 @@ exports.httpRequest = function (endPoint, option1 = "", option2 = "") {
           switch (endPoint) {
             case "person/popular":
               render.persons(JSON.parse(result));
+              spin.succeed("Popular Persons data loaded");
               break;
             case "movie/popular":
               render.movies(JSON.parse(result));
+              spin.succeed("Popular movies data loaded");
               break;
             case "movie/now_playing":
               render.movies(JSON.parse(result));
+              spin.succeed("Movies playing now data loaded");
               break;
           }
-
-          spin.succeed("Popular Persons data loaded");
         });
       }
     )
