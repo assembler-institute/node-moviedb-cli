@@ -2,7 +2,6 @@
 
 const { Command } = require("commander");
 const req = require("./utils/httprequest");
-const date = require("./utils/httprequest");
 require("dotenv/config");
 
 const program = new Command();
