@@ -36,7 +36,7 @@ program
           spinner.fail(
             chalk.bold(
               chalk.red(
-                `You have stored the page number ${json.page} on your local`
+                `You have stored the person on page number ${json.page} on your local file`
               )
             )
           );
@@ -90,7 +90,7 @@ program
           spinner.fail(
             chalk.bold(
               chalk.red(
-                `This person id doesn't match with any person on your local file`
+                `You have stored the person with the id ${json.id} on your local file`
               )
             )
           );
@@ -146,7 +146,11 @@ program
       } else {
         if (moviesJson.page !== page) {
           spinner.fail(
-            chalk.bold(chalk.red(`This page doesn't exists on your local file`))
+            chalk.bold(
+              chalk.red(
+                `You have stored the page number ${moviesJson.page} on your local`
+              )
+            )
           );
         } else {
           render.renderMovies(moviesJson);
