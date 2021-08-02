@@ -2,6 +2,7 @@
 
 const { Command } = require("commander");
 const req = require("./utils/httprequest");
+const date = require("./utils/httprequest");
 require("dotenv/config");
 
 const program = new Command();
@@ -23,7 +24,7 @@ program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
   .action(function handleAction() {
-    console.log("hello-world");
+    // console.log("hello-world");
   });
 
 program
@@ -43,8 +44,17 @@ program
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log(process.env.API_KEY);
+  .requiredOption("-i, --id <id> ", "The id of the movie")
+  .option("-r, --review", "Fetch the reviews of the movie")
+
+  .action(function handleAction(options) {
+    let movieId = options.id;
+    let movieReview = options.review;
+    if (movieReview) {
+      req.httpRequest("movie/" + movieId + "/reviews");
+    } else {
+      req.httpRequest("movie/" + movieId);
+    }
   });
 
 // error on unknown commands

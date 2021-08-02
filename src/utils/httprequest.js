@@ -1,19 +1,21 @@
 const https = require("https");
+const fs = require("fs");
+const ora = require("ora");
+const chalk = require("chalk");
+const { movie_render } = require("./movie_render");
 const spinner = require("./spinner_persons");
 const render = require("./render_persons");
-const { exit } = require("process");
 require("dotenv/config");
 
 exports.httpRequest = function (endPoint, option1 = "", option2 = "") {
-  const spin = spinner.start(endPoint);
+  const spinner = ora("Loading Film").start();
   https
     .get(
       `https://api.themoviedb.org/3/${endPoint}?api_key=${process.env.API_KEY}&${option1}&${option2}`,
       (response) => {
         let result = "";
-
-        response.on("data", (c) => {
-          result += c;
+        response.on("data", (d) => {
+          result += d;
         });
 
         response.on("end", () => {
@@ -35,11 +37,16 @@ exports.httpRequest = function (endPoint, option1 = "", option2 = "") {
               render.movies(JSON.parse(result));
               spin.succeed("Movies playing now data loaded");
               break;
+            case "movie/70":
+              movie_render(JSON.parse(result));
+              spinner.succeed("Film loaded successfully");
+              break;
           }
         });
       }
     )
     .on("error", (err) => {
-      spin.fail("Error: " + err.message);
+      spinner.fail("Error: " + err.message);
     });
+  spinner.stop();
 };
