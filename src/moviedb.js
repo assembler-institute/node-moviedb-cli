@@ -2,8 +2,6 @@
 
 const { Command } = require("commander");
 const req = require("./utils/httprequest");
-const date = require("./utils/httprequest");
-const chalk = require('chalk');
 require("dotenv/config");
 
 const program = new Command();
@@ -31,42 +29,31 @@ program
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
-  .action(function handleAction() {
-    // console.log("hello-world");
+  .requiredOption(
+    "--page <pageNum>",
+    "The page of movies data results to fetch"
+  )
+  .option("-p, --popular", "Fetch the popular movies")
+  .option("-n, --now-playing", "Fetch the movies that are playing now")
+  .action(function handleAction(options) {
+    const endPoint = options.nowPlaying ? "movie/now_playing" : "movie/popular";
+    req.httpRequest(endPoint, `page=${options.page}`);
   });
 
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .requiredOption('-i, --id <id> ','The id of the movie')
-  .option('-r, --review','Fetch the reviews of the movie')
+  .requiredOption("-i, --id <id> ", "The id of the movie")
+  .option("-r, --review", "Fetch the reviews of the movie")
 
   .action(function handleAction(options) {
     let movieId = options.id;
     let movieReview = options.review;
-    // console.log(JSON.stringify(options));
-    // console.log(movieId);
-    // console.log(movieReview);
-    // console.dir(options);
-    if(movieReview) {
-      console.log('Entra a la review')
-       req.httpRequest("movie/" + movieId + "/reviews");
-  }else{
-      console.log('Entra con el ID');
+    if (movieReview) {
+      req.httpRequest("movie/" + movieId + "/reviews");
+    } else {
       req.httpRequest("movie/" + movieId);
-  }
-
-
-
-  });
-
-
-
-  program
-  .command("get-api-key") 
-  .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    // console.log(process.env.API_KEY);
+    }
   });
 
 // error on unknown commands
