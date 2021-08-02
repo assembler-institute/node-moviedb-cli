@@ -10,22 +10,22 @@ function renderPersons(persons) {
     log(chalk.white(`----------------------------------------`));
     // log(`\n`);
     log(`${chalk.bold(chalk.yellow("👾 POPULAR PERSON: "))} \n`);
-    log(`📝 Id => ${chalk.white(person.id)}`);
-    log(`📸 Name => ${chalk.bold(chalk.blue(person.name))}`);
-
+    log(`📸 Name => ${chalk.bold(chalk.green(person.name))}`);
     if (person.known_for_department === "Acting") {
-      log(`🎟️  Department => ${chalk.magenta(person.known_for_department)}`);
+      log(`🎟️  Department => ${chalk.red(person.known_for_department)}`);
     }
+    log(`📝 Id => ${chalk.white(chalk.cyan(person.id))}`);
+
     let appearsInMovie = false;
     person.known_for.forEach((alias) => {
       if (alias.title !== undefined) {
         log(`\n`);
-        log(`\t${chalk.white("🍿 Movie:")}`);
-        log(`\t${chalk.white("ID: ")}${chalk.white(alias.id)}`);
+        log(`\t${chalk.bold(`🍿 ${chalk.inverse(" M O V I E : ")} 🍿`)}`);
+        log(`\t${chalk.white("Title: ")}${chalk.white(alias.title)}`);
         log(
           `\t${chalk.white("Release date: ")}${chalk.white(alias.release_date)}`
         );
-        log(`\t${chalk.white("Title: ")}${chalk.white(alias.title)}`);
+        log(`\t${chalk.white("ID: ")}${chalk.white(alias.id)}`);
         appearsInMovie = true;
       }
     });
