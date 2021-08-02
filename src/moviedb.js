@@ -36,8 +36,12 @@ program
   .requiredOption("--page <number>", "The page of movies data results to fetch")
   .option("-p, --popular", "Fetch the popular movies")
   .option("-n, --now-playing", "Fetch the movies that are playing now")
+  .option("-s, --save", "The page of data to JSON file")
+  .option("-l, --local", "Read data from local JSON")
   .action(function handleAction(opt) {
-    get.MoviesByPage(opt.page, opt.nowPlaying);
+    if (opt.page) get.MoviesByPage(opt.page, opt.nowPlaying, opt.save);
+    if (opt.save) get.MoviesByPage(opt.page, opt.nowPlaying, opt.save);
+    if (opt.local) get.JsonMoviesByPage(opt.page, opt.nowPlaying);
   });
 
 program
