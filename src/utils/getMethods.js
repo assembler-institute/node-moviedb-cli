@@ -82,6 +82,7 @@ function MoviesByPage(page = 1, nowPlaying, option) {
     ...httpConstants,
     path: path,
   };
+
   const spinner = ora("Loading popular movies").start();
 
   const req = https.request(options, (res) => {
@@ -113,6 +114,11 @@ function SingleMovie(id, reviews) {
   if (reviews) {
     path = `/3/movie/${id}/reviews?api_key=${process.env.API_KEY}`;
   }
+
+  const options = {
+    ...httpConstants,
+    path: path,
+  };
 
   const spinner = ora("Fetching the movie data...").start();
   const req = https.request(options, (res) => {
@@ -165,7 +171,7 @@ function JsonMoviesByPage(page = 1, nowPlaying) {
         spinner.succeed("Now playing movies data loaded");
       });
     } else {
-      spinner.fail("File dosn't exist");
+      spinner.fail("File doesn't exist");
     }
   } catch (err) {
     console.log(err.message);

@@ -77,14 +77,13 @@ function chalkSingleMovie(body, spinner, reviews) {
         const chalkReviews = new Review(body);
         chalkReviews.renderMovieReviews();
 
-        spinner.succeed("Movie reviews data loaded");
+        spinner.succeed("Movie reviews data loaded\n");
       } else {
         const chalkMovie = new Movie(body);
         chalkMovie.renderSingleMovie();
 
-        spinner.succeed("Movie data loaded");
+        spinner.succeed("Movie data loaded\n");
       }
-      log("\n");
     }, 1000);
   } catch (error) {
     spinner.fail(error.message);
