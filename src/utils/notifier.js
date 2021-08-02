@@ -5,8 +5,9 @@ function notify(message) {
   notifier.notify({
     title: "Movie DB CLI",
     message: message,
-    icon: path.resolve(__dirname, "../img/tmdb.png"),
+    contentImage: path.resolve(__dirname, "../img/tmdb.png"),
     wait: false, // This doesn't work on Windows.
+    icon: path.resolve(__dirname, "../img/tmdb.png"),
   });
 }
 

@@ -39,6 +39,7 @@ function renderPersons(persons) {
 }
 
 function renderPersonDetails(person) {
+  if (person.success == false) throw "Id not found";
   log(chalk.white(`\n\n----------------------------------------`));
   log(`\n`);
   log(`${chalk.white("Person: ")} \n`);
