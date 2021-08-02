@@ -97,6 +97,6 @@ async function getMovies(options) {
 
 module.exports = {
   getPersons: getPersons,
-  getPerson,
-  getMovies,
+  getPerson: getPerson,
+  getMovies: getMovies,
 };
