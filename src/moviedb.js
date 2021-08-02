@@ -50,6 +50,9 @@ program
       moviesJson.results
     );
     spinner.succeed(spinnerText);
+  })
+  .catch(() => {
+    throw "new Error";
   });
 
 program

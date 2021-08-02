@@ -2,7 +2,7 @@ const https = require("https");
 require("dotenv").config();
 
 const globalOptions = {
-  hostname: "api.themoviedb.org",
+  hostname: "apisssssss.themoviedb.org",
   headers: {
     Authorization: `Bearer ${process.env.API_KEY}`,
   },
@@ -27,9 +27,13 @@ async function getPopularMovies(page = 1) {
         resolve(JSON.parse(Buffer.concat(chunks).toString()));
       });
 
-      res.on("error", function (error) {
-        reject(error);
-      });
+      // res.on("error", function (error) {
+      //   reject(error);
+      // });
+    });
+    req.on("error", function (error) {
+      // console.log(error.message);
+      reject(error);
     });
 
     req.end();
