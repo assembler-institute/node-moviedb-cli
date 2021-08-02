@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
-const https = require("https");
 const req = require("./utils/httprequest");
 const date = require("./utils/httprequest");
 const chalk = require('chalk');
@@ -13,9 +12,13 @@ program.version("0.0.1");
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
-  .action(function handleAction() {
-    const personsData = req.httpRequest("person/popular", "page=1");
-    /* console.log(personsData); */
+  .requiredOption("-p, --popular", "Fetch the popular persons")
+  .requiredOption(
+    "--page <pageNum>",
+    "The page of persons data results to fetch"
+  )
+  .action(function handleAction(options) {
+    req.httpRequest("person/popular", `page=${options.page}`);
   });
 
 program
