@@ -34,7 +34,11 @@ program
         const json = await fileSystem.loadPopularPersons();
         if (json.page !== page) {
           spinner.fail(
-            chalk.bold(chalk.red(`This page doesn't exists on your local file`))
+            chalk.bold(
+              chalk.red(
+                `You have stored the page number ${json.page} on your local`
+              )
+            )
           );
         } else {
           render.renderPersons(json);
