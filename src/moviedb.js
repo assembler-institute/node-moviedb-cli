@@ -14,6 +14,8 @@ const { asciiPrompt } = require("./assets/js/asciiPrompt.js");
 const { l } = require("./assets/js/chalk.js");
 const { Command } = require("commander");
 const ora = require("ora");
+const fs = require("fs");
+// const appendFile = require("fs");
 
 // General variables
 // ---------------------------------------------------
@@ -248,78 +250,113 @@ program
   .option("-r, --reviews", "Fetch the reviews of the movie")
   .action((options) => {
     let spinner = ora("Fetching the requested movie data...").start();
+    const isSave = program.opts().save;
 
     getMovieById(options.id)
       .then((apiResponse) => {
         spinner.stop();
-        let movie = apiResponse;
-        asciiPrompt(movie.original_title);
-
-        l("Id: ", "white", true);
-        l(movie.id + "\n", "white");
-        l("Title: ", "white", true);
-        l(movie.original_title + "\n", "blue", true);
-        l("Release date: ", "white", true);
-        l(movie.release_date + "\n", "white");
-        l("Runtime: ", "white", true);
-        l(movie.runtime + "\n", "white");
-        l("Vote count: ", "white", true);
-        l(movie.vote_count + "\n", "white");
-        l("Overview: ", "white", true);
-        l(movie.overview + "\n", "white");
-
-        if (movie.spoken_languages) {
-          l("Spoken languages: \n", "white", true);
-          movie.spoken_languages.forEach((language) => {
-            l(`\t · ${language.name}\n`);
-          });
-        } else {
-          l(
-            `The movie: ${movie.original_title} doesn’t have any declared languages.`
+        if (isSave) {
+          checkFolder("movies", "get-movie.json", apiResponse);
+          spinner.succeed(
+            `Saved JSON with requested movie with ID:  ${options.id}.`
           );
-        }
-        l("\n");
-
-        if (options.reviews) {
-          let reviewSpinner = ora(
-            "Fetching the requested movie reviews data..."
-          ).start();
-
-          getReviews(options.id)
-            .then((apiResponseReviews) => {
-              if (apiResponseReviews.total_pages > 0) {
-                apiResponseReviews.results.forEach((review) => {
-                  l("Author: ", "white", true);
-                  l(review.author + "\n", "blue", true);
-                  l("Content: ", "white", true);
-                  if (review.content.length > 400) {
-                    l(review.content.slice(0, 400) + "...");
-                  } else {
-                    l(review.content, "white", false);
-                  }
-                  l("\n\n---\n\n");
+          if (options.reviews) {
+            getReviews(options.id)
+              .then((apiResponseReviews) => {
+                fs.open("resources/movies/get-movie.json", (err) => {
+                  if (err) throw err;
+                  fs.appendFile(
+                    "resources/movies/get-movie.json",
+                    "\n // REVIEWS \n" + JSON.stringify(apiResponseReviews),
+                    (err) => {
+                      if (err) throw err;
+                      l("Saved reviews in JSON");
+                    }
+                  );
                 });
-              } else {
-                l(
-                  `The movie: ${movie.original_title} doesn’t have any reviews.`,
-                  "red",
-                  true
-                );
-              }
-              reviewSpinner.succeed(
-                `Loaded requested movie ${options.id} reviews.`
-              );
-            })
-            .catch(() => {
-              reviewSpinner.stop();
-              reviewSpinner.fail(`Couldn't load movie ${options.id} reviews.`);
+              })
+              .catch((e) => {
+                l("Couldn't save reviews in JSON");
+              });
+          }
+        } else {
+          let movie = apiResponse;
+          asciiPrompt(movie.original_title);
+
+          l("Id: ", "white", true);
+          l(movie.id + "\n", "white");
+          l("Title: ", "white", true);
+          l(movie.original_title + "\n", "blue", true);
+          l("Release date: ", "white", true);
+          l(movie.release_date + "\n", "white");
+          l("Runtime: ", "white", true);
+          l(movie.runtime + "\n", "white");
+          l("Vote count: ", "white", true);
+          l(movie.vote_count + "\n", "white");
+          l("Overview: ", "white", true);
+          l(movie.overview + "\n", "white");
+
+          if (movie.spoken_languages) {
+            l("Spoken languages: \n", "white", true);
+            movie.spoken_languages.forEach((language) => {
+              l(`\t · ${language.name}\n`);
             });
+          } else {
+            l(
+              `The movie: ${movie.original_title} doesn’t have any declared languages.`
+            );
+          }
+          l("\n");
+
+          if (options.reviews) {
+            let reviewSpinner = ora(
+              "Fetching the requested movie reviews data..."
+            ).start();
+
+            getReviews(options.id)
+              .then((apiResponseReviews) => {
+                if (apiResponseReviews.total_pages > 0) {
+                  apiResponseReviews.results.forEach((review) => {
+                    l("Author: ", "white", true);
+                    l(review.author + "\n", "blue", true);
+                    l("Content: ", "white", true);
+                    if (review.content.length > 400) {
+                      l(review.content.slice(0, 400) + "...");
+                    } else {
+                      l(review.content, "white", false);
+                    }
+                    l("\n\n---\n\n");
+                  });
+                } else {
+                  l(
+                    `The movie: ${movie.original_title} doesn’t have any reviews.`,
+                    "red",
+                    true
+                  );
+                }
+                reviewSpinner.succeed(
+                  `Loaded requested movie ${options.id} reviews.`
+                );
+              })
+              .catch(() => {
+                reviewSpinner.stop();
+                reviewSpinner.fail(
+                  `Couldn't load movie ${options.id} reviews.`
+                );
+              });
+          }
+          spinner.succeed(`Loaded requested movie with ID:  ${options.id}.`);
         }
-        spinner.succeed(`Loaded requested movie with ID:  ${options.id}.`);
       })
       .catch(() => {
         spinner.stop();
-        spinner.fail(`Couldn't load requested movie with ID: ${options.id}.`);
+        if (isSave) {
+          spinner.fail(
+            `Couldn't save JSON with requested movie with ID: ${options.id}.`
+          );
+        } else {
+          spinner.fail(`Couldn't load requested movie with ID: ${options.id}.`);
+        }
       });
   });
 
