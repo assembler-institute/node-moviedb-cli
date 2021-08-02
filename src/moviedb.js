@@ -9,8 +9,7 @@ const {
   getMovieById,
   getReviews,
 } = require("./requests.js");
-const { undefinedTitle, checkFolder } = require("./assets/js/helpers.js");
-const { asciiPrompt } = require("./assets/js/asciiPrompt.js");
+const { checkFolder } = require("./assets/js/helpers.js");
 const { l } = require("./assets/js/chalk.js");
 const {
   renderGetPersons,
@@ -59,7 +58,7 @@ program
 
           // Rendering every person's data
           renderGetPersons(options.page, apiResponse);
-          
+
           // Ora suceed
           spinner.succeed(`Loaded popular persons at page ${options.page}`);
         }
