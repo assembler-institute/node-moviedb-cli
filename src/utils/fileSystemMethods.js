@@ -27,7 +27,7 @@ function saveJson(directory, filename, data) {
 
 async function saveMovies(moviesJson = {}, isNowPlaying) {
   const directory = "./files/movies";
-  const x = await ensureDirectory(directory);
+  await ensureDirectory(directory);
   if (isNowPlaying === true) {
     saveJson(directory, "now-playing-movies.json", moviesJson);
   } else {
@@ -35,4 +35,35 @@ async function saveMovies(moviesJson = {}, isNowPlaying) {
   }
 }
 
-module.exports = { saveMovies: saveMovies };
+async function loadJson(directory, fileName) {
+  const promise = new Promise((resolve, reject) => {
+    fs.readFile(path.resolve(directory, fileName), "utf8", (error, data) => {
+      if (error !== null) {
+        if (error.code === "ENOENT") {
+          reject("File doesn't exist ⛔");
+        } else {
+          reject(error.message);
+        }
+      } else {
+        resolve(JSON.parse(data));
+      }
+    });
+  });
+  return promise;
+}
+
+async function loadMovies(isNowPlaying) {
+  const directory = "./files/movies";
+  let json = [];
+  if (isNowPlaying === true) {
+    json = await loadJson(directory, "now-playing-movies.json");
+  } else {
+    json = await loadJson(directory, "popular-movies.json");
+  }
+  return json;
+}
+
+module.exports = {
+  saveMovies: saveMovies,
+  loadMovies: loadMovies,
+};
