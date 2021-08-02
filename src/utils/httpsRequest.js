@@ -94,9 +94,31 @@ async function getMovies(options) {
   });
   return await promise;
 }
+async function getMovie(options) {
+  let promise = new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      let response = "";
 
+      res.on("data", function onData(chunk) {
+        response += chunk;
+      });
+
+      res.on("end", function onEnd() {
+        const data = JSON.parse(response);
+        resolve(data);
+      });
+    });
+
+    req.on("error", (error) => {
+      reject(error);
+    });
+    req.end();
+  });
+  return await promise;
+}
 module.exports = {
   getPersons: getPersons,
   getPerson: getPerson,
   getMovies: getMovies,
+  getMovie: getMovie,
 };

@@ -7,7 +7,7 @@ dotenv.config();
 
 const chalk = require("chalk");
 
-const { getPersons, getPerson, getMovies } = require("./utils/httpsRequest");
+const { getPersons, getPerson, getMovies, getMovie } = require("./utils/httpsRequest");
 
 const requestOptions = {
   href: "https://api.themoviedb.org",
@@ -181,8 +181,23 @@ program
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-i <number>","The id of the movie")
+  .option("-r","Fetching the reviws of the movie")
+  .action(async function handleAction(programOptions) {
+    const spinner= ora("Fetching movie data...").start();
+    const id = programOptions.i.toString();
+    if(programOptions.r){
+      requestOptions.path = `/3/movie/${id}/reviews`;
+    }else{
+      requestOptions.path = `/3/movie/${id}`;
+    }  
+    data = await getMovie(requestOptions);
+    
+    function renderMovie(){
+      console.log(data);
+    }
+    renderMovie();
+    spinner.succeed("movie loaded");
   });
 
 // error on unknown commands
