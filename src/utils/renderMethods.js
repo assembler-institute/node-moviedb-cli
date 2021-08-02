@@ -3,7 +3,7 @@ const log = console.log;
 
 function renderPersons(persons) {
   if (persons.total_pages > persons.page) {
-    log(`${chalk.white(`----------------------------------------`)}`);
+    log(`${chalk.white(`\n\n----------------------------------------`)}`);
     log(`Page: ${persons.page} of: ${persons.total_pages}`);
   }
   persons.results.forEach((person) => {
@@ -39,7 +39,7 @@ function renderPersons(persons) {
 }
 
 function renderPersonDetails(person) {
-  log(chalk.white(`----------------------------------------`));
+  log(chalk.white(`\n\n----------------------------------------`));
   log(`\n`);
   log(`${chalk.white("Person: ")} \n`);
   log(`ID:${chalk.white(person.id)}`);

@@ -21,9 +21,15 @@ program
   )
   .option("-p, --popular", "Fetch the popular persons")
   .action(async function handleAction(options) {
+    spinner.start(
+      `${chalk.bold(
+        `${chalk.yellow(" Fetching the popular person's data...")}`
+      )}`
+    );
     const page = parseInt(options.page);
     const json = await request.getPopularPersons(page);
     render.renderPersons(json);
+    spinner.succeed("Popular Persons data loaded");
   });
 
 program
@@ -31,9 +37,13 @@ program
   .description("Make a network request to fetch the data of a single person")
   .requiredOption("-i, --id <number> ", "The id of the person")
   .action(async function handleAction(options) {
+    spinner.start(
+      `${chalk.bold(`${chalk.yellow("Fetching the person's data...")}`)}`
+    );
     const personId = parseInt(options.id);
     const json = await request.getPerson(personId);
     render.renderPersonDetails(json);
+    spinner.succeed("Person data loaded");
   });
 
 program
