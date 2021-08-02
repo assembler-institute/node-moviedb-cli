@@ -56,7 +56,7 @@
 ## About The Project
 
 
-We will be building a CLI(command line) app that takes user input, which will be a page (or some other parameters), using a flag argument and uses this argument to make a http request to a REST API, the api we will be using is provided by www.themoviedb.org . The api provides information on a movie/person as requested using a parameter. We would consume this API to get the population of a country.
+We will be building a CLI(command line) app that takes user input, which will be a page (or some other parameters), using a flag argument and uses this argument to make a http request to a REST API, the api we will be using is provided by [www.themoviedb.org](https://www.themoviedb.org) . The api provides information on a movie/person as requested using a parameter. We would consume this API to get the population of a country.
 
 To parse CL arguments we will use `Commander`, a node package. To make http requests we will use `Http` Node Module .
 
@@ -74,10 +74,7 @@ This section should list any major frameworks that you built your project using.
 - `Dotenv`
 - `node-notifier`
 - `ora` spinners
-<!-- - `eslint`
 - `prettier`
-- `lint-staged`
-- `husky` -->
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -87,6 +84,7 @@ First of all you need to have installed node and git into your PC.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
+
 * npm
   ```sh
   npm install npm@latest -g
@@ -157,16 +155,19 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Team Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/haykbit"><img src="https://avatars.githubusercontent.com/u/80252196?v=4" width="100px;" alt=""/><br /><sub><b>haykbit</b></sub></a><br /><a href="https://github.com/bbenalia/node-moviedb-cli/commits?author=haykbit" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/imalovelyghost"><img src="https://avatars.githubusercontent.com/u/79602817?v=4" width="100px;" alt=""/><br /><sub><b>imalovelyghost</b></sub></a><br /><a href="https://github.com/bbenalia/node-moviedb-cli/commits?author=imalovelyghost" title="Code">💻</a></td>
+  </tr>
+</table>
 
 Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
