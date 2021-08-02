@@ -105,7 +105,7 @@ function PersonById(id) {
  */
 function JsonPersonByPage(page = 1) {
   const spinner = ora("Loading popular people").start();
-  const path = "./src/utils/persons/persons.json";
+  const path = "./src/utils/persons/popular-persons.json";
 
   try {
     if (fs.existsSync(path)) {

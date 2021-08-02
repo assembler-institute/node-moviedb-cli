@@ -9,7 +9,7 @@
   <h3 align="center">Command Line Application with Node.js</h3>
 
   <p align="center">
-    This project help us to understeand nodeJs.
+    This project help us to understand nodeJs.
     <br />
     <a href="https://github.com/bbenalia/node-moviedb-cli"><strong>Explore the docs »</strong></a>
     <br />
@@ -56,30 +56,28 @@
 ## About The Project
 
 
-We will be building a CL(command line) app that takes user input,which will be a page (or some other parameters),using a flag argument and uses this argument to make a http request to a REST API,the api we will be using is provided by www.themoviedb.org .The api provides information on a movie/person as requested using a parameter.We would consume this API to get the population of a country.
+We will be building a CLI(command line) app that takes user input, which will be a page (or some other parameters), using a flag argument and uses this argument to make a http request to a REST API, the api we will be using is provided by www.themoviedb.org . The api provides information on a movie/person as requested using a parameter. We would consume this API to get the population of a country.
 
-To parse CL arguments we will use Commander,a node package. To make http requests we will use Http Node Module .
+To parse CL arguments we will use `Commander`, a node package. To make http requests we will use `Http` Node Module .
 
 Here's why:
 * Learn more about the asyncronous workflow of Node.js
 * Interact easily with 3rth APi's.
 * Learn how to manipulate Tokens.
 
-#### Example:
-
-[![Node MovieDB Cli][product-screenshot]](https://example.com)
-
 ### Built With
 
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 - `Node.js`
-- `eslint`
+- `Commander.Js`
+- `Dotenv`
+- `node-notifier`
+- `ora` spinners
+<!-- - `eslint`
 - `prettier`
 - `lint-staged`
-- `husky`
-
-
+- `husky` -->
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -110,8 +108,6 @@ This is an example of how to list things you need to use the software and how to
    const API_KEY = 'ENTER YOUR API';
    ```
 
-
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
@@ -134,21 +130,13 @@ If you want to save your data request use:
 `--local`
 
 
-
-
-
-
-
 _For more examples, please refer to the [Documentation](https://example.com)_
-
 
 
 <!-- ROADMAP -->
 ## Roadmap
 
 See the [open issues](https://github.com/assembler-school/node-moviedb-cli/issues) for a list of proposed features (and known issues).
-
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -161,14 +149,10 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-
 
 <!-- CONTACT -->
 ## Team Contact
@@ -177,17 +161,12 @@ Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.c
 
 Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
 
-
-
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 * [Img Shields](https://shields.io)
 * [GitHub Pages](https://pages.github.com)
 * [Font Awesome](https://fontawesome.com)
-
-
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
