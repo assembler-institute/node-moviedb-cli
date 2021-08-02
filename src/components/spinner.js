@@ -1,10 +1,13 @@
-// function spinner() {
-//   const ora = require("ora");
-//   const spinner = ora("Loading data").start();
-//   spinner.color = "yellow";
-// }
 const ora = require("ora");
 const spinner = ora();
-//spinner.color = "yellow";
-//spinner.text = "Error 400";
+
+// Spinner in 'dots'
+spinner.spinner = {
+  interval: 80,
+  frames: ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"],
+};
+
+// Spinner color in blue
+spinner.color = "blue";
+
 module.exports = spinner;
