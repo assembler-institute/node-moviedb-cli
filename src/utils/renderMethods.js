@@ -2,6 +2,7 @@ const chalk = require("chalk");
 const log = console.log;
 
 function renderPersons(persons) {
+  if (persons.errors) throw persons.errors;
   if (persons.total_pages > persons.page) {
     log(`${chalk.white(`\n\n----------------------------------------`)}`);
     log(`Page: ${persons.page} of: ${persons.total_pages}`);
@@ -67,11 +68,14 @@ function renderPersonDetails(person) {
   }
 }
 
-function renderMovies(page, allPages, movies) {
-  if (allPages > page) {
+function renderMovies(movies) {
+  if (movies.errors) throw movies.errors;
+  if (movies.total_pages > movies.page) {
     log(chalk.white("\n\n--------------------------------"));
-    log(`Page: ${chalk.bold(page)} of: ${chalk.white(allPages)}`);
-    movies.forEach((movie) => {
+    log(
+      `Page: ${chalk.bold(movies.page)} of: ${chalk.white(movies.total_pages)}`
+    );
+    movies.results.forEach((movie) => {
       log(chalk.white("--------------------------------"));
       log("\n");
       log(chalk.bold("Movie: \n"));
@@ -83,6 +87,7 @@ function renderMovies(page, allPages, movies) {
 }
 
 function renderSingleMovie(movie) {
+  if (movie.success === false) throw movie.status_message;
   log(chalk.white("\n\n--------------------------------"));
   log(chalk.bold("Movie: \n"));
   log(chalk.white(`ID: ${chalk.bold(`${movie.id}`)}`));

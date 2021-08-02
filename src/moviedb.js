@@ -32,9 +32,14 @@ program
     try {
       if (options.local === true) {
         const json = await fileSystem.loadPopularPersons();
-
-        render.renderPersons(json);
-        spinner.succeed("Popular Persons data loaded");
+        if (json.page !== page) {
+          spinner.fail(
+            chalk.bold(chalk.red(`This page doesn't exists on your local file`))
+          );
+        } else {
+          render.renderPersons(json);
+          spinner.succeed("Popular Persons data loaded");
+        }
       } else if (options.save === true) {
         const json = await request.getPopularPersons(page);
         fileSystem.savePopularPersons(json);
@@ -75,9 +80,20 @@ program
       if (options.save === true) {
         fileSystem.savePerson(json);
         spinner.succeed("Person data saved to file");
+        notify("Person saved to file!");
       } else {
-        render.renderPersonDetails(json);
-        spinner.succeed("Person data loaded");
+        if (json.id !== personId) {
+          spinner.fail(
+            chalk.bold(
+              chalk.red(
+                `This person id doesn't match with any person on your local file`
+              )
+            )
+          );
+        } else {
+          render.renderPersonDetails(json);
+          spinner.succeed("Person data loaded");
+        }
       }
     } catch (error) {
       setTimeout(() => {
@@ -124,28 +140,21 @@ program
         spinnerText += " and saved to file/movies";
         notify("Movies saved to file!");
       } else {
-        render.renderMovies(
-          moviesJson.page,
-          moviesJson.total_pages,
-          moviesJson.results
-        );
+        if (moviesJson.page !== page) {
+          spinner.fail(
+            chalk.bold(chalk.red(`This page doesn't exists on your local file`))
+          );
+        } else {
+          render.renderMovies(moviesJson);
+          spinner.succeed(spinnerText);
+        }
       }
-      spinner.succeed(spinnerText);
     } catch (error) {
       setTimeout(() => {
         spinner.fail(chalk.bold(chalk.red(error)));
       }, 1000);
     }
-    render.renderMovies(
-      moviesJson.page,
-      moviesJson.total_pages,
-      moviesJson.results
-    );
-    spinner.succeed(spinnerText);
   });
-// .catch(() => {
-//   throw "new Error";
-// });
 
 program
   .command("get-movie")
