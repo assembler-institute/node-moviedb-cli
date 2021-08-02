@@ -1,6 +1,7 @@
 const https = require("https");
 const spinner = require("./spinner_persons");
 const render = require("./render_persons");
+const { exit } = require("process");
 require("dotenv/config");
 
 exports.httpRequest = function (endPoint, option1 = "", option2 = "") {
@@ -16,6 +17,11 @@ exports.httpRequest = function (endPoint, option1 = "", option2 = "") {
         });
 
         response.on("end", () => {
+          if (result === "") {
+            spin.fail("Error: can't find your request");
+            return;
+          }
+
           switch (endPoint) {
             case "person/popular":
               render.persons(JSON.parse(result));
@@ -27,7 +33,6 @@ exports.httpRequest = function (endPoint, option1 = "", option2 = "") {
       }
     )
     .on("error", (err) => {
-      console.log("Falló: " + err);
-      /* spin.fail("Falló"); */
+      spin.fail("Error: " + err.message);
     });
 };
