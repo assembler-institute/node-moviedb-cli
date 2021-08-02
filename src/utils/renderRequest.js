@@ -129,7 +129,7 @@ function renderMovie(
         //console.log(data);
         console.log(chalk.white(
         `\n-------------------------------------\n
-        \nMovie:
+    MOVIE:
        
         \n\tID:
         \n\t\t${chalk.white(data.id)}
@@ -147,9 +147,9 @@ function renderMovie(
         let genres=data.genres
         if(genres.length>0){
         genres.forEach((genre)=>console.log(chalk.white(
-            `\n-------------------------------------\n
+            `\n-------------------------------------
             \n\tGenres:
-            \t\t${chalk.white(genre.name)}\n
+            \n\t\t${chalk.white(genre.name)}
             `))
             )
         }else{
@@ -161,7 +161,7 @@ function renderMovie(
         lenguages.forEach((lenguage)=>console.log(chalk.white(
             `\n-------------------------------------\n
             \n\tLenguatges:
-            \t\t${chalk.white(lenguage.name)}\n
+            \n\t\t${chalk.white(lenguage.name)}\n
             `))
             )
         }else{
