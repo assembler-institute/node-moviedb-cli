@@ -20,6 +20,7 @@ class Movie {
     log(`ID: ${chalk.white(this.id)}`);
     log(`Title: ${chalk.blue.bold(this.title)}`);
     log(`Release Date: ${chalk.white.bold(this.release_date)}`);
+    log(chalk.white("_________________________"));
 
     log("\n");
   }
@@ -61,6 +62,12 @@ class Movie {
 
     log(`Author: ${chalk.blue.bold(this.author)}`);
     log(`content: ${chalk.white(this.content)}`);
+  }
+
+  renderPages(page, total_pages) {
+    log(chalk.white("________________________________________________"));
+    log(chalk.white(`Page: ${page} of: ${total_pages}`));
+    log("\n");
   }
 }
 
