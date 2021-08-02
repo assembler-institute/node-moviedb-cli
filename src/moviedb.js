@@ -29,8 +29,16 @@ program
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption(
+    "--page <pageNum>",
+    "The page of movies data results to fetch"
+  )
+  .option("-p, --popular", "Fetch the popular movies")
+  .option("-n, --now-playing", "Fetch the movies that are playing now")
+  .action(function handleAction(options) {
+    const endPoint = options.nowPlaying ? "movie/now_playing" : "movie/popular";
+    console.log("ENDPOINT: " + endPoint);
+    req.httpRequest(endPoint, `page=${options.page}`);
   });
 
 program
