@@ -123,20 +123,20 @@ function renderSingleMovie(movie) {
   }
 }
 
-function renderReviews(movieId) {
-  if (movie.success === false) throw movie.status_message;
-  if (movieId.results.length !== 0) {
-    if (movieId.total_pages >= movieId.page) {
+function renderReviews(reviewJson) {
+  if (reviewJson.success === false) throw reviewJson.status_message;
+  if (reviewJson.results.length !== 0) {
+    if (reviewJson.total_pages >= reviewJson.page) {
       log(chalk.white("\n\n--------------------------------"));
       log(
-        `Page: ${chalk.bold(movieId.page)} of: ${chalk.white(
-          movieId.total_pages
+        `Page: ${chalk.bold(reviewJson.page)} of: ${chalk.white(
+          reviewJson.total_pages
         )}`
       );
       log(chalk.white("--------------------------------"));
       log("\n");
       log(chalk.white("Reviews: \n"));
-      movieId.results.forEach((review) => {
+      reviewJson.results.forEach((review) => {
         // Author of the review.
         log(chalk.white("Author: "));
         log(`${chalk.bold(`${chalk.blue(`${review.author}`)}`)} \n`);
@@ -152,7 +152,7 @@ function renderReviews(movieId) {
       });
     }
   } else {
-    `The movie: ${movie.id} doesn’t have any reviews`;
+    `The movie: ${reviewJson.id} doesn’t have any reviews`;
   }
 }
 
