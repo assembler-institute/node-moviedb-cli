@@ -41,6 +41,12 @@ async function saveMovie(movieJson = {}) {
   saveJson(directory, "movie.json", movieJson);
 }
 
+async function saveMovieReview(movieReviewJson = {}) {
+  const directory = "./files/movies";
+  await ensureDirectory(directory);
+  saveJson(directory, "movie-review.json", movieReviewJson);
+}
+
 async function savePopularPersons(personsJson = {}) {
   const directory = "./files/persons";
   await ensureDirectory(directory);
@@ -88,6 +94,13 @@ async function loadMovie() {
   return json;
 }
 
+async function loadMovieReviews() {
+  const directory = "./files/movies";
+  let json = [];
+  json = await loadJson(directory, "movie-review.json");
+  return json;
+}
+
 async function loadPopularPersons() {
   const directory = "./files/persons";
   let json = [];
@@ -111,4 +124,6 @@ module.exports = {
   loadPerson: loadPerson,
   saveMovie: saveMovie,
   loadMovie: loadMovie,
+  saveMovieReview: saveMovieReview,
+  loadMovieReviews: loadMovieReviews,
 };
