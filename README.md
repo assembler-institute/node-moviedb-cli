@@ -24,11 +24,7 @@ https://github.com/assembler-school/node-moviedb-cli.git
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Getting Started](#getting-started)
-- [The Project](#the-project)
-- [Project requirements](#project-requirements)
-- [Project delivery](#project-delivery)
-- [Resources](#resources)
+- [Main objectives](#main-objectives)
 
 ## Main objectives
 
@@ -57,11 +53,11 @@ The project is ready for you to play with it!
 ## Resources
 
 \* [Build a CLI with Node.js](https://dev.to/rushankhan1/build-a-cli-with-node-js-4jbi)   
-\* [How to http request with Node.js and https.request](https://www.twilio.com/blog/2017/08/http-requests-in-node-js.html)
-\* [Understanding module export in Node.js](https://www.sitepoint.com/understanding-module-exports-exports-node-js/)
-\* [The MoviDB API](https://www.themoviedb.org/documentation/api)
-\* [Ora Module](https://www.npmjs.com/package/ora)
-\* [Commander Module](https://www.npmjs.com/package/commander)
+\* [How to http request with Node.js and https.request](https://www.twilio.com/blog/2017/08/http-requests-in-node-js.html)  
+\* [Understanding module export in Node.js](https://www.sitepoint.com/understanding-module-exports-exports-node-js/)  
+\* [The MoviDB API](https://www.themoviedb.org/documentation/api)  
+\* [Ora Module](https://www.npmjs.com/package/ora)  
+\* [Commander Module](https://www.npmjs.com/package/commander)  
 
 ## Authors
 
