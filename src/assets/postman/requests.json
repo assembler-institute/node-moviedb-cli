@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "a616809d-556b-4995-9553-07c00ded6dcc",
+		"name": "MovieDb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get popular persons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.themoviedb.org/3/person/popular?page=1&api_key=bdc1a2b84dce0b838b82e0c5bcaeffe5",
+					"protocol": "https",
+					"host": [
+						"api",
+						"themoviedb",
+						"org"
+					],
+					"path": [
+						"3",
+						"person",
+						"popular"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "api_key",
+							"value": "bdc1a2b84dce0b838b82e0c5bcaeffe5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get person",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.themoviedb.org/3/person/1490?&api_key=bdc1a2b84dce0b838b82e0c5bcaeffe5",
+					"protocol": "https",
+					"host": [
+						"api",
+						"themoviedb",
+						"org"
+					],
+					"path": [
+						"3",
+						"person",
+						"1490"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "api_key",
+							"value": "bdc1a2b84dce0b838b82e0c5bcaeffe5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get movie",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.themoviedb.org/3/movie/3/reviews?api_key=bdc1a2b84dce0b838b82e0c5bcaeffe5",
+					"protocol": "https",
+					"host": [
+						"api",
+						"themoviedb",
+						"org"
+					],
+					"path": [
+						"3",
+						"movie",
+						"3",
+						"reviews"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "bdc1a2b84dce0b838b82e0c5bcaeffe5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get movie reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.themoviedb.org/3/movie/3/reviews?api_key=bdc1a2b84dce0b838b82e0c5bcaeffe5",
+					"protocol": "https",
+					"host": [
+						"api",
+						"themoviedb",
+						"org"
+					],
+					"path": [
+						"3",
+						"movie",
+						"3",
+						"reviews"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "bdc1a2b84dce0b838b82e0c5bcaeffe5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.themoviedb.org/3/movie/popular?page=1&api_key=bdc1a2b84dce0b838b82e0c5bcaeffe5",
+					"protocol": "https",
+					"host": [
+						"api",
+						"themoviedb",
+						"org"
+					],
+					"path": [
+						"3",
+						"movie",
+						"popular"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "api_key",
+							"value": "bdc1a2b84dce0b838b82e0c5bcaeffe5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get movies (now playing)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.themoviedb.org/3/movie/now_playing?page=1&api_key=bdc1a2b84dce0b838b82e0c5bcaeffe5",
+					"protocol": "https",
+					"host": [
+						"api",
+						"themoviedb",
+						"org"
+					],
+					"path": [
+						"3",
+						"movie",
+						"now_playing"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "api_key",
+							"value": "bdc1a2b84dce0b838b82e0c5bcaeffe5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
