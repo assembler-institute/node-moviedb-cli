@@ -100,51 +100,13 @@ program
   .description("Make a network request to fetch the data of a single person")
   .requiredOption("--id <num>", "The id of the movie data result to fetch")
   .action((options) => {
-    console.log(`Movie ID fetched: `, options.id);
-    // console.log(chalk.yellow.bold("Get persons at page: "), options.page);
+    // console.log(`Movie ID fetched: `, options.id);
 
     getMovie(options.id).then((apiResult) => {
       l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       l(`Movie ID: ${options.id}\n`);
       l(`Movie Title: ${apiResult.original_title}\n`);
       l(JSON.stringify(apiResult) + `\n`);
-
-      // apiResult.results.forEach((person) => {
-      //   l("----------------------------------------\n");
-      //   l("PERSON \n");
-      //   l("Id: ", "white", true);
-      //   l(person.id);
-      //   l("Name: ", "white", true);
-      //   l(person.name, "blue", true);
-      //   if (person.known_for_department) {
-      //     l("Deparment: ", "white", true);
-      //     l(person.known_for_department, "magenta");
-      //   }
-      //   l("Movie carreer: ", "white", true);
-
-      //   // Get all movies names
-      //   let movies = new Array();
-      //   person.known_for.forEach((m) => movies.push(m.title));
-
-      //   // Check if all are titles undefined
-      //   if (!movies.every(undefinedTitle)) {
-      //     l("Appearing in: ");
-      //     l("\n");
-      //     person.known_for.forEach((movie) => {
-      //       // Only show not undefined titles
-      //       if (movie.title != undefined) {
-      //         l("\tMovie:");
-      //         l(`\t${movie.id}`);
-      //         l(`\t${movie.title}`);
-      //         l(`\t${movie.release_date}`);
-      //         l("\n");
-      //       }
-      //     });
-      //   } else {
-      //     // If only appears in tv shows
-      //     l(`${person.name} doesn’t appear in any movie. \n`, "red");
-      //   }
-      // });
     });
   });
 
