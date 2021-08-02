@@ -126,12 +126,48 @@ function renderMovie(
             
         } 
     }else{
+        //console.log(data);
         console.log(chalk.white(
-        `\n--------------------\n
+        `\n-------------------------------------\n
         \nMovie:
-        \n\t${chalk.bold.blue(data)}
-        \nContent:`
+       
+        \n\tID:
+        \n\t\t${chalk.white(data.id)}
+        \n\tTitle:
+        \n\t\t${chalk.bold.blue(data.original_title)}
+        \n\tRelease Date:
+        \n\t\t${chalk.white(data.release_date)}
+        \n\tRun time:
+        \n\t\t${chalk.white(data.runtime)}
+        \n\tVote count:
+        \n\t\t${chalk.white(data.vote_count)}
+        \n\tOverview:
+        \n\t\t${chalk.green(data.overview)}\n\n`
         ));
+        let genres=data.genres
+        if(genres.length>0){
+        genres.forEach((genre)=>console.log(chalk.white(
+            `\n-------------------------------------\n
+            \n\tGenres:
+            \t\t${chalk.white(genre.name)}\n
+            `))
+            )
+        }else{
+            console.log(chalk.yellow(`The movie doesn’t have a declared genre\n\n`));
+
+        }
+        let lenguages=data.spoken_languages;
+        if(lenguages.length>0){
+        lenguages.forEach((lenguage)=>console.log(chalk.white(
+            `\n-------------------------------------\n
+            \n\tLenguatges:
+            \t\t${chalk.white(lenguage.name)}\n
+            `))
+            )
+        }else{
+            console.log(chalk.yellow( `The movie: ${data.id} doesn’t have any declared languages\n\n`));
+
+        }
     }
      
 }
