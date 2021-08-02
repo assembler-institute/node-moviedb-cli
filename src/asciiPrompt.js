@@ -1,6 +1,6 @@
 const { l } = require("./chalk.js");
 
-function asciiPrompt(text, movieColor) {
+function asciiPrompt(text, movieColor = "grey") {
   const tapeLines = [
     "_________",
     "] [] [] [",

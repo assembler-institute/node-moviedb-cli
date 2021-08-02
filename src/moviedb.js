@@ -62,8 +62,8 @@ program
         person.known_for.forEach((m) => movies.push(m.title));
 
         // Check if all are titles undefined
+        l("Movie carreer: \n", "white", true);
         if (!movies.every(undefinedTitle)) {
-          l("Movie carreer: \n", "white", true);
           person.known_for.forEach((movie) => {
             // Only show not undefined titles
             if (movie.title != undefined) {
