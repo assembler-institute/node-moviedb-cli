@@ -124,6 +124,7 @@ function renderSingleMovie(movie) {
 }
 
 function renderReviews(movieId) {
+  if (movie.success === false) throw movie.status_message;
   if (movieId.results.length !== 0) {
     if (movieId.total_pages >= movieId.page) {
       log(chalk.white("\n\n--------------------------------"));

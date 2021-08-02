@@ -181,13 +181,11 @@ program
       let movieReviewsJson = {};
       if (options.local === true) {
         singleMovieJson = await fileSystem.loadMovie();
-
         if (options.reviews === true) {
           movieReviewsJson = await fileSystem.loadMovieReviews(movieId);
         }
       } else {
         singleMovieJson = await request.getMovie(movieId);
-
         if (options.reviews === true) {
           movieReviewsJson = await request.getMovieReviews(movieId);
         }
@@ -203,12 +201,22 @@ program
           notify("Reviews saved to file!");
         }
       } else {
-        render.renderSingleMovie(singleMovieJson);
-        if (options.reviews === true) {
-          render.renderReviews(movieReviewsJson);
-          spinner.succeed("Movie reviews data loaded");
+        if (singleMovieJson.id !== movieId) {
+          spinner.fail(
+            chalk.bold(
+              chalk.red(
+                `You have stored the movie with the id number ${singleMovieJson.id} on your local file`
+              )
+            )
+          );
         } else {
-          spinner.succeed("Movie data loaded");
+          render.renderSingleMovie(singleMovieJson);
+          if (options.reviews === true) {
+            render.renderReviews(movieReviewsJson);
+            spinner.succeed("Movie reviews data loaded");
+          } else {
+            spinner.succeed("Movie data loaded");
+          }
         }
       }
     } catch (error) {
