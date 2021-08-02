@@ -56,8 +56,10 @@ program
             `Saved JSON of popular persons at page ${options.page}.`
           );
         } else {
+
           // Rendering every person's data
           renderGetPersons(options.page, apiResponse);
+          
           // Ora suceed
           spinner.succeed(`Loaded popular persons at page ${options.page}`);
         }
@@ -89,8 +91,10 @@ program
           checkFolder("persons", "get-person.json", apiResponse);
           spinner.succeed(`Saved JSON of person with id ${options.id}`);
         } else {
+
           // Rendering the selected person's data
           renderGetPersonById(apiResponse);
+
           spinner.succeed(`Loaded person with id ${options.id}`);
         }
       })
@@ -134,8 +138,10 @@ program
             `Saved JSON with popular movies at page ${options.page}`
           );
         } else {
+
           // Rendering all movies in an specific page
           renderGetMovies(options.page, options.nowPlaying, apiResponse);
+
           if (options.nowPlaying) {
             spinner.succeed(
               `Loaded movies that are being played now at page ${options.page}`
@@ -211,6 +217,7 @@ program
 
           // Rendering the selected movie data
           renderGetMovieById(apiResponse);
+
           if (options.reviews) {
             let reviewSpinner = ora(
               "Fetching the requested movie reviews data..."
@@ -218,9 +225,10 @@ program
 
             getReviews(options.id)
               .then((apiResponseReviews) => {
-                
+
                 // Rendering Movie reviews
                 renderMovieReviews(apiResponse, apiResponseReviews);
+
                 reviewSpinner.succeed(
                   `Loaded requested movie ${options.id} reviews.`
                 );
