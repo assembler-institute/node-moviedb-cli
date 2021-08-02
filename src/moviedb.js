@@ -17,8 +17,16 @@ program
   .option("-s, --save", "The page of data to JSON file")
   .option("-l, --local", "Read data from local JSON")
   .action(function handleAction(opt) {
-    if (!opt.local) get.PersonsByPage(opt.page, opt.save);
-    if (opt.local) get.JsonPersonByPage(opt.page);
+    if (!opt.local) get.PersonsByPage(opt);
+
+    if (opt.local) {
+      if (opt.save) {
+        get.PersonsByPage(opt, (page) => get.JsonPersonByPage(page));
+        return;
+      }
+
+      get.JsonPersonByPage(opt.page);
+    }
   });
 
 program
@@ -39,7 +47,7 @@ program
   .option("-l, --local", "Read data from local JSON")
   .action(function handleAction(opt) {
     if (!opt.local) get.MoviesByPage(opt.page, opt.nowPlaying, opt.save);
-    if (opt.local) { 
+    if (opt.local) {
       if (opt.save) get.MoviesByPage(opt.page, opt.nowPlaying, opt.save);
       get.JsonMoviesByPage(opt.page, opt.nowPlaying);
     }

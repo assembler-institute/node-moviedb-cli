@@ -13,15 +13,16 @@ const {
   chalkPersonId,
   chalkSingleMovie,
 } = require("./chalks.js");
+
 /**
  * get People by Pages
  * @param page: number of page to render
  * @param option: save option
  */
-function PersonsByPage(page = 1, option) {
+function PersonsByPage(commandOpt, callback) {
   const options = {
     ...httpConstants,
-    path: `/3/person/popular?page=${page}&api_key=${process.env.API_KEY}`,
+    path: `/3/person/popular?page=${commandOpt.page}&api_key=${process.env.API_KEY}`,
   };
 
   const spinner = ora("Loading popular people").start();
@@ -30,10 +31,12 @@ function PersonsByPage(page = 1, option) {
 
     res.on("data", (chunk) => (body += chunk));
     res.on("end", () => {
-      if (option) {
+      if (commandOpt.save) {
         file.savePeople(JSON.parse(body));
         spinner.succeed("Popular Persons - Loaded");
         notify("Popular person data loaded to JSON");
+
+        if (callback) callback(commandOpt.page);
       } else {
         chalkPeople(JSON.parse(body), spinner);
       }
@@ -95,7 +98,7 @@ function MoviesByPage(page = 1, nowPlaying, option) {
         file.saveMovies(JSON.parse(body), nowPlaying);
         spinner.succeed("Now playing movies data loaded");
         notify("Now playing movies data loaded to JSON");
-      } else if (option){
+      } else if (option) {
         file.saveMovies(JSON.parse(body), nowPlaying);
         spinner.succeed("Popular movies data loaded");
         notify("Popular movies data loaded to JSON");
@@ -142,7 +145,7 @@ function SingleMovie(id, reviews) {
  * get People by Pages from JSON
  * @param page: number of page to render
  */
-function JsonPersonByPage() {
+function JsonPersonByPage(page) {
   const spinner = ora("Reading people JSON file").start();
   const path = "./src/utils/persons/popular-persons.json";
 
@@ -150,13 +153,16 @@ function JsonPersonByPage() {
     if (fs.existsSync(path)) {
       fs.readFile(path, "utf-8", (err, data) => {
         const user = JSON.parse(data.toString(), null, 4);
-        if(user.page == page) {
+
+        if (user.page == page) {
           chalkPeople(user, spinner);
           notify("Popular people data loaded from JSON");
-        }
-        else spinner.fail("The page you want to load doesn't exist - Existing Page: " + user.page);
+        } else
+          spinner.fail(
+            "The page you want to load doesn't exist - Existing Page: " +
+              user.page
+          );
       });
-      
     } else {
       spinner.fail("File doesn't exist");
     }
@@ -170,25 +176,28 @@ function JsonPersonByPage() {
  * @param page: number of page to render
  * @param nowPlaying: bool, movies that are playing npw
  */
-function JsonMoviesByPage(page, nowPlaying) { 
+function JsonMoviesByPage(page, nowPlaying) {
   const spinner = ora("Reading movies JSON file").start();
   let path = "./src/utils/movies/popular-movies.json";
 
-  if(nowPlaying) path = "./src/utils/movies/now-popular-movies.json";
+  if (nowPlaying) path = "./src/utils/movies/now-popular-movies.json";
 
   try {
-      if (fs.existsSync(path)) {
-        fs.readFile(path, "utf-8", (err, data) => {
-          const user = JSON.parse(data.toString(), null, 4);
-          if(user.page == page) {
-            chalkMovie(user, spinner, nowPlaying);
-            notify("Movies data loaded from JSON");
-          }
-          else spinner.fail("The page you want to load doesn't exist - Existing Page: " + user.page);
-        });
-      } else {
-        spinner.fail("File doesn't exist");
-      }
+    if (fs.existsSync(path)) {
+      fs.readFile(path, "utf-8", (err, data) => {
+        const user = JSON.parse(data.toString(), null, 4);
+        if (user.page == page) {
+          chalkMovie(user, spinner, nowPlaying);
+          notify("Movies data loaded from JSON");
+        } else
+          spinner.fail(
+            "The page you want to load doesn't exist - Existing Page: " +
+              user.page
+          );
+      });
+    } else {
+      spinner.fail("File doesn't exist");
+    }
   } catch (err) {
     console.log(err.message);
   }
