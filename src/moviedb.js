@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
-const { getPersons } = require("./module/getPersonsRequest");
+const {
+  getPersonsRequest,
+  readLocalGetPersonsData,
+} = require("./module/get_persons");
 const { getPerson } = require("./module/getPersonRequest");
 
 const program = new Command();
@@ -11,13 +14,19 @@ program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
   .action((options) => {
-    getPersons(options);
+    if (options.local) {
+      readLocalGetPersonsData();
+    } else {
+      getPersonsRequest(options);
+    }
   })
   .requiredOption("-p, --popular", "Fetch the popular persons")
   .requiredOption(
     "--page <number>",
     "The page of persons data results to fetch"
-  );
+  )
+  .option("--save", "Save the data in a local file")
+  .option("--local", "Read the data from the local file");
 
 program
   .command("get-person")
