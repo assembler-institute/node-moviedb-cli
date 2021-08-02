@@ -16,6 +16,7 @@ const {
 /**
  * get People by Pages
  * @param page: number of page to render
+ * @param option: save option
  */
 function PersonsByPage(page = 1, option) {
   const options = {
@@ -67,9 +68,10 @@ function PersonById(id) {
 /**
  * Movies functions - Movies Pagination
  * @param page: number of page to render
- * @param nowPlaying: bool, manage change of path
+ * @param nowPlaying: bool, movies that are playing npw
+ * @param option: bool, save option
  * */
-function MoviesByPage(page = 1, nowPlaying) {
+function MoviesByPage(page = 1, nowPlaying, option) {
   let path = `/3/movie/popular?page=${page}&api_key=${process.env.API_KEY}`;
 
   if (nowPlaying) {
@@ -80,12 +82,20 @@ function MoviesByPage(page = 1, nowPlaying) {
     ...httpConstants,
     path: path,
   };
-  const spinner = ora("Loading popular movie").start();
+  const spinner = ora("Loading popular movies").start();
+
   const req = https.request(options, (res) => {
     let body = "";
 
     res.on("data", (chunk) => (body += chunk));
-    res.on("end", () => chalkMovie(JSON.parse(body), spinner, nowPlaying));
+    res.on("end", () => {
+      if (option) {
+        file.saveMovies(JSON.parse(body), nowPlaying);
+        spinner.succeed("Now playing movies data loaded");
+      } else {
+        chalkMovie(JSON.parse(body), spinner, nowPlaying);
+      }
+    });
   });
 
   req.on("error", (e) => spinner.fail(e.message));
@@ -103,11 +113,6 @@ function SingleMovie(id, reviews) {
   if (reviews) {
     path = `/3/movie/${id}/reviews?api_key=${process.env.API_KEY}`;
   }
-
-  const options = {
-    ...httpConstants,
-    path: path,
-  };
 
   const spinner = ora("Fetching the movie data...").start();
   const req = https.request(options, (res) => {
@@ -127,7 +132,7 @@ function SingleMovie(id, reviews) {
  */
 function JsonPersonByPage(page = 1) {
   const spinner = ora("Loading popular people").start();
-  const path = "./src/utils/json/persons.json";
+  const path = "./src/utils/persons/popular-persons.json";
 
   try {
     if (fs.existsSync(path)) {
@@ -143,10 +148,35 @@ function JsonPersonByPage(page = 1) {
   }
 }
 
+/**
+ * get Movies by Pages from JSON
+ * @param page: number of page to render
+ * @param nowPlaying: bool, movies that are playing npw
+ */
+function JsonMoviesByPage(page = 1, nowPlaying) {
+  const spinner = ora("Loading popular movies").start();
+  const path = "./src/utils/movies/movies.json";
+
+  try {
+    if (fs.existsSync(path)) {
+      fs.readFile(path, "utf-8", (err, data) => {
+        const user = JSON.parse(data.toString(), null, 4);
+        chalkMovie(user, spinner, nowPlaying);
+        spinner.succeed("Now playing movies data loaded");
+      });
+    } else {
+      spinner.fail("File dosn't exist");
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
 module.exports = {
   PersonById,
   PersonsByPage,
   MoviesByPage,
   SingleMovie,
   JsonPersonByPage,
+  JsonMoviesByPage,
 };

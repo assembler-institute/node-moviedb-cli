@@ -1,163 +1,180 @@
-`#node.js` `#master-in-software-engineering`
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="./src/img/nodejs.png" alt="Logo" width="90" height="60">
+  </a>
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+  <h3 align="center">Command Line Application with Node.js</h3>
 
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+  <p align="center">
+    This project help us to understand nodeJs.
+    <br />
+    <a href="https://github.com/bbenalia/node-moviedb-cli"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/bbenalia/node-moviedb-cli">View Demo</a>
+    ·
+    <a href="https://github.com/bbenalia/node-moviedb-cli">Report Bug</a>
+    ·
+    <a href="https://github.com/bbenalia/node-moviedb-cli">Request Feature</a>
+  </p>
+</p>
 
-# Assembler School: Node.js MovieDB CLI App <!-- omit in toc -->
 
-In this project you will learn how to create a cli app with Node.js.
 
-## Table of Contents <!-- omit in toc -->
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
 
-- [Getting Started](#getting-started)
-- [The Project](#the-project)
-- [Project requirements](#project-requirements)
-- [Project delivery](#project-delivery)
-- [Resources](#resources)
 
-## Getting Started
 
-These instructions will get you a copy of the project up and running on your
-local machine for development and testing purposes.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-See deployment for notes on how to deploy the project on a live system.
 
-### The repository
+We will be building a CLI(command line) app that takes user input, which will be a page (or some other parameters), using a flag argument and uses this argument to make a http request to a REST API, the api we will be using is provided by www.themoviedb.org . The api provides information on a movie/person as requested using a parameter. We would consume this API to get the population of a country.
 
-First, you will need to `clone` or `fork` the repository into your Github
-account:
+To parse CL arguments we will use `Commander`, a node package. To make http requests we will use `Http` Node Module .
 
-<img src="https://docs.github.com/assets/images/help/repository/fork_button.jpg" alt="Fork on GitHub" width='450'>
+Here's why:
+* Learn more about the asyncronous workflow of Node.js
+* Interact easily with 3rth APi's.
+* Learn how to manipulate Tokens.
 
-```
-$ git clone https://github.com/assembler-school/node-moviedb-cli.git
-```
+### Built With
 
-## Contents and Branches Naming Strategy <!-- omit in toc -->
-
-The repository is made up of several branches that include the contents of each
-section.
-
-The branches follow a naming strategy like the following:
-
-- `main`: includes the main contents and the instructions
-- `assembler-solution`: includes the solution
-
-### Fetching All the Branches
-
-In order to fetch all the remote branches in the repository, you can use the
-following command:
-
-```sh
-$ git fetch --all
-```
-
-### List Both Remote Tracking Branches and Local Branches
-
-```sh
-$ git branch --all
-```
-
-Then, you can create a local branch based on a remote branch with the following
-command:
-
-```sh
-$ git checkout -b <new_branch_name> <remote_branch_name>
-```
-
-### Installing
-
-First, you will need to install the dependencies with: `npm install`.
-
-Run the following command in your terminal after cloning the main repo:
-
-```sh
-$ npm install
-```
-
-### Running the Tests
-
-The tests that validate your solution can be executed by runing the following
-command:
-
-```
-$ npm run test
-```
-
-### Git `precommit` and `prepush` Hooks
-
-In the `assembler-solution` branch you can see an implementation of these tools
-if you'd like to use them.
-
-## Deployment <!-- omit in toc -->
-
-In this pill we won't deploy the app.
-
-## Technologies used <!-- omit in toc -->
+This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 - `Node.js`
-- `eslint`
+- `Commander.Js`
+- `Dotenv`
+- `node-notifier`
+- `ora` spinners
+<!-- - `eslint`
 - `prettier`
 - `lint-staged`
-- `husky`
+- `husky` -->
 
-## The Project
+<!-- GETTING STARTED -->
+## Getting Started
 
-In this project you will build a cli app similar to the following screenshot.
+First of all you need to have installed node and git into your PC. 
 
-<img src="src/img/app-view.png">
+### Prerequisites
 
-## Project requirements
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-This is an overview of the main requirements of this project. The exact ones are
-found in the doc that the academic team will provide you.
+### Installation
 
-- You must follow all the instructions of the project step-by-step
-- You should always try to solve them by yourself before asking for help
-- You should always help your team members and fellow students of the master so
-  that you can all learn together and become better software developers and team
-  members
-- You must finish all the steps that are marked as `Required`
-- Once you are done, you can move on to the optional ones that are marked as
-  `Extra 💯`
+1. Get a free API Key at [https://www.themoviedb.org/](https://www.themoviedb.org/)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/bbenalia/node-moviedb-cli
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API in `.env`
+   ```JS
+   const API_KEY = 'ENTER YOUR API';
+   ```
 
-## Project delivery
+<!-- USAGE EXAMPLES -->
+## Usage
 
-To deliver this project you must follow the steps indicated in the document:
+- `./moviedb.js command... ---options... --flags...`
+- `./moviedb.js get-persons --page 1 --popular`
+- `./moviedb.js get-persons --page 2 --popular`
 
-- [Submitting a solution](https://www.notion.so/Submitting-a-solution-524dab1a71dd4b96903f26385e24cdb6)
+- `./moviedb.js get-person --id XXXXXXXX`
+- `./moviedb.js get-person --id 990393`
 
-## Resources
+- `./moviedb.js get-movies --popular --page 2`
+- `./moviedb.js get-movies --now-playing --page 2`
 
-- See the document we provide
+- `./moviedb.js get-movie --id movieId`
+- `./moviedb.js get-movie --id 694919`
 
-## License <!-- omit in toc -->
+If you want to save your data request use:
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
-for details
+`--save`
+`--local`
 
-## Contributors ✨ <!-- omit in toc -->
 
-Thanks goes to these wonderful people
-([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+_For more examples, please refer to the [Documentation](https://example.com)_
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="http://www.danilucaci.com"><img src="https://avatars.githubusercontent.com/u/19062818?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dani Lucaci</b></sub></a><br /><a href="https://github.com/assembler-school/vanilla-js-project-template/commits?author=danilucaci" title="Code">💻</a> <a href="https://github.com/assembler-school/vanilla-js-project-template/commits?author=danilucaci" title="Documentation">📖</a> <a href="#example-danilucaci" title="Examples">💡</a> <a href="#tool-danilucaci" title="Tools">🔧</a></td>
-  </tr>
-</table>
 
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
+<!-- ROADMAP -->
+## Roadmap
 
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+See the [open issues](https://github.com/assembler-school/node-moviedb-cli/issues) for a list of proposed features (and known issues).
 
-This project follows the
-[all-contributors](https://github.com/all-contributors/all-contributors)
-specification. Contributions of any kind welcome!
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+<!-- CONTACT -->
+## Team Contact
+
+Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+
+Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
+* [Img Shields](https://shields.io)
+* [GitHub Pages](https://pages.github.com)
+* [Font Awesome](https://fontawesome.com)
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://github.com/bbenalia/node-moviedb-cli
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://github.com/assembler-school/node-moviedb-cli
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[linkedin-shield]: https://www.linkedin.com/feed/
+[product-screenshot]: /src/img/project.png
