@@ -102,9 +102,6 @@ program
   .requiredOption("-id, --id <num>", "The id of the movie data result to fetch")
   .option("-r, --reviews", "Fetch the reviews of the movie")
   .action((options) => {
-    console.log("id: ", options.id);
-    console.log("reviews: ", options.reviews);
-
     getMovieById(options.id).then((apiResult) => {
       l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       l("MOVIE \n");
@@ -129,9 +126,7 @@ program
 
       if (options.reviews) {
         getReviews(options.id).then((apiResultReviews) => {
-          //l(JSON.stringify(apiResultReviews) + `\n\n\n`);
           if (apiResultReviews.total_pages > 0) {
-            // l(JSON.stringify(apiResultReviews.results) + `\n\n`);
             apiResultReviews.results.forEach((review) => {
               l(`Author: `, "white", false);
               l(`${review.author}`, "blue", true);
@@ -148,9 +143,6 @@ program
           }
         });
       }
-
-      // l(JSON.stringify(apiResult) + `\n`);
-      // console.log(`Movie reviews: `, apiResult.reviews);
     });
   });
 
