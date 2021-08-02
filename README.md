@@ -195,7 +195,7 @@ CLI are a nice playground to go back to those 80's aesthetic given by ASCII art 
 We've build a dynamic header for all commands that displays a cinema tape with a different message in each case built inside `asciiPrompt.js`. Feel free to test it and play around with both messages and colors since it is also using chalk dependency!
 
 ```bash
-
+________________________________________________________________________
 ] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [
 
     S        P        A        M        A        L        O        T
