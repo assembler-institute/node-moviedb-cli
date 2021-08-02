@@ -242,7 +242,6 @@ ________________________________________________________________________
 ## Bugs 🚨
 
 - Ora won't stop on `get-movie --id <id> -r` when error in request.
-- Small jump when in root folder.
 
 ## Contributors ✨
 
