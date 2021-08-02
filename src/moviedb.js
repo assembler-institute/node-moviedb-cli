@@ -27,9 +27,15 @@ program
       )}`
     );
     const page = parseInt(options.page);
-    const json = await request.getPopularPersons(page);
-    render.renderPersons(json);
-    spinner.succeed("Popular Persons data loaded");
+    try {
+      const json = await request.getPopularPersons(page);
+      render.renderPersons(json);
+      spinner.succeed("Popular Persons data loaded");
+    } catch (error) {
+      setTimeout(() => {
+        spinner.fail(chalk.bold(chalk.red(error)));
+      }, 1000);
+    }
   });
 
 program
@@ -41,9 +47,15 @@ program
       `${chalk.bold(`${chalk.yellow("Fetching the person's data...")}`)}`
     );
     const personId = parseInt(options.id);
-    const json = await request.getPerson(personId);
-    render.renderPersonDetails(json);
-    spinner.succeed("Person data loaded");
+    try {
+      const json = await request.getPerson(personId);
+      render.renderPersonDetails(json);
+      spinner.succeed("Person data loaded");
+    } catch (error) {
+      setTimeout(() => {
+        spinner.fail(chalk.bold(chalk.red(error)));
+      }, 1000);
+    }
   });
 
 program
@@ -102,10 +114,10 @@ program
       moviesJson.results
     );
     spinner.succeed(spinnerText);
-  })
-  .catch(() => {
-    throw "new Error";
   });
+// .catch(() => {
+//   throw "new Error";
+// });
 
 program
   .command("get-movie")
@@ -117,15 +129,21 @@ program
       `${chalk.bold(`${chalk.yellow("Fetching the movie data...")}`)}`
     );
     const movieId = parseInt(options.id);
-    const singleMovieJson = await request.getMovie(movieId);
-    render.renderSingleMovie(singleMovieJson);
-    if (options.reviews === true) {
-      const movieId = parseInt(options.id);
-      const movieReviewsJson = await request.getMovieReviews(movieId);
-      render.renderReviews(movieReviewsJson);
-      spinner.succeed("Movie reviews data loaded");
-    } else {
-      spinner.succeed("Movie data loaded");
+    try {
+      const singleMovieJson = await request.getMovie(movieId);
+      render.renderSingleMovie(singleMovieJson);
+      if (options.reviews === true) {
+        const movieId = parseInt(options.id);
+        const movieReviewsJson = await request.getMovieReviews(movieId);
+        render.renderReviews(movieReviewsJson);
+        spinner.succeed("Movie reviews data loaded");
+      } else {
+        spinner.succeed("Movie data loaded");
+      }
+    } catch (error) {
+      setTimeout(() => {
+        spinner.fail(chalk.bold(chalk.red(error)));
+      }, 1000);
     }
   });
 
