@@ -24,12 +24,11 @@ async function getPopularPersons(page = 1) {
 
       res.on("end", (chunk) => {
         resolve(JSON.parse(Buffer.concat(chunks).toString()));
-        // console.log(JSON.parse(Buffer.concat(chunks).toString()));
       });
+    });
 
-      res.on("error", (err) => {
-        reject(err);
-      });
+    request.on("error", function (error) {
+      reject(error);
     });
     request.end();
   });
@@ -48,14 +47,13 @@ async function getPersons(page = 2) {
       res.on("data", (chunk) => {
         chunks.push(chunk);
       });
-
       res.on("end", (chunk) => {
         resolve(JSON.parse(Buffer.concat(chunks).toString()));
       });
+    });
 
-      res.on("error", (err) => {
-        reject(err);
-      });
+    request.on("error", function (error) {
+      reject(error);
     });
     request.end();
   });
@@ -74,15 +72,13 @@ async function getPerson(personId = 990393) {
       res.on("data", (chunk) => {
         chunks.push(chunk);
       });
-
       res.on("end", (chunk) => {
         resolve(JSON.parse(Buffer.concat(chunks).toString()));
-        // console.log(JSON.parse(Buffer.concat(chunks).toString()));
       });
+    });
 
-      res.on("error", (err) => {
-        reject(err);
-      });
+    request.on("error", function (error) {
+      reject(error);
     });
     request.end();
   });
@@ -106,10 +102,9 @@ async function getPopularMovies(page = 1) {
       res.on("end", function (chunk) {
         resolve(JSON.parse(Buffer.concat(chunks).toString()));
       });
-
-      res.on("error", function (error) {
-        reject(error);
-      });
+    });
+    req.on("error", function (error) {
+      reject(error);
     });
 
     req.end();
@@ -134,10 +129,10 @@ async function getNowPlayingMovies(page = 1) {
       res.on("end", function (chunk) {
         resolve(JSON.parse(Buffer.concat(chunks).toString()));
       });
+    });
 
-      res.on("error", function (error) {
-        reject(error);
-      });
+    req.on("error", function (error) {
+      reject(error);
     });
 
     req.end();
@@ -162,10 +157,9 @@ async function getMovie(movieId = 460465) {
       res.on("end", function (chunk) {
         resolve(JSON.parse(Buffer.concat(chunks).toString()));
       });
-
-      res.on("error", function (error) {
-        reject(error);
-      });
+    });
+    req.on("error", function (error) {
+      reject(error);
     });
 
     req.end();
@@ -190,10 +184,9 @@ async function getMovieReviews(movieId = 460465) {
       res.on("end", function (chunk) {
         resolve(JSON.parse(Buffer.concat(chunks).toString()));
       });
-
-      res.on("error", function (error) {
-        reject(error);
-      });
+    });
+    req.on("error", function (error) {
+      reject(error);
     });
 
     req.end();
