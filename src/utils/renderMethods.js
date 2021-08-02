@@ -81,10 +81,16 @@ function renderMovies(movies) {
     movies.results.forEach((movie) => {
       log(chalk.white("--------------------------------"));
       log("\n");
-      log(chalk.bold("Movie: \n"));
-      log(chalk.white(`ID: ${chalk.bold(`${movie.id}`)}`));
-      log(chalk.white(`Title: ${chalk.bold(chalk.blue(`${movie.title}`))}`));
-      log(chalk.white(`Release Date: ${chalk.bold(`${movie.release_date}`)}`));
+      log(`${chalk.bold(`🍿 ${chalk.inverse(" M O V I E : ")} 🍿`)}\n`);
+      log(
+        chalk.white(`🎬 Title => ${chalk.bold(chalk.green(`${movie.title}`))}`)
+      );
+      log(
+        chalk.white(
+          `📆 Release Date => ${chalk.bold.red(`${movie.release_date}`)}`
+        )
+      );
+      log(chalk.white(`📝 ID => ${chalk.bold(`${movie.id}`)}`));
     });
   }
 }
@@ -92,14 +98,16 @@ function renderMovies(movies) {
 function renderSingleMovie(movie) {
   if (movie.success === false) throw movie.status_message;
   log(chalk.white("\n\n--------------------------------"));
-  log(chalk.bold("Movie: \n"));
-  log(chalk.white(`ID: ${chalk.bold(`${movie.id}`)}`));
-  log(chalk.white(`Title: ${chalk.bold(chalk.blue(`${movie.title}`))}`));
-  log(chalk.white(`Release Date: ${chalk.bold(`${movie.release_date}`)}`));
-  log(chalk.white(`Runtime: ${chalk.bold(`${movie.runtime}`)}`));
-  log(chalk.white(`Vote Count: ${chalk.bold(`${movie.vote_count}`)}`));
-  log(chalk.white(`Overview: ${chalk.bold(`${movie.overview}`)} \n`));
-  log(chalk.white(`Genres: \n`));
+  log(`${chalk.bold(`🍿 ${chalk.inverse(" M O V I E : ")} 🍿`)}\n`);
+  log(chalk.white(`🎬 Title => ${chalk.bold(chalk.green(`${movie.title}`))}`));
+  log(chalk.white(`📝 ID => ${chalk.bold(`${movie.id}`)}`));
+  log(
+    chalk.white(`📆 Release Date => ${chalk.bold.red(`${movie.release_date}`)}`)
+  );
+  log(chalk.white(`⏱️  Runtime => ${chalk.bold(`${movie.runtime}`)}`));
+  log(chalk.white(`👍 Vote Count => ${chalk.bold(`${movie.vote_count}`)}`));
+  log(chalk.white(`👀 Overview => ${chalk.bold(`${movie.overview}`)} \n`));
+  log(chalk.white(`🎭 Genres => \n`));
   if (movie.genres.length !== 0) {
     movie.genres.forEach((genre) => {
       log(chalk.white(`${chalk.bold(`· ${genre.name}`)}`));
@@ -110,7 +118,7 @@ function renderSingleMovie(movie) {
     );
   }
   log(`\n`);
-  log(chalk.white(`Spoken languages: \n`));
+  log(chalk.white(`💬 Spoken languages => \n`));
   if (movie.spoken_languages.length !== 0) {
     movie.spoken_languages.forEach((language) => {
       log(chalk.white(`${chalk.bold(`· ${language.name}`)}`));
