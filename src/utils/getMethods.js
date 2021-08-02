@@ -16,8 +16,8 @@ const {
 
 /**
  * get People by Pages
- * @param page: number of page to render
- * @param option: save option
+ * @param commandOpt: command options to render
+ * @param callback: a callback function to execute with --save flag
  */
 function PersonsByPage(commandOpt, callback) {
   const options = {
