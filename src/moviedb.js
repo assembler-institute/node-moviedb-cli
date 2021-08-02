@@ -13,11 +13,11 @@ program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
   .requiredOption("--page <number>", "The page of data results to fetch")
-  .option("-p, --popular", "Fetch the popular persons")
+  .requiredOption("-p, --popular", "Fetch the popular persons")
   .option("-s, --save", "The page of data to JSON file")
   .option("-l, --local", "Read data from local JSON")
   .action(function handleAction(opt) {
-    get.PersonsByPage(opt.page, opt.save);
+    if (!opt.local) get.PersonsByPage(opt.page, opt.save);
     if (opt.local) get.JsonPersonByPage(opt.page);
   });
 
@@ -26,7 +26,7 @@ program
   .description("Make a network request to fetch the data of a single person")
   .requiredOption("-i, --id <id>", "The id of the person")
   .action(function handleAction(option) {
-    if (option.id) get.PersonById(option.id);
+    get.PersonById(option.id);
   });
 
 program
@@ -45,10 +45,11 @@ program
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-i,--id <number>", "The id of the movie")
+  .option("-r, --reviews", "Fetch the reviews of the movie")
+  .action(function handleAction(opt) {
+    get.SingleMovie(opt.id, opt.reviews);
   });
 
 // error on unknown commands
-
 program.parse(process.argv);

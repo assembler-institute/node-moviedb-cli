@@ -39,6 +39,7 @@ class Person {
       }
     });
 
+    log(chalk.white("_________________________"));
     log("\n");
   }
 
@@ -63,6 +64,12 @@ class Person {
       log(`${chalk.yellow(this.name)} doesn’t have any alternate names`);
     }
 
+    log("\n");
+  }
+
+  renderPages(page, total_pages) {
+    log(chalk.white("________________________________________________"));
+    log(chalk.white(`Page: ${page} of: ${total_pages}`));
     log("\n");
   }
 }
