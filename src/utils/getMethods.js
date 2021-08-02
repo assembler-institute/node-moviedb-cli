@@ -3,9 +3,8 @@
 const https = require("https");
 const ora = require("ora");
 const fs = require("fs");
-const notifier = require("node-notifier");
 const file = require("./fileReader.js");
-const os = require("os");
+const notify = require("./notifier.js");
 
 const httpConstants = require("./httpConstants.js");
 const {
@@ -34,10 +33,7 @@ function PersonsByPage(page = 1, option) {
       if (option) {
         file.savePeople(JSON.parse(body));
         spinner.succeed("Popular Persons - Loaded");
-        notifier.notify({
-          title: "Popular Persons",
-          message: "Popular Persons data loaded",
-        });
+        notify("Popular person data loaded to JSON");
       } else {
         chalkPeople(JSON.parse(body), spinner);
       }
@@ -98,13 +94,11 @@ function MoviesByPage(page = 1, nowPlaying, option) {
       if (option && nowPlaying) {
         file.saveMovies(JSON.parse(body), nowPlaying);
         spinner.succeed("Now playing movies data loaded");
+        notify("Now playing movies data loaded to JSON");
       } else if (option){
         file.saveMovies(JSON.parse(body), nowPlaying);
         spinner.succeed("Popular movies data loaded");
-        notifier.notify({
-          title: "Popular Movies - Loaded",
-          message: "Now playing movies data loaded",
-        });
+        notify("Popular movies data loaded to JSON");
       } else {
         chalkMovie(JSON.parse(body), spinner, nowPlaying);
       }
@@ -156,15 +150,15 @@ function JsonPersonByPage() {
     if (fs.existsSync(path)) {
       fs.readFile(path, "utf-8", (err, data) => {
         const user = JSON.parse(data.toString(), null, 4);
-        if(user.page == page) chalkPeople(user, spinner);
+        if(user.page == page) {
+          chalkPeople(user, spinner);
+          notify("Popular people data loaded from JSON");
+        }
         else spinner.fail("The page you want to load doesn't exist - Existing Page: " + user.page);
       });
+      
     } else {
       spinner.fail("File doesn't exist");
-      notifier.notify({
-        title: "File Error",
-        message: "File doesn't exist",
-      });
     }
   } catch (err) {
     console.log(err.message);
@@ -186,7 +180,10 @@ function JsonMoviesByPage(page, nowPlaying) {
       if (fs.existsSync(path)) {
         fs.readFile(path, "utf-8", (err, data) => {
           const user = JSON.parse(data.toString(), null, 4);
-          if(user.page == page) chalkMovie(user, spinner, nowPlaying);
+          if(user.page == page) {
+            chalkMovie(user, spinner, nowPlaying);
+            notify("Movies data loaded from JSON");
+          }
           else spinner.fail("The page you want to load doesn't exist - Existing Page: " + user.page);
         });
       } else {
