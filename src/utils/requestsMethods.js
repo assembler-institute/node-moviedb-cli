@@ -24,6 +24,7 @@ async function getPopularPersons(page = 1) {
 
       res.on("end", (chunk) => {
         resolve(JSON.parse(Buffer.concat(chunks).toString()));
+        // console.log(JSON.parse(Buffer.concat(chunks).toString()));
       });
 
       res.on("error", (err) => {
@@ -35,7 +36,7 @@ async function getPopularPersons(page = 1) {
   return await promise;
 }
 
-function getPersons(page = 2) {
+async function getPersons(page = 2) {
   const options = {
     ...globalOptions,
     method: "GET",
@@ -61,7 +62,7 @@ function getPersons(page = 2) {
   return await promise;
 }
 
-function getPerson(personId = 990393) {
+async function getPerson(personId = 990393) {
   const options = {
     ...globalOptions,
     method: "GET",
