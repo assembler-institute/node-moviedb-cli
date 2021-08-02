@@ -45,7 +45,7 @@ function PersonsByPage(page = 1, option) {
  * @param page: number of page to render
  * @param nowPlaying: bool, manage change of path
  * */
-function MoviesByPage(page = 1, nowPlaying) {
+function MoviesByPage(page = 1, nowPlaying, option) {
   let path = `/3/movie/popular?page=${page}&api_key=${process.env.API_KEY}`;
 
   if (nowPlaying) {
@@ -56,13 +56,22 @@ function MoviesByPage(page = 1, nowPlaying) {
     ...httpConstants,
     path: path,
   };
-  const spinner = ora("Loading popular movie").start();
+  const spinner = ora("Loading popular movies").start();
 
   const req = https.request(options, (res) => {
     let body = "";
 
     res.on("data", (chunk) => (body += chunk));
-    res.on("end", () => chalkMovie(JSON.parse(body), spinner, nowPlaying));
+    res.on("end", () => {
+      if (option) {
+        //console.log("JSON");
+        file.saveMovies(JSON.parse(body), nowPlaying);
+        spinner.succeed("Now playing movies data loaded");
+      } else {
+        //console.log("REQUEST");
+        chalkMovie(JSON.parse(body), spinner, nowPlaying)
+      }
+    });
   });
 
   req.on("error", (e) => spinner.fail(e.message));
@@ -83,9 +92,7 @@ function PersonById(id) {
   const req = https.request(options, (res) => {
     let body = "";
 
-    res.on("data", (chunk) => {
-      body += chunk;
-    });
+    res.on("data", (chunk) => { body += chunk; });
     res.on("end", () => chalkPersonId(JSON.parse(body), spinner));
   });
 
@@ -99,7 +106,7 @@ function PersonById(id) {
 
 function JsonPersonByPage(page = 1) {
   const spinner = ora("Loading popular people").start();
-  const path = "./src/utils/json/persons.json";
+  const path = "./src/utils/persons/persons.json";
 
   try {
     if (fs.existsSync(path)) {
@@ -115,4 +122,23 @@ function JsonPersonByPage(page = 1) {
   }
 }
 
-module.exports = { PersonById, PersonsByPage, MoviesByPage, JsonPersonByPage };
+function JsonMoviesByPage(page = 1, nowPlaying) {
+  const spinner = ora("Loading popular movies").start();
+  const path = "./src/utils/movies/movies.json";
+
+  try {
+    if (fs.existsSync(path)) {
+      fs.readFile(path, "utf-8", (err, data) => {
+        const user = JSON.parse(data.toString(), null, 4);
+        chalkMovie(user, spinner, nowPlaying);
+        spinner.succeed("Now playing movies data loaded");
+      });
+    } else {
+      spinner.fail("File dosn't exist");
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
+module.exports = { PersonById, PersonsByPage, MoviesByPage, JsonPersonByPage, JsonMoviesByPage };
