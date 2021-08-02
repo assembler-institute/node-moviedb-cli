@@ -38,7 +38,7 @@ program
   .option("-s, --save", "The page of data to JSON file")
   .option("-l, --local", "Read data from local JSON")
   .action(function handleAction(opt) {
-    get.MoviesByPage(opt.page, opt.nowPlaying, opt.save);
+    if (!opt.local) get.MoviesByPage(opt.page, opt.nowPlaying, opt.save);
     if (opt.local) get.JsonMoviesByPage(opt.page, opt.nowPlaying);
   });
 
