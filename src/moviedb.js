@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 const { Command } = require("commander");
+const chalk = require("chalk");
 require("dotenv").config();
 const request = require("./utils/requestsMethods");
 const render = require("./utils/renderMethods");
+const fileSystem = require("./utils/fileSystemMethods");
 const { spinner } = require("./utils/spinner");
-const chalk = require("chalk");
+const { notify } = require("./utils/notifier");
 
 const program = new Command();
 
@@ -30,6 +32,7 @@ program
   .requiredOption("--page <number>", "The page of movies data results to fetch")
   .option("-p, --popular", "Fetch the popular movies")
   .option("-n, --now-playing", "Fetch the movies that are playing now")
+  .option("--save", "Save the movies to /files/movies")
   .action(async function handleAction(options) {
     spinner.start(
       `${chalk.bold(`${chalk.yellow("Fetching the movies data...")}`)}`
@@ -44,11 +47,17 @@ program
       moviesJson = await request.getPopularMovies(page);
       spinnerText = "Popular movies data loaded";
     }
-    render.renderMovies(
-      moviesJson.page,
-      moviesJson.total_pages,
-      moviesJson.results
-    );
+    if (options.save === true) {
+      await fileSystem.saveMovies(moviesJson, options.nowPlaying);
+      spinnerText += " and saved to file/movies";
+      notify("Movies saved to file!");
+    } else {
+      render.renderMovies(
+        moviesJson.page,
+        moviesJson.total_pages,
+        moviesJson.results
+      );
+    }
     spinner.succeed(spinnerText);
   });
 
