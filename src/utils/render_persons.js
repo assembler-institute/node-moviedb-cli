@@ -49,4 +49,22 @@ function renderPersons(data) {
   });
 }
 
+function renderMovies(data) {
+  if (data.total_pages > data.page) {
+    console.log(chalk.white("\n"));
+    console.log(chalk.white("-".repeat(100)));
+    console.log(chalk.white("Page " + data.page + " of " + data.total_pages));
+  }
+  const movies = data.results;
+  movies.map((movie) => {
+    console.log(chalk.white("-".repeat(100)));
+    console.log(chalk.white("\n"));
+    console.log(chalk.white("Movie:\n"));
+    console.log(chalk.white("ID: " + movie.id));
+    console.log(chalk.white("Title: ") + chalk.blue(movie.title));
+    console.log(chalk.white("Release Date: " + movie.release_date + "\n"));
+  });
+}
+
 exports.persons = renderPersons;
+exports.movies = renderMovies;

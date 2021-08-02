@@ -37,7 +37,6 @@ program
   .option("-n, --now-playing", "Fetch the movies that are playing now")
   .action(function handleAction(options) {
     const endPoint = options.nowPlaying ? "movie/now_playing" : "movie/popular";
-    console.log("ENDPOINT: " + endPoint);
     req.httpRequest(endPoint, `page=${options.page}`);
   });
 
