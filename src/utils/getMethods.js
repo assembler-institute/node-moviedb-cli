@@ -32,11 +32,11 @@ function PersonsByPage(page = 1, option) {
     res.on("end", () => {
       if (option) {
         file.savePeople(JSON.parse(body));
-        spinner.succeed("Popular Persons data loaded");
-        // notifier.notify({
-        //   title: "Popular Persons",
-        //   message: "Popular Persons data loaded",
-        // });
+        spinner.succeed("Popular Persons - Loaded");
+        notifier.notify({
+          title: "Popular Persons",
+          message: "Popular Persons data loaded",
+        });
       } else {
         chalkPeople(JSON.parse(body), spinner);
       }
@@ -97,6 +97,10 @@ function MoviesByPage(page = 1, nowPlaying, option) {
       if (option) {
         file.saveMovies(JSON.parse(body), nowPlaying);
         spinner.succeed("Now playing movies data loaded");
+        notifier.notify({
+          title: "Popular Movies - Loaded",
+          message: "Now playing movies data loaded",
+        });
       } else {
         chalkMovie(JSON.parse(body), spinner, nowPlaying);
       }
@@ -152,6 +156,10 @@ function JsonPersonByPage(page = 1) {
       });
     } else {
       spinner.fail("File doesn't exist");
+      notifier.notify({
+        title: "File Error",
+        message: "File doesn't exist",
+      });
     }
   } catch (err) {
     console.log(err.message);
@@ -173,9 +181,17 @@ function JsonMoviesByPage(page = 1, nowPlaying) {
         const user = JSON.parse(data.toString(), null, 4);
         chalkMovie(user, spinner, nowPlaying);
         spinner.succeed("Now playing movies data loaded");
+        notifier.notify({
+          title: "Now Playing Movies - Loaded",
+          message: "Now playing movies data loaded",
+        });
       });
     } else {
       spinner.fail("File doesn't exist");
+      notifier.notify({
+        title: "Error",
+        message: "File doesn't exist",
+      });
     }
   } catch (err) {
     console.log(err.message);
