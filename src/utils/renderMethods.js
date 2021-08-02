@@ -10,13 +10,13 @@ const log = console.log;
 
 function renderPersons(persons) {
   if (persons.total_pages > persons.page) {
-    log(chalk.white(`----------------------------------------`));
+    log(`${chalk.white(`----------------------------------------`)}`);
     log(`Page: ${persons.page} of: ${persons.total_pages}`);
   }
   persons.results.forEach((person) => {
     log(chalk.white(`----------------------------------------`));
     log(`\n`);
-    log(`${chalk.white}Person:\n`);
+    log(`${chalk.white("Person: ")} \n`);
     log(`ID:${chalk.white(person.id)}`);
     log(`Name:${chalk.blue(person.name)}`);
 
