@@ -134,12 +134,12 @@ program
   .option("-p, --popular", "Fetch the popular movies")
   .option("-n, --nowPlaying", "Fetch the movies that are playing now")
   .action((options) => {
-    getMovies(options.page, options.nowPlaying).then((apiResult) => {
+    getMovies(options.page, options.nowPlaying).then((apiResponse) => {
       // Formatting and printing output on console
       l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-      l(`Page: ${options.page} of ${apiResult.total_pages}\n`);
+      l(`Page: ${options.page} of ${apiResponse.total_pages}\n`);
 
-      apiResult.results.forEach((movie) => {
+      apiResponse.results.forEach((movie) => {
         l("----------------------------------------\n");
         l("MOVIE \n");
         l("Id: ", "yellow", true);
@@ -148,7 +148,7 @@ program
         l(movie.title + "\n", "white", true);
         l("Release date: ", "magenta", true);
         l(movie.release_date + "\n");
-        if (apiResult.results[apiResult.results.length - 1] === movie) {
+        if (apiResponse.results[apiResponse.results.length - 1] === movie) {
           l("----------------------------------------\n");
         }
       });
@@ -158,47 +158,47 @@ program
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .requiredOption("-id, --id <num>", "The id of the movie data result to fetch")
+  .requiredOption("-i, --id <num>", "The id of the movie data result to fetch")
   .option("-r, --reviews", "Fetch the reviews of the movie")
   .action((options) => {
-    getMovieById(options.id).then((apiResult) => {
-      l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-      l("\nMOVIE Id: ", "white", false);
-      l(apiResult.id, "white", false);
-      l("\n");
-      l("Title: ", "blue", false);
-      l(apiResult.original_title, "blue", true);
-      l("\n");
-      l("Release date: ", "white", false);
-      l(apiResult.release_date, "white", true);
-      l("\n");
-      l("Runtime: ", "white", false);
-      l(apiResult.runtime, "white", true);
-      l("\n");
-      l("Votecount: ", "white", false);
-      l(apiResult.vote_count, "white", true);
-      l("\n");
-      l("Overview: ", "white", false);
-      l(apiResult.overview, "white", true);
-      l("\n\n");
+    getMovieById(options.id).then((apiResponse) => {
+      let movie = apiResponse;
+      asciiPrompt(movie.original_title);
+      l("Id: ", "white", true);
+      l(movie.id + "\n", "white");
+      l("Title: ", "white", true);
+      l(movie.original_title + "\n", "blue", true);
+      l("Release date: ", "white", true);
+      l(movie.release_date + "\n", "white");
+      l("Runtime: ", "white", true);
+      l(movie.runtime + "\n", "white");
+      l("Vote count: ", "white", true);
+      l(movie.vote_count + "\n", "white");
+      l("Overview: ", "white", true);
+      l(movie.overview + "\n", "white");
 
+      if (movie.spoken_languages) {
+        l("Spoken languages: \n", "white", true);
+        movie.spoken_languages.forEach((language) => {
+          l(`\t · ${language.name}\n`);
+        });
+      } else {
+        l(
+          `The movie: ${movie.original_title} doesn’t have any declared languages`
+        );
+      }
       if (options.reviews) {
-        getReviews(options.id).then((apiResultReviews) => {
-          if (apiResultReviews.total_pages > 0) {
-            apiResultReviews.results.forEach((review) => {
-              l(`Author: `, "white", false);
-              l(`${review.author}`, "blue", true);
-              l("\n");
-              l(`Content: `, "white", false);
-              l(`${review.content} `, "white", false);
+        getReviews(options.id).then((apiResponseReviews) => {
+          if (apiResponseReviews.total_pages > 0) {
+            apiResponseReviews.results.forEach((review) => {
+              l("Author: ", "white", true);
+              l(review.author + "\n", "blue", true);
+              l("Content: ", "white", false);
+              l(review.content, "white", false);
               l("\n\n---\n\n");
             });
           } else {
-            l(
-              `The movie: ${options.id} doesn’t have any reviews`,
-              "yellow",
-              true
-            );
+            l(`The movie: ${options.id} doesn’t have any reviews`, "red", true);
           }
         });
       }
