@@ -126,6 +126,39 @@ function getMovieById(movieId, key = apiKey) {
   return finalResult;
 }
 
+function getMovies(page, nowPlaying, key = apiKey) {
+  // Initializing http request params
+  let requestPath = "";
+  let oraInit = "";
+  let oraSuccess = "";
+  let oraFailure = "";
+
+  if (nowPlaying) {
+    requestPath = `/3/movie/now_playing?page=${page}&api_key=${key}`;
+    oraInit = "Fetching data of movies that are being played now";
+    oraSuccess = "Loaded movies that are being played now at page ";
+    oraFailure = "Couldn't load movies that are being played now at page ";
+  } else {
+    requestPath = `/3/movie/popular?page=${page}&api_key=${key}`;
+    oraInit = "Fetching popular movies data";
+    oraSuccess = "Loaded popular movies at page ";
+    oraFailure = "Couldn't load popular movies at page ";
+  }
+
+  const options = {
+    hostname: "api.themoviedb.org",
+    port: 443,
+    path: requestPath,
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  // Making request
+  return makeHTTPRequest(options, oraInit, oraSuccess, oraFailure, page);
+}
+
 function getPersonById(id, key = apiKey) {
   const options = {
     hostname: "api.themoviedb.org",
@@ -206,39 +239,6 @@ function getReviews(movieId, page = 1, key = apiKey) {
   });
 
   return finalResult;
-}
-
-function getMovies(page, nowPlaying, key = apiKey) {
-  // Initializing http request params
-  let requestPath = "";
-  let oraInit = "";
-  let oraSuccess = "";
-  let oraFailure = "";
-
-  if (nowPlaying) {
-    requestPath = `/3/movie/now_playing?page=${page}&api_key=${key}`;
-    oraInit = "Fetching data of movies that are being played now";
-    oraSuccess = "Loaded movies that are being played now at page ";
-    oraFailure = "Couldn't load movies that are being played now at page ";
-  } else {
-    requestPath = `/3/movie/popular?page=${page}&api_key=${key}`;
-    oraInit = "Fetching popular movies data";
-    oraSuccess = "Loaded popular movies at page ";
-    oraFailure = "Couldn't load popular movies at page ";
-  }
-
-  const options = {
-    hostname: "api.themoviedb.org",
-    port: 443,
-    path: requestPath,
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  // Making request
-  return makeHTTPRequest(options, oraInit, oraSuccess, oraFailure, page);
 }
 
 // Exports
