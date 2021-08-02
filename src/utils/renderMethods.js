@@ -9,29 +9,30 @@ function renderPersons(persons) {
   }
   persons.results.forEach((person) => {
     log(chalk.white(`----------------------------------------`));
-    log(`\n`);
-    log(`${chalk.white("Person: ")} \n`);
-    log(`ID:${chalk.white(person.id)}`);
-    log(`Name:${chalk.blue(person.name)}`);
-
+    // log(`\n`);
+    log(`${chalk.bold(chalk.yellow("👾 POPULAR PERSON: "))} \n`);
+    log(`📸 Name => ${chalk.bold(chalk.green(person.name))}`);
     if (person.known_for_department === "Acting") {
-      log(`Department:${chalk.magenta(person.known_for_department)}`);
+      log(`🎟️  Department => ${chalk.red(person.known_for_department)}`);
     }
+    log(`📝 Id => ${chalk.white(chalk.cyan(person.id))}`);
+
     let appearsInMovie = false;
     person.known_for.forEach((alias) => {
       if (alias.title !== undefined) {
         log(`\n`);
-        log(`\t${chalk.white("Movie:")}`);
-        log(`\t${chalk.white("ID: ")}${chalk.white(alias.id)}`);
+        log(`\t${chalk.bold(`🍿 ${chalk.inverse(" M O V I E : ")} 🍿`)}`);
         log(
-          `\t${chalk.white("Release date: ")}${chalk.white(
-            alias.realease_date
-          )}`
+          `\t${chalk.white("Title: ")}${chalk.bold(chalk.green(alias.title))}`
         );
-        log(`\t${chalk.white("Title: ")}${chalk.white(alias.title)}\n`);
+        log(
+          `\t${chalk.white("Release date: ")}${chalk.white(alias.release_date)}`
+        );
+        log(`\t${chalk.white("ID: ")}${chalk.white(alias.id)}`);
         appearsInMovie = true;
       }
     });
+    log(`\n`);
 
     if (appearsInMovie === false) {
       log(`${chalk.white(`${person.name} doesn’t appear in any movie`)}\n`);
@@ -43,24 +44,26 @@ function renderPersonDetails(person) {
   if (person.success == false) throw "Id not found";
   log(chalk.white(`\n\n----------------------------------------`));
   log(`\n`);
-  log(`${chalk.white("Person: ")} \n`);
-  log(`ID:${chalk.white(person.id)}`);
-  log(`Name:${chalk.blue(person.name)}`);
-  log(
-    `Birthday:${chalk.white(person.birthday)} ${chalk.gray("|")} ${chalk.white(
-      person.place_of_birth
-    )}`
-  );
-  log(`Biography:${chalk.blue.bold(person.biography)}`);
+  log(`${chalk.bold(chalk.white("😎 PERSON: "))} \n`);
+  log(`📸 Name => ${chalk.bold(chalk.green(person.name))}`);
+  log(`📝 Id => ${chalk.cyan(person.id)}`);
 
+  log(
+    `🎂 Birthday => ${chalk.white(person.birthday)} ${chalk.gray(
+      "|"
+    )} ${chalk.white(person.place_of_birth)}`
+  );
+  log(`\n`);
+  log(`📹 Biography => ${chalk.blue.green(person.biography)}`);
+  log(`\n`);
   if (person.known_for_department === "Acting") {
-    log(`Department:${chalk.magenta(person.known_for_department)}`);
+    log(`📩 Department => ${chalk.magenta(person.known_for_department)}`);
   }
   log(`\n`);
-  log(`${chalk.white(`Also know as:`)} \n`);
+  log(`${chalk.inverse(` ALSO KNOWN AS: `)} \n`);
   if (person.also_known_as.length > 0) {
     person.also_known_as.forEach((alias) => {
-      log(`${chalk.white(alias)}`);
+      log(`➡️  ${chalk.white(alias)}`);
     });
   } else {
     log(`\n`);
@@ -78,10 +81,16 @@ function renderMovies(movies) {
     movies.results.forEach((movie) => {
       log(chalk.white("--------------------------------"));
       log("\n");
-      log(chalk.bold("Movie: \n"));
-      log(chalk.white(`ID: ${chalk.bold(`${movie.id}`)}`));
-      log(chalk.white(`Title: ${chalk.bold(chalk.blue(`${movie.title}`))}`));
-      log(chalk.white(`Release Date: ${chalk.bold(`${movie.release_date}`)}`));
+      log(`${chalk.bold(`🍿 ${chalk.inverse(" M O V I E : ")} 🍿`)}\n`);
+      log(
+        chalk.white(`🎬 Title => ${chalk.bold(chalk.green(`${movie.title}`))}`)
+      );
+      log(
+        chalk.white(
+          `📆 Release Date => ${chalk.bold.red(`${movie.release_date}`)}`
+        )
+      );
+      log(chalk.white(`📝 ID => ${chalk.bold(`${movie.id}`)}`));
     });
   }
 }
@@ -89,14 +98,16 @@ function renderMovies(movies) {
 function renderSingleMovie(movie) {
   if (movie.success === false) throw movie.status_message;
   log(chalk.white("\n\n--------------------------------"));
-  log(chalk.bold("Movie: \n"));
-  log(chalk.white(`ID: ${chalk.bold(`${movie.id}`)}`));
-  log(chalk.white(`Title: ${chalk.bold(chalk.blue(`${movie.title}`))}`));
-  log(chalk.white(`Release Date: ${chalk.bold(`${movie.release_date}`)}`));
-  log(chalk.white(`Runtime: ${chalk.bold(`${movie.runtime}`)}`));
-  log(chalk.white(`Vote Count: ${chalk.bold(`${movie.vote_count}`)}`));
-  log(chalk.white(`Overview: ${chalk.bold(`${movie.overview}`)} \n`));
-  log(chalk.white(`Genres: \n`));
+  log(`${chalk.bold(`🍿 ${chalk.inverse(" M O V I E : ")} 🍿`)}\n`);
+  log(chalk.white(`🎬 Title => ${chalk.bold(chalk.green(`${movie.title}`))}`));
+  log(chalk.white(`📝 ID => ${chalk.bold(`${movie.id}`)}`));
+  log(
+    chalk.white(`📆 Release Date => ${chalk.bold.red(`${movie.release_date}`)}`)
+  );
+  log(chalk.white(`⏱️  Runtime => ${chalk.bold(`${movie.runtime}`)}`));
+  log(chalk.white(`👍 Vote Count => ${chalk.bold(`${movie.vote_count}`)}`));
+  log(chalk.white(`👀 Overview => ${chalk.bold(`${movie.overview}`)} \n`));
+  log(chalk.white(`🎭 Genres => \n`));
   if (movie.genres.length !== 0) {
     movie.genres.forEach((genre) => {
       log(chalk.white(`${chalk.bold(`· ${genre.name}`)}`));
@@ -107,7 +118,7 @@ function renderSingleMovie(movie) {
     );
   }
   log(`\n`);
-  log(chalk.white(`Spoken languages: \n`));
+  log(chalk.white(`💬 Spoken languages => \n`));
   if (movie.spoken_languages.length !== 0) {
     movie.spoken_languages.forEach((language) => {
       log(chalk.white(`${chalk.bold(`· ${language.name}`)}`));
