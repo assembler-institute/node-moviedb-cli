@@ -123,6 +123,7 @@ In this project we built a CLI App similar to the following screenshot.
 node src/moviedb.js get-person --id 1245
 ```
 <br>
+
 ### 3. Movies <!-- omit in toc -->
 -------------------
   3.1 URL: https://api.themoviedb.org/3/movie/popular?page=1
