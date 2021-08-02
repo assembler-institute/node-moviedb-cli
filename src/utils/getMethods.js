@@ -148,7 +148,8 @@ function JsonPersonByPage() {
     if (fs.existsSync(path)) {
       fs.readFile(path, "utf-8", (err, data) => {
         const user = JSON.parse(data.toString(), null, 4);
-        chalkPeople(user, spinner);
+        if(user.page == page) chalkPeople(user, spinner);
+        else spinner.fail("The page you want to load doesn't exist - Existing Page: " + user.page);
       });
     } else {
       spinner.fail("File doesn't exist");
@@ -163,7 +164,7 @@ function JsonPersonByPage() {
  * @param page: number of page to render
  * @param nowPlaying: bool, movies that are playing npw
  */
-function JsonMoviesByPage(nowPlaying) { 
+function JsonMoviesByPage(page, nowPlaying) { 
   const spinner = ora("Reading movies JSON file").start();
   let path = "./src/utils/movies/popular-movies.json";
 
@@ -173,7 +174,8 @@ function JsonMoviesByPage(nowPlaying) {
       if (fs.existsSync(path)) {
         fs.readFile(path, "utf-8", (err, data) => {
           const user = JSON.parse(data.toString(), null, 4);
-          chalkMovie(user, spinner, nowPlaying);
+          if(user.page == page) chalkMovie(user, spinner, nowPlaying);
+          else spinner.fail("The page you want to load doesn't exist - Existing Page: " + user.page);
         });
       } else {
         spinner.fail("File doesn't exist");

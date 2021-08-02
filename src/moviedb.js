@@ -39,7 +39,7 @@ program
   .option("-l, --local", "Read data from local JSON")
   .action(function handleAction(opt) {
     if (!opt.local) get.MoviesByPage(opt.page, opt.nowPlaying, opt.save);
-    if (opt.local) get.JsonMoviesByPage(opt.nowPlaying);
+    if (opt.local) get.JsonMoviesByPage(opt.page, opt.nowPlaying);
   });
 
 program
