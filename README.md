@@ -1,3 +1,5 @@
+
+
 `#node.js` `#master-in-software-engineering`
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
@@ -17,6 +19,7 @@ In this project you will learn how to create a cli app with Node.js.
 - [Project requirements](#project-requirements)
 - [Project delivery](#project-delivery)
 - [Resources](#resources)
+- [Command Line](#command-line)
 
 ## Getting Started
 
@@ -44,7 +47,7 @@ section.
 The branches follow a naming strategy like the following:
 
 - `main`: includes the main contents and the instructions
-- `assembler-solution`: includes the solution
+
 
 ### Fetching All the Branches
 
@@ -78,14 +81,6 @@ Run the following command in your terminal after cloning the main repo:
 $ npm install
 ```
 
-### Running the Tests
-
-The tests that validate your solution can be executed by runing the following
-command:
-
-```
-$ npm run test
-```
 
 ### Git `precommit` and `prepush` Hooks
 
@@ -103,20 +98,40 @@ In this pill we won't deploy the app.
 - `prettier`
 - `lint-staged`
 - `husky`
+- `Commander`
+- `Ora`
+- `Chalk`
+
 
 ## The Project
 
-In this project you will build a cli app similar to the following screenshot.
+In this project we have build an CLI command line using MovieDb's API.
 
-<img src="src/img/app-view.png">
 
-## Project requirements
+## Command Line 
 
-This is an overview of the main requirements of this project. The exact ones are
-found in the doc that the academic team will provide you.
+You are required to use the following command line to execute the projects functions
 
-- You must follow all the instructions of the project step-by-step
-- You should always try to solve them by yourself before asking for help
+#### To fetch data
+
+- `./moviedb.js command... ---options... --flags...`
+- `OUR OPTIONS`
+- Get Persons
+ -p, --popular", "Fetch the popular persons"
+  --page ''<number>"
+- Get Person 
+-i, --id <number>", "The id of the person
+- Get Movies
+-p, --popular", "Fetch the popular movies
+-n, --now-playing", "Fetch the movies that are playing now
+- Get Movie
+-i, --id <number>", "The id of the movie
+-r, --reviews", "Fetch the reviews of the movie
+
+--save", "Save the data in a local file
+--local", "Read the data from the local file
+
+
 - You should always help your team members and fellow students of the master so
   that you can all learn together and become better software developers and team
   members
@@ -124,20 +139,11 @@ found in the doc that the academic team will provide you.
 - Once you are done, you can move on to the optional ones that are marked as
   `Extra 💯`
 
-## Project delivery
-
-To deliver this project you must follow the steps indicated in the document:
-
-- [Submitting a solution](https://www.notion.so/Submitting-a-solution-524dab1a71dd4b96903f26385e24cdb6)
 
 ## Resources
 
 - See the document we provide
 
-## License <!-- omit in toc -->
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
-for details
 
 ## Contributors ✨ <!-- omit in toc -->
 
@@ -147,11 +153,11 @@ Thanks goes to these wonderful people
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="http://www.danilucaci.com"><img src="https://avatars.githubusercontent.com/u/19062818?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dani Lucaci</b></sub></a><br /><a href="https://github.com/assembler-school/vanilla-js-project-template/commits?author=danilucaci" title="Code">💻</a> <a href="https://github.com/assembler-school/vanilla-js-project-template/commits?author=danilucaci" title="Documentation">📖</a> <a href="#example-danilucaci" title="Examples">💡</a> <a href="#tool-danilucaci" title="Tools">🔧</a></td>
-  </tr>
-</table>
+<ul>
+	<li>Jonathan Cedeño
+	<li>Alvaro Merino 
+	<li>Sebastian Brupbacher
+</ul>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
