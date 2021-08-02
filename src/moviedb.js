@@ -2,7 +2,7 @@
 // Imports
 // ---------------------------------------------------
 require("dotenv").config({ path: "../.env" });
-const { getPersons, getPersonById } = require("./requests.js");
+const { getPersons, getPersonById, getMovies } = require("./requests.js");
 const { asciiPrompt } = require("./asciiPrompt.js");
 const { Command } = require("commander");
 const { l } = require("./chalk.js");
@@ -123,8 +123,29 @@ program
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("--page <num>", "The page of movies data results to fetch")
+  .option("-p, --popular", "Fetch the popular movies")
+  .option("-n, --nowPlaying", "Fetch the movies that are playing now")
+  .action((options) => {
+    getMovies(options.page, options.nowPlaying).then((apiResult) => {
+      // Formatting and printing output on console
+      l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      l(`Page: ${options.page} of ${apiResult.total_pages}\n`);
+
+      apiResult.results.forEach((movie) => {
+        l("----------------------------------------\n");
+        l("MOVIE \n");
+        l("Id: ", "yellow", true);
+        l(movie.id + "\n");
+        l("Title: ", "blue", true);
+        l(movie.title + "\n", "white", true);
+        l("Release date: ", "magenta", true);
+        l(movie.release_date + "\n");
+        if (apiResult.results[apiResult.results.length - 1] === movie) {
+          l("----------------------------------------\n");
+        }
+      });
+    });
   });
 
 program
