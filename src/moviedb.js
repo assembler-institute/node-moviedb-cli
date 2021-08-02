@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-const { Command } = require("commander");
+const { Command, option } = require("commander");
 const { getPersons } = require("./module/getPersonsRequest");
+const { getMovies, getMoviesNowPlaying } = require("./module/getMoviesRequest");
 const program = new Command();
 program.version("0.0.1");
 
@@ -27,9 +28,17 @@ program
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
-  .action(function handleAction() {
-    console.log("hello-world");
-  });
+
+  .action((options) => {
+    if (options.nowPlaying) {
+      getMoviesNowPlaying(options);
+    } else {
+      getMovies(options);
+    }
+  })
+  .requiredOption("--page <number>", "The page of movies data results to fetch")
+  .option("-p, --popular", "Fetch the popular movies")
+  .option("-n, --now-playing", "Fetch the movies that are playing now");
 
 program
   .command("get-movie")
