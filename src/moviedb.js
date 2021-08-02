@@ -11,6 +11,7 @@ const {
   readLocalGetMoviesData,
 } = require("./module/get_movies");
 const { getPerson } = require("./module/getPersonRequest");
+const { getMovie, getMovieReviews } = require("./module/getMovie");
 
 const program = new Command();
 program.version("0.0.1");
@@ -65,9 +66,15 @@ program
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
-  });
+  .action((options) => {
+    if (options.reviews) {
+      getMovieReviews(options);
+    } else {
+      getMovie(options);
+    }
+  })
+  .requiredOption("-i, --id <number>", "The id of the movie")
+  .option("-r, --reviews", "Fetch the reviews of the movie");
 
 // error on unknown commands
 
