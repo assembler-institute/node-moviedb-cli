@@ -184,21 +184,32 @@ program
         });
       } else {
         l(
-          `The movie: ${movie.original_title} doesn’t have any declared languages`
+          `The movie: ${movie.original_title} doesn’t have any declared languages.`
         );
       }
+
+      l("\n");
+
       if (options.reviews) {
         getReviews(options.id).then((apiResponseReviews) => {
           if (apiResponseReviews.total_pages > 0) {
             apiResponseReviews.results.forEach((review) => {
               l("Author: ", "white", true);
               l(review.author + "\n", "blue", true);
-              l("Content: ", "white", false);
-              l(review.content, "white", false);
+              l("Content: ", "white", true);
+              if (review.content.length > 400) {
+                l(review.content.slice(0, 400) + "...");
+              } else {
+                l(review.content, "white", false);
+              }
               l("\n\n---\n\n");
             });
           } else {
-            l(`The movie: ${options.id} doesn’t have any reviews`, "red", true);
+            l(
+              `The movie: ${movie.original_title} doesn’t have any reviews`,
+              "red",
+              true
+            );
           }
         });
       }

@@ -72,7 +72,6 @@ function getPersons(page, key = apiKey) {
 
       res.on("end", () => {
         resolve(JSON.parse(responseBody));
-        // console.log("This is the response ", responseBody);
         spinner.succeed(`Loaded popular persons at page ${page}`);
       });
     });
