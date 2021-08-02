@@ -2,7 +2,8 @@
 // Imports
 // ---------------------------------------------------
 require("dotenv").config({ path: "../.env" });
-const { getPersons, getMovies } = require("./requests.js");
+const { getPersons, getPersonById, getMovies } = require("./requests.js");
+const { asciiPrompt } = require("./asciiPrompt.js");
 const { Command } = require("commander");
 const { l } = require("./chalk.js");
 const chalk = require("chalk");
@@ -37,45 +38,44 @@ program
   .requiredOption("-p, --popular", "Fetch the popular persons")
   .action((options) => {
     // console.log(chalk.yellow.bold("Get persons at page: "), options.page);
+    getPersons(options.page).then((apiResponse) => {
+      asciiPrompt("Popular persons");
 
-    getPersons(options.page).then((apiResult) => {
-      l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-      l(`Page: ${options.page} of ${apiResult.total_pages}\n`);
+      l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
+      l(`Page: ${options.page} of ${apiResponse.total_pages}\n`);
+      l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
 
-      apiResult.results.forEach((person) => {
+      apiResponse.results.forEach((person) => {
         l("----------------------------------------\n");
-        l("PERSON \n");
+        l("PERSON \n\n");
         l("Id: ", "white", true);
-        l(person.id);
+        l(person.id + "\n");
         l("Name: ", "white", true);
-        l(person.name, "blue", true);
-        if (person.known_for_department) {
+        l(person.name + "\n", "blue", true);
+        if (person.known_for_department === "Acting") {
           l("Deparment: ", "white", true);
-          l(person.known_for_department, "magenta");
+          l(person.known_for_department + "\n", "magenta");
         }
-        l("Movie carreer: ", "white", true);
 
         // Get all movies names
         let movies = new Array();
         person.known_for.forEach((m) => movies.push(m.title));
 
         // Check if all are titles undefined
+        l("Movie carreer: \n", "white", true);
         if (!movies.every(undefinedTitle)) {
-          l("Appearing in: ");
-          l("\n");
           person.known_for.forEach((movie) => {
             // Only show not undefined titles
             if (movie.title != undefined) {
               l("\tMovie:");
               l(`\t${movie.id}`);
               l(`\t${movie.title}`);
-              l(`\t${movie.release_date}`);
-              l("\n");
+              l(`\t${movie.release_date} \n`);
             }
           });
         } else {
           // If only appears in tv shows
-          l(`${person.name} doesn’t appear in any movie. \n`, "red");
+          l(`${person.name} doesn’t appear in any movie.\n`, "red");
         }
       });
     });
@@ -84,8 +84,40 @@ program
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-i, --id <personId>", "The id of the person")
+  .action((options) => {
+    getPersonById(options.id).then((apiResponse) => {
+      let person = apiResponse;
+      asciiPrompt(person.name);
+      // l("----------------------------------------\n");
+      // l("PERSON \n\n");
+      l("Id: ", "white", true);
+      l(person.id + "\n");
+      l("Name: ", "white", true);
+      l(person.name + "\n", "blue", true);
+      l("Birthday: ", "white", true);
+      if (person.birthday && person.place_of_birth) {
+        l(person.birthday + " | " + person.place_of_birth + "\n");
+      } else {
+        l(`No birthday data of ${person.name}.\n`, "red", true);
+      }
+      if (person.known_for_department === "Acting") {
+        l("Deparment: ", "white", true);
+        l(person.known_for_department + "\n", "magenta");
+      }
+      if (person.biography) {
+        l("Biography: ", "white", true);
+        l(person.biography + "\n", "blue", true);
+      }
+      l("Also known as: \n", "white", true);
+      if (person.also_known_as != undefined) {
+        person.also_known_as.forEach((aka) => {
+          l(`\t · ${aka}\n`);
+        });
+      } else {
+        l(`\n${person.name} doesn’t have any alternate names\n`, "red", true);
+      }
+    });
   });
 
 program

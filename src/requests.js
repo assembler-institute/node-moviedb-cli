@@ -88,6 +88,47 @@ function getPersons(page, key = apiKey) {
   return finalResult;
 }
 
+function getPersonById(id, key = apiKey) {
+  const options = {
+    hostname: "api.themoviedb.org",
+    port: 443,
+    path: `/3/person/${id}?api_key=${key}`,
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const spinner = ora("Fetching the person data...").start();
+  spinner;
+
+  let finalResult = new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      res.setEncoding("utf8");
+      let responseBody = "";
+
+      res.on("data", (chunk) => {
+        responseBody += chunk;
+      });
+
+      res.on("end", () => {
+        resolve(JSON.parse(responseBody));
+        // console.log("This is the response ", responseBody);
+        spinner.succeed(`Loaded person with id ${id}`);
+      });
+    });
+
+    req.on("error", (err) => {
+      reject(err);
+      spinner.fail(`Couldn't load person with id ${id}`);
+    });
+
+    req.end();
+  });
+
+  return finalResult;
+}
+
 function getMovies(page, nowPlaying, key = apiKey) {
   
   // Initializing http request params
@@ -120,10 +161,12 @@ function getMovies(page, nowPlaying, key = apiKey) {
     },
   };
 
-  // Making request
-  return makeHTTPRequest(options, oraInit, oraSuccess, oraFailure, page);
+    // Making request
+    return makeHTTPRequest(options, oraInit, oraSuccess, oraFailure, page);
 }
+
+
 
 // Exports
 // ---------------------------------------------------
-module.exports = { getPersons, getMovies };
+module.exports = { getPersons, getPersonById, getMovies };
