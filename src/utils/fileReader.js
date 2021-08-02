@@ -18,8 +18,8 @@ function saveMovies(page, flag) {
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, {recursive: true});
     }
-    if (flag) fs.writeFileSync(path, JSON.stringify(page) , 'utf-8');
-    else fs.writeFileSync(nowPath, JSON.stringify(page) , 'utf-8');
+    if (flag) fs.writeFileSync(nowPath, JSON.stringify(page) , 'utf-8');
+    else fs.writeFileSync(path, JSON.stringify(page) , 'utf-8');
 }
 
 module.exports = { savePeople, saveMovies };

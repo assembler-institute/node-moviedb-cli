@@ -4,6 +4,7 @@ const https = require("https");
 const ora = require("ora");
 const fs = require("fs");
 const file = require("./fileReader.js");
+const os = require("os");
 
 const httpConstants = require("./httpConstants.js");
 const {
@@ -90,9 +91,12 @@ function MoviesByPage(page = 1, nowPlaying, option) {
 
     res.on("data", (chunk) => (body += chunk));
     res.on("end", () => {
-      if (option) {
+      if (option && nowPlaying) {
         file.saveMovies(JSON.parse(body), nowPlaying);
         spinner.succeed("Now playing movies data loaded");
+      } else if (option){
+        file.saveMovies(JSON.parse(body), nowPlaying);
+        spinner.succeed("Popular movies data loaded");
       } else {
         chalkMovie(JSON.parse(body), spinner, nowPlaying);
       }
@@ -136,8 +140,8 @@ function SingleMovie(id, reviews) {
  * get People by Pages from JSON
  * @param page: number of page to render
  */
-function JsonPersonByPage(page = 1) {
-  const spinner = ora("Loading popular people").start();
+function JsonPersonByPage() {
+  const spinner = ora("Reading people JSON file").start();
   const path = "./src/utils/persons/popular-persons.json";
 
   try {
@@ -159,20 +163,21 @@ function JsonPersonByPage(page = 1) {
  * @param page: number of page to render
  * @param nowPlaying: bool, movies that are playing npw
  */
-function JsonMoviesByPage(page = 1, nowPlaying) {
-  const spinner = ora("Loading popular movies").start();
-  const path = "./src/utils/movies/movies.json";
+function JsonMoviesByPage(nowPlaying) { 
+  const spinner = ora("Reading movies JSON file").start();
+  let path = "./src/utils/movies/popular-movies.json";
+
+  if(nowPlaying) path = "./src/utils/movies/now-popular-movies.json";
 
   try {
-    if (fs.existsSync(path)) {
-      fs.readFile(path, "utf-8", (err, data) => {
-        const user = JSON.parse(data.toString(), null, 4);
-        chalkMovie(user, spinner, nowPlaying);
-        spinner.succeed("Now playing movies data loaded");
-      });
-    } else {
-      spinner.fail("File doesn't exist");
-    }
+      if (fs.existsSync(path)) {
+        fs.readFile(path, "utf-8", (err, data) => {
+          const user = JSON.parse(data.toString(), null, 4);
+          chalkMovie(user, spinner, nowPlaying);
+        });
+      } else {
+        spinner.fail("File doesn't exist");
+      }
   } catch (err) {
     console.log(err.message);
   }
