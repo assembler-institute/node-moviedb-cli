@@ -15,6 +15,9 @@ function spinnerStart(endPoint) {
   } else if (endPoint.includes("movie/")) {
     spinner = ora("Fetching the movie data...").start();
     return spinner;
+  } else if (endPoint.includes("person/")) {
+    spinner = ora("Fetching the person data...").start();
+    return spinner;
   }
 }
 

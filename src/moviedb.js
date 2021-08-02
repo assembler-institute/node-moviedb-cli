@@ -22,8 +22,9 @@ program
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    // console.log("hello-world");
+  .requiredOption("-i, --id <personId>", "The id of the person")
+  .action(function handleAction(options) {
+    req.httpRequest(`person/${options.id}`);
   });
 
 program
