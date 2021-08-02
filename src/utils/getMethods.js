@@ -6,7 +6,12 @@ const fs = require("fs");
 const file = require("./fileReader.js");
 
 const httpConstants = require("./httpConstants.js");
-const { chalkMovie, chalkPeople, chalkPersonId } = require("./chalks.js");
+const {
+  chalkMovie,
+  chalkPeople,
+  chalkPersonId,
+  chalkSingleMovie,
+} = require("./chalks.js");
 
 /**
  * get People by Pages
@@ -19,21 +24,40 @@ function PersonsByPage(page = 1, option) {
   };
 
   const spinner = ora("Loading popular people").start();
-
   const req = https.request(options, (res) => {
     let body = "";
 
     res.on("data", (chunk) => (body += chunk));
     res.on("end", () => {
       if (option) {
-        //console.log("JSON");
         file.savePeople(JSON.parse(body));
         spinner.succeed("Popular Persons data loaded");
       } else {
-        //console.log("REQUEST");
         chalkPeople(JSON.parse(body), spinner);
       }
     });
+  });
+
+  req.on("error", (e) => spinner.fail(e.message));
+  req.end();
+}
+
+/**
+ * Person by ID functions
+ * @param id: id of the person
+ */
+function PersonById(id) {
+  const options = {
+    ...httpConstants,
+    path: `/3/person/${id}?&api_key=${process.env.API_KEY}`,
+  };
+
+  const spinner = ora("Fetching the person data...\n").start();
+  const req = https.request(options, (res) => {
+    let body = "";
+
+    res.on("data", (chunk) => (body += chunk));
+    res.on("end", () => chalkPersonId(JSON.parse(body), spinner));
   });
 
   req.on("error", (e) => spinner.fail(e.message));
@@ -57,7 +81,6 @@ function MoviesByPage(page = 1, nowPlaying) {
     path: path,
   };
   const spinner = ora("Loading popular movie").start();
-
   const req = https.request(options, (res) => {
     let body = "";
 
@@ -70,33 +93,38 @@ function MoviesByPage(page = 1, nowPlaying) {
 }
 
 /**
- * Person by ID functions
- */
-function PersonById(id) {
+ * Movies functions - Movies Pagination
+ * @param id: id of movie
+ * @param reviews: user reviews for a movie.
+ * */
+function SingleMovie(id, reviews) {
+  let path = `/3/movie/${id}?api_key=${process.env.API_KEY}`;
+
+  if (reviews) {
+    path = `/3/movie/${id}/reviews?api_key=${process.env.API_KEY}`;
+  }
+
   const options = {
     ...httpConstants,
-    path: `/3/person/${id}?&api_key=${process.env.API_KEY}`,
+    path: path,
   };
 
-  const spinner = ora("Fetching the person data...\n").start();
-
+  const spinner = ora("Fetching the movie data...").start();
   const req = https.request(options, (res) => {
     let body = "";
 
-    res.on("data", (chunk) => {
-      body += chunk;
-    });
-    res.on("end", () => chalkPersonId(JSON.parse(body), spinner));
+    res.on("data", (chunk) => (body += chunk));
+    res.on("end", () => chalkSingleMovie(JSON.parse(body), spinner, reviews));
   });
 
   req.on("error", (e) => spinner.fail(e.message));
   req.end();
 }
 
-// * get People by Pages from JSON
-// * @param page: number of page to render
-// */
-
+/**
+ * get People by Pages from JSON
+ * @param page: number of page to render
+ */
 function JsonPersonByPage(page = 1) {
   const spinner = ora("Loading popular people").start();
   const path = "./src/utils/json/persons.json";
@@ -108,11 +136,17 @@ function JsonPersonByPage(page = 1) {
         chalkPeople(user, spinner);
       });
     } else {
-      spinner.fail("File dosn't exist");
+      spinner.fail("File doesn't exist");
     }
   } catch (err) {
     console.log(err.message);
   }
 }
 
-module.exports = { PersonById, PersonsByPage, MoviesByPage, JsonPersonByPage };
+module.exports = {
+  PersonById,
+  PersonsByPage,
+  MoviesByPage,
+  SingleMovie,
+  JsonPersonByPage,
+};

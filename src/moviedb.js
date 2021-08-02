@@ -27,7 +27,7 @@ program
   .description("Make a network request to fetch the data of a single person")
   .requiredOption("-i, --id <id>", "The id of the person")
   .action(function handleAction(option) {
-    if (option.id) get.PersonById(option.id);
+    get.PersonById(option.id);
   });
 
 program
@@ -43,10 +43,11 @@ program
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-i,--id <number>", "The id of the movie")
+  .option("-r, --reviews", "Fetch the reviews of the movie")
+  .action(function handleAction(opt) {
+    get.SingleMovie(opt.id, opt.reviews);
   });
 
 // error on unknown commands
-
 program.parse(process.argv);

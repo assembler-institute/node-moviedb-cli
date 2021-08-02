@@ -4,6 +4,7 @@ const chalk = require("chalk");
 
 const Person = require("./entities/Person.js");
 const Movie = require("./entities/Movie.js");
+const Review = require("./entities/Review.js");
 
 const log = console.log;
 
@@ -65,13 +66,13 @@ function chalkMovie(page, spinner, nowPlaying) {
         chalkMovie.renderPopular();
 
         if (index == array.length - 1) {
-          log(chalk.white("---------------------------------------------"));
+          log(chalk.white("________________________________________________"));
           log(chalk.white(`Page: ${page.page} of: ${page.total_pages}`));
           log("\n");
           return;
         }
 
-        log(chalk.white("----------------------"));
+        log(chalk.white("_________________________"));
       });
 
       if (nowPlaying) spinner.succeed("Movies playing now data loaded");
@@ -85,4 +86,31 @@ function chalkMovie(page, spinner, nowPlaying) {
   }
 }
 
-module.exports = { chalkPeople, chalkMovie, chalkPersonId };
+/**
+ * Render Movie in command line
+ * @param movie : Response object of type movie or reviews
+ * @param spinner : a Spinner to render
+ * @param reviews : reviews of the movie
+ */
+function chalkSingleMovie(body, spinner, reviews) {
+  try {
+    setTimeout(() => {
+      if (reviews) {
+        const chalkReviews = new Review(body);
+        chalkReviews.renderMovieReviews();
+
+        spinner.succeed("Movie reviews data loaded");
+      } else {
+        const chalkMovie = new Movie(body);
+        chalkMovie.renderSingleMovie();
+
+        spinner.succeed("Movie data loaded");
+      }
+      log("\n");
+    }, 1000);
+  } catch (error) {
+    spinner.fail(error.message);
+  }
+}
+
+module.exports = { chalkPeople, chalkMovie, chalkPersonId, chalkSingleMovie };
