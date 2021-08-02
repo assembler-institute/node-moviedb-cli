@@ -177,39 +177,66 @@ program
       spinner.text = "Fetching popular movies data...";
     }
 
+    const isSave = program.opts().save;
+
     getMovies(options.page, options.nowPlaying)
       .then((apiResponse) => {
         spinner.stop();
-        l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        l(`Page: ${options.page} of ${apiResponse.total_pages}\n`);
-
-        apiResponse.results.forEach((movie) => {
-          l("----------------------------------------\n");
-          l("MOVIE \n");
-          l("Id: ", "yellow", true);
-          l(movie.id + "\n");
-          l("Title: ", "blue", true);
-          l(movie.title + "\n", "white", true);
-          l("Release date: ", "magenta", true);
-          l(movie.release_date + "\n\n");
-        });
-        if (options.nowPlaying) {
+        if (isSave && options.nowPlaying) {
+          checkFolder("movies", "now-playing-movies.json", apiResponse);
           spinner.succeed(
-            `Loaded movies that are being played now at page ${options.page}`
+            `Saved JSON with movies that are being played now at page ${options.page}`
+          );
+        } else if (isSave && !options.nowPlaying) {
+          checkFolder("movies", "popular-movies.json", apiResponse);
+          spinner.succeed(
+            `Saved JSON with popular movies at page ${options.page}`
           );
         } else {
-          spinner.succeed(`Loaded popular movies at page ${options.page}`);
+          l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+          l(`Page: ${options.page} of ${apiResponse.total_pages}\n`);
+
+          apiResponse.results.forEach((movie) => {
+            l("----------------------------------------\n");
+            l("MOVIE \n");
+            l("Id: ", "yellow", true);
+            l(movie.id + "\n");
+            l("Title: ", "blue", true);
+            l(movie.title + "\n", "white", true);
+            l("Release date: ", "magenta", true);
+            l(movie.release_date + "\n\n");
+          });
+          if (options.nowPlaying) {
+            spinner.succeed(
+              `Loaded movies that are being played now at page ${options.page}`
+            );
+          } else {
+            spinner.succeed(`Loaded popular movies at page ${options.page}`);
+          }
         }
       })
       .catch(() => {
         spinner.stop();
-
-        if (options.nowPlaying) {
-          spinner.fail(
-            `Couldn't load movies that are being played now at page ${options.page}`
-          );
+        if (isSave) {
+          if (options.nowPlaying) {
+            spinner.fail(
+              `Couldn't save JSON with movies that are being played now at page ${options.page}`
+            );
+          } else {
+            spinner.fail(
+              `Couldn't save JSON with popular movies at page ${options.page}`
+            );
+          }
         } else {
-          spinner.fail(`Couldn't load popular movies at page ${options.page}`);
+          if (options.nowPlaying) {
+            spinner.fail(
+              `Couldn't load movies that are being played now at page ${options.page}`
+            );
+          } else {
+            spinner.fail(
+              `Couldn't load popular movies at page ${options.page}`
+            );
+          }
         }
       });
   });
