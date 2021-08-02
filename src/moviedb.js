@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
-// const { getMovies, getMoviesNowPlaying } = require("./module/getMoviesRequest");
 const {
   getPersonsRequest,
   readLocalGetPersonsData,
 } = require("./module/get_persons");
-const { getMovies, getMoviesNowPlaying } = require("./module/get_movies");
+const {
+  getMovies,
+  getMoviesNowPlaying,
+  readLocalGetMoviesData,
+} = require("./module/get_movies");
 const { getPerson } = require("./module/getPersonRequest");
 
 const program = new Command();
@@ -43,15 +46,21 @@ program
   .description("Make a network request to fetch movies")
 
   .action((options) => {
-    if (options.nowPlaying) {
-      getMoviesNowPlaying(options);
+    if (options.local) {
+      readLocalGetMoviesData();
     } else {
-      getMovies(options);
+      if (options.nowPlaying) {
+        getMoviesNowPlaying(options);
+      } else {
+        getMovies(options);
+      }
     }
   })
   .requiredOption("--page <number>", "The page of movies data results to fetch")
   .option("-p, --popular", "Fetch the popular movies")
-  .option("-n, --now-playing", "Fetch the movies that are playing now");
+  .option("-n, --now-playing", "Fetch the movies that are playing now")
+  .option("--save", "Save the data in a local file")
+  .option("--local", "Read the data from the local file");
 
 program
   .command("get-movie")

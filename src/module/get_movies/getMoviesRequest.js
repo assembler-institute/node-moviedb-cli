@@ -1,6 +1,8 @@
 const chalk = require("chalk");
 const https = require("https");
 const spinner = require("../../components/spinner");
+const { printGetMoviesInformation } = require("./print-get-movies");
+const { saveGetMoviesData } = require("./get-movies-data-local-handle");
 const separator = "--------------------------------------";
 
 const {
@@ -9,7 +11,7 @@ const {
   API_TIMEOUT_REQUEST,
 } = require("../../utils/constants");
 
-function getMovies({ page }) {
+function getMovies({ page, save }) {
   const options = {
     hostname: API_HOSTNAME,
     port: 443,
@@ -17,10 +19,10 @@ function getMovies({ page }) {
     method: "GET",
   };
   const req = https.request(options, (res) => {
-    let body = "";
+    let dataText = "";
 
     res.on("data", (d) => {
-      body += d;
+      dataText += d;
 
       spinner.color = "red";
       spinner.start("Fetching the movies data...\t");
@@ -29,31 +31,13 @@ function getMovies({ page }) {
     res.on("end", () => {
       setTimeout(() => {
         // This timeout is to show the loading data spinner
-        const dataObject = JSON.parse(body);
+        const dataObject = JSON.parse(dataText);
 
-        if (dataObject.errors) {
-          spinner.fail(dataObject.errors[0]);
+        if (save) {
+          saveGetMoviesData(dataText);
+        } else {
+          printGetMoviesInformation(dataObject);
         }
-        const results = dataObject.results;
-
-        results.forEach((r) => {
-          console.log(chalk.white("Movie:\n"));
-
-          console.log(chalk.white(`ID: ${r.id}\t`));
-
-          console.log(`Title: ${chalk.bold.blue(r.title)}\t`);
-
-          console.log(chalk.white(`Release Date: ${r.release_date}\t`));
-
-          console.log(separator);
-        });
-        if (page <= dataObject.total_pages) {
-          console.log(
-            chalk.white(`Page ${page} of ${dataObject.total_pages}\n`)
-          );
-        }
-        spinner.stop();
-        spinner.succeed("Popular movies loaded");
       }, API_TIMEOUT_REQUEST);
     });
   });
