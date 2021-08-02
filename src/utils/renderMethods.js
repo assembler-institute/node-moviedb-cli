@@ -23,9 +23,7 @@ function renderPersons(persons) {
         log(`\t${chalk.white("🍿 Movie:")}`);
         log(`\t${chalk.white("ID: ")}${chalk.white(alias.id)}`);
         log(
-          `\t${chalk.white("Release date: ")}${chalk.white(
-            alias.realease_date
-          )}`
+          `\t${chalk.white("Release date: ")}${chalk.white(alias.release_date)}`
         );
         log(`\t${chalk.white("Title: ")}${chalk.white(alias.title)}`);
         appearsInMovie = true;
