@@ -84,10 +84,62 @@ function renderMovies(data, msg, spinner) {
   });
   spinner.succeed(msg);
 }
-
-
+function renderMovie(
+    reviewLong,
+    reviewShort,
+    movieID
+    ){
+   
+        if(reviewLong || reviewShort){
+            if(data.results.length==0){
+                console.log(chalk.yellow(`\nThe movie: ${movieID} doesn’t have any reviews`));
+        }else{
+            
+        const reviews = data.results
+        
+        reviews.forEach((review)=>{
+            reviewText="";
+            if(review.content.length>400){
+                reviewText=review.content.slice(0,400);
+                console.log(`
+                    \nAuthor:
+                    \n\t${chalk.bold.blue(review.author)}
+                    \nContent:
+                    \n\t${chalk.whiteBright(reviewText)}...\n\n`
+                )
+                
+            }else{
+                reviewText=review.content;
+                console.log(`
+                    \nAuthor:
+                    \n\t${chalk.bold.blue(review.author)}
+                    \nContent:
+                    \n\t${chalk.white(reviewText)}\n\n`
+                )
+            }
+        })
+        }
+  
+        if(data.total_pages>data.page){
+            console.log(chalk.white(`\n---------------------------------\n
+            ${data.page}/${data.total_pages}\n`))
+            
+        } 
+    }else{
+        console.log(chalk.white(
+        `\n--------------------\n
+        \nMovie:
+        \n\t${chalk.bold.blue(data)}
+        \nContent:`
+        ));
+    }
+     
+}
+  
 module.exports = {
   renderPersons: renderPersons,
   renderPerson: renderPerson,
   renderMovies: renderMovies,
+  renderMovie: renderMovie,
+  
 };

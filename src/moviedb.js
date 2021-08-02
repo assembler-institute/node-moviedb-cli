@@ -8,7 +8,7 @@ dotenv.config();
 // const chalk = require("chalk");
 
 const { getPersons, getPerson, getMovies, getMovie } = require("./utils/httpsRequest");
-const { renderPersons, renderPerson, renderMovies } = require("./utils/renderRequest");
+const { renderPersons, renderPerson, renderMovies, renderMovie } = require("./utils/renderRequest");
 
 const requestOptions = {
   href: "https://api.themoviedb.org",
@@ -113,26 +113,25 @@ program
     }
   });
 
+
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .requiredOption("-i <number>","The id of the movie")
-  .option("-r","Fetching the reviws of the movie")
+  .requiredOption("-i, --id","The id of the movie")
+  .option("-r, --review","Fetching the reviws of the movie")
   .action(async function handleAction(programOptions) {
-    const spinner= ora("Fetching movie data...").start();
-    const id = programOptions.i.toString();
-    if(programOptions.r){
-      requestOptions.path = `/3/movie/${id}/reviews`;
-    }else{
-      requestOptions.path = `/3/movie/${id}`;
-    }  
-    data = await getMovie(requestOptions);
-    
-    function renderMovie(){
-      console.log(data);
-    }
-    renderMovie();
-    spinner.succeed("movie loaded");
+      const spinner= ora("Fetching movie data...").start();
+      const id = programOptions.args.toString();
+
+      if(programOptions.r || programOptions.review){
+        requestOptions.path = `/3/movie/${id}/reviews`;
+      }else{
+        requestOptions.path = `/3/movie/${id}`;
+      }  
+      
+      data = await getMovie(requestOptions);
+      renderMovie(programOptions.review,programOptions.r,id);
+      spinner.succeed("Movie reviews data loaded");
   });
 
 // error on unknown commands
