@@ -9,31 +9,22 @@ const {
   getMovieById,
   getReviews,
 } = require("./requests.js");
-const { asciiPrompt } = require("./asciiPrompt.js");
+const { undefinedTitle, checkFolder } = require("./assets/js/helpers.js");
+const { asciiPrompt } = require("./assets/js/asciiPrompt.js");
+const { l } = require("./assets/js/chalk.js");
 const { Command } = require("commander");
-const { l } = require("./chalk.js");
 const ora = require("ora");
-
-const program = new Command();
 
 // General variables
 // ---------------------------------------------------
-const apiKey = process.env.API_KEY;
-
-// Helpers
-// ---------------------------------------------------
-
-// console.log("This is the API key: ", chalk.blue(apiKey));
-
-let undefinedTitle = function returnUndefined(element) {
-  if (element === undefined) {
-    return true;
-  }
-};
+const program = new Command();
 
 // General
 // ---------------------------------------------------
-program.version("0.0.1").description("MovieDb database using CLI");
+program
+  .version("0.0.1")
+  .description("MovieDb database using CLI")
+  .option("-s, --save", "Save request to file");
 
 // Commands
 //---------------------------------------------------
@@ -44,56 +35,70 @@ program
   .requiredOption("-p, --popular", "Fetch the popular persons")
   .action((options) => {
     const spinner = ora("Fetching the popular person's data...\n").start();
+    const isSave = program.opts().save;
 
     getPersons(options.page)
       .then((apiResponse) => {
         spinner.stop();
+        if (isSave) {
+          checkFolder("persons", "get-persons.json", apiResponse);
+          // Ora suceed
+          spinner.succeed(
+            `Saved JSON of popular persons at page ${options.page}.`
+          );
+        } else {
+          asciiPrompt("Popular persons");
+          l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
+          l(`Page: ${options.page} of ${apiResponse.total_pages}\n`);
+          l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
 
-        asciiPrompt("Popular persons");
-        l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
-        l(`Page: ${options.page} of ${apiResponse.total_pages}\n`);
-        l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
+          apiResponse.results.forEach((person) => {
+            l("----------------------------------------\n");
+            l("PERSON \n\n");
+            l("Id: ", "white", true);
+            l(person.id + "\n");
+            l("Name: ", "white", true);
+            l(person.name + "\n", "blue", true);
+            if (person.known_for_department === "Acting") {
+              l("Deparment: ", "white", true);
+              l(person.known_for_department + "\n", "magenta");
+            }
 
-        apiResponse.results.forEach((person) => {
-          l("----------------------------------------\n");
-          l("PERSON \n\n");
-          l("Id: ", "white", true);
-          l(person.id + "\n");
-          l("Name: ", "white", true);
-          l(person.name + "\n", "blue", true);
-          if (person.known_for_department === "Acting") {
-            l("Deparment: ", "white", true);
-            l(person.known_for_department + "\n", "magenta");
-          }
+            // Get all movies names
+            let movies = new Array();
+            person.known_for.forEach((m) => movies.push(m.title));
 
-          // Get all movies names
-          let movies = new Array();
-          person.known_for.forEach((m) => movies.push(m.title));
-
-          // Check if all are titles undefined
-          l("Movie carreer: \n", "white", true);
-          if (!movies.every(undefinedTitle)) {
-            person.known_for.forEach((movie) => {
-              // Only show not undefined titles
-              if (movie.title != undefined) {
-                l("\tMovie:");
-                l(`\t${movie.id}`);
-                l(`\t${movie.title}`);
-                l(`\t${movie.release_date} \n`);
-              }
-            });
-          } else {
-            // If only appears in tv shows
-            l(`${person.name} doesn’t appear in any movie.\n`, "red");
-          }
-          l("\n");
-        });
-        // Ora suceed
-        spinner.succeed(`Loaded popular persons at page ${options.page}`);
+            // Check if all are titles undefined
+            l("Movie carreer: \n", "white", true);
+            if (!movies.every(undefinedTitle)) {
+              person.known_for.forEach((movie) => {
+                // Only show not undefined titles
+                if (movie.title != undefined) {
+                  l("\tMovie:");
+                  l(`\t${movie.id}`);
+                  l(`\t${movie.title}`);
+                  l(`\t${movie.release_date} \n`);
+                }
+              });
+            } else {
+              // If only appears in tv shows
+              l(`${person.name} doesn’t appear in any movie.\n`, "red");
+            }
+            l("\n");
+          });
+          // Ora suceed
+          spinner.succeed(`Loaded popular persons at page ${options.page}`);
+        }
       })
       .catch(() => {
         spinner.stop();
-        spinner.fail(`Couldn't load popular persons at page ${options.page}`);
+        if (isSave) {
+          spinner.fail(
+            `Couldn't save JSON of popular persons at page ${options.page}`
+          );
+        } else {
+          spinner.fail(`Couldn't load popular persons at page ${options.page}`);
+        }
       });
   });
 

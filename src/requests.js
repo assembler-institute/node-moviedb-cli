@@ -36,7 +36,7 @@ function makeHTTPRequest(options) {
 // ---------------------------------------------------
 function getPersons(page, key = apiKey) {
   const options = {
-    hostname: "api.themoviedb.org",
+    hostname: "api.theoviedb.org",
     port: 443,
     path: `/3/person/popular?page=${page}&api_key=${key}`,
     method: "GET",
@@ -101,7 +101,7 @@ function getMovieById(movieId, key = apiKey) {
 
 function getReviews(movieId, page = 1, key = apiKey) {
   const options = {
-    hostname: "api.thmoviedb.org",
+    hostname: "api.themoviedb.org",
     port: 443,
     path: `/3/movie/${movieId}/reviews?page=${page}&api_key=${key}`,
     method: "GET",
