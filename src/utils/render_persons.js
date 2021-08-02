@@ -8,7 +8,6 @@ function renderPersons(data) {
   }
   const persons = data.results;
   persons.map((person) => {
-    console.log(chalk.white("\n"));
     console.log(chalk.white("-".repeat(100)));
     console.log(chalk.white("\n"));
     console.log(chalk.white("Person:"));
