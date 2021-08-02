@@ -245,8 +245,8 @@ ________________________________________________________________________
 
 ## Contributors ✨
 
-👤 [Marc Solà](https://github.com/haykbit)
+👤 [Marc Solà](https://github.com/MarcSola)
 
-👤 [Oriol Alfambra](https://github.com/haykbit)
+👤 [Oriol Alfambra](https://github.com/orionalfa)
 
 👤 [Ricard Garcia](https://github.com/Ricard-Garcia)
