@@ -2,11 +2,18 @@
 // Imports
 // ---------------------------------------------------
 require("dotenv").config({ path: "../.env" });
-const { getPersons, getPersonById, getMovies } = require("./requests.js");
+const {
+  getPersons,
+  getPersonById,
+  getMovies,
+  getMovieById,
+  getReviews,
+} = require("./requests.js");
 const { asciiPrompt } = require("./asciiPrompt.js");
 const { Command } = require("commander");
 const { l } = require("./chalk.js");
 const chalk = require("chalk");
+const { yellow } = require("chalk");
 
 const program = new Command();
 
@@ -151,8 +158,51 @@ program
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-id, --id <num>", "The id of the movie data result to fetch")
+  .option("-r, --reviews", "Fetch the reviews of the movie")
+  .action((options) => {
+    getMovieById(options.id).then((apiResult) => {
+      l(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      l("\nMOVIE Id: ", "white", false);
+      l(apiResult.id, "white", false);
+      l("\n");
+      l("Title: ", "blue", false);
+      l(apiResult.original_title, "blue", true);
+      l("\n");
+      l("Release date: ", "white", false);
+      l(apiResult.release_date, "white", true);
+      l("\n");
+      l("Runtime: ", "white", false);
+      l(apiResult.runtime, "white", true);
+      l("\n");
+      l("Votecount: ", "white", false);
+      l(apiResult.vote_count, "white", true);
+      l("\n");
+      l("Overview: ", "white", false);
+      l(apiResult.overview, "white", true);
+      l("\n\n");
+
+      if (options.reviews) {
+        getReviews(options.id).then((apiResultReviews) => {
+          if (apiResultReviews.total_pages > 0) {
+            apiResultReviews.results.forEach((review) => {
+              l(`Author: `, "white", false);
+              l(`${review.author}`, "blue", true);
+              l("\n");
+              l(`Content: `, "white", false);
+              l(`${review.content} `, "white", false);
+              l("\n\n---\n\n");
+            });
+          } else {
+            l(
+              `The movie: ${options.id} doesn’t have any reviews`,
+              "yellow",
+              true
+            );
+          }
+        });
+      }
+    });
   });
 
 // error on unknown commands

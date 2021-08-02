@@ -88,6 +88,45 @@ function getPersons(page, key = apiKey) {
   return finalResult;
 }
 
+function getMovieById(movieId, key = apiKey) {
+  const options = {
+    hostname: "api.themoviedb.org",
+    port: 443,
+    path: `/3/movie/${movieId}?api_key=${key}`,
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const spinner = ora("Fetching the requested movie data...").start();
+
+  let finalResult = new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      res.setEncoding("utf8");
+      let responseBody = "";
+
+      res.on("data", (chunk) => {
+        responseBody += chunk;
+      });
+
+      res.on("end", () => {
+        resolve(JSON.parse(responseBody));
+        spinner.succeed(`Loaded requested movie with ID:  ${movieId}`);
+      });
+    });
+
+    req.on("error", (err) => {
+      reject(err);
+      spinner.fail(`Couldn't load requested movie with ID: ${movieId}`);
+    });
+
+    req.end();
+  });
+
+  return finalResult;
+}
+
 function getPersonById(id, key = apiKey) {
   const options = {
     hostname: "api.themoviedb.org",
@@ -129,22 +168,60 @@ function getPersonById(id, key = apiKey) {
   return finalResult;
 }
 
+function getReviews(movieId, page = 1, key = apiKey) {
+  const options = {
+    hostname: "api.themoviedb.org",
+    port: 443,
+    path: `/3/movie/${movieId}/reviews?page=${page}&api_key=${key}`,
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const spinner = ora("Fetching the requested movie data...").start();
+  spinner;
+
+  let finalResult = new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      res.setEncoding("utf8");
+      let responseBody = "";
+
+      res.on("data", (chunk) => {
+        responseBody += chunk;
+      });
+
+      res.on("end", () => {
+        resolve(JSON.parse(responseBody));
+        // console.log("This is the response ", responseBody);
+        spinner.succeed(`Loaded requested movie reviews.`);
+      });
+    });
+
+    req.on("error", (err) => {
+      reject(err);
+      spinner.fail(`Couldn't load requested movie reviews`);
+    });
+
+    req.end();
+  });
+
+  return finalResult;
+}
+
 function getMovies(page, nowPlaying, key = apiKey) {
-  
   // Initializing http request params
   let requestPath = "";
   let oraInit = "";
   let oraSuccess = "";
   let oraFailure = "";
 
-  if(nowPlaying){
-
+  if (nowPlaying) {
     requestPath = `/3/movie/now_playing?page=${page}&api_key=${key}`;
     oraInit = "Fetching data of movies that are being played now";
     oraSuccess = "Loaded movies that are being played now at page ";
     oraFailure = "Couldn't load movies that are being played now at page ";
-  }else{
-
+  } else {
     requestPath = `/3/movie/popular?page=${page}&api_key=${key}`;
     oraInit = "Fetching popular movies data";
     oraSuccess = "Loaded popular movies at page ";
@@ -161,12 +238,16 @@ function getMovies(page, nowPlaying, key = apiKey) {
     },
   };
 
-    // Making request
-    return makeHTTPRequest(options, oraInit, oraSuccess, oraFailure, page);
+  // Making request
+  return makeHTTPRequest(options, oraInit, oraSuccess, oraFailure, page);
 }
-
-
 
 // Exports
 // ---------------------------------------------------
-module.exports = { getPersons, getPersonById, getMovies };
+module.exports = {
+  getPersons,
+  getPersonById,
+  getMovies,
+  getMovieById,
+  getReviews,
+};
