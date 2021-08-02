@@ -1,20 +1,25 @@
 const fs = require('fs');
 
 function savePeople(page) {
+    const path = './src/utils/persons/popular-persons.json';
     const dir = './src/utils/persons';
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, {recursive: true});
     }
-    fs.writeFileSync('./src/utils/persons/persons.json', JSON.stringify(page) , 'utf-8');
+    fs.writeFileSync(path, JSON.stringify(page) , 'utf-8');
 
 }
 
 function saveMovies(page, flag) {
+    const path = './src/utils/movies/popular-movies.json';
+    const now_path = './src/utils/movies/now-popular-movies.json';
     const dir = './src/utils/movies';
+
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, {recursive: true});
     }
-    fs.writeFileSync('./src/utils/movies/movies.json', JSON.stringify(page) , 'utf-8');
+    if (flag) fs.writeFileSync(path, JSON.stringify(page) , 'utf-8');
+    else fs.writeFileSync(now_path, JSON.stringify(page) , 'utf-8');
 }
 
 module.exports = { savePeople, saveMovies };
