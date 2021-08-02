@@ -1,11 +1,17 @@
 const chalk = require("chalk");
 const https = require("https");
-const spinner = require("../components/spinner");
-const API_KEY = process.env.API_KEY;
+const spinner = require("../../components/spinner");
 const separator = "--------------------------------------";
+
+const {
+  API_KEY,
+  API_HOSTNAME,
+  API_TIMEOUT_REQUEST,
+} = require("../../utils/constants");
+
 function getMovies({ page }) {
   const options = {
-    hostname: "api.themoviedb.org",
+    hostname: API_HOSTNAME,
     port: 443,
     path: `/3/movie/popular?page=${page}&api_key=${API_KEY}`,
     method: "GET",
@@ -48,7 +54,7 @@ function getMovies({ page }) {
         }
         spinner.stop();
         spinner.succeed("Popular movies loaded");
-      }, 1000);
+      }, API_TIMEOUT_REQUEST);
     });
   });
 
@@ -61,7 +67,7 @@ function getMovies({ page }) {
 
 function getMoviesNowPlaying({ page }) {
   const options = {
-    hostname: "api.themoviedb.org",
+    hostname: API_HOSTNAME,
     port: 443,
     path: `/3/movie/now_playing?page=${page}&api_key=${API_KEY}`,
     method: "GET",
@@ -104,7 +110,7 @@ function getMoviesNowPlaying({ page }) {
         }
         spinner.stop();
         spinner.succeed("Movies playing now data loaded");
-      }, 1000);
+      }, API_TIMEOUT_REQUEST);
     });
   });
 
