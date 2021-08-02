@@ -49,6 +49,7 @@ Run the following command in your terminal after cloning the main repo:
 ```sh
 $ npm install
 ```
+
 ### 3. Create API_KEY 
 - Go to The Movie Database (TMDb) :point_right: https://www.themoviedb.org/signup 
 - Sign up and Sign in
@@ -121,7 +122,7 @@ In this project we built a CLI App similar to the following screenshot.
 ```
 node src/moviedb.js get-person --id 1245
 ```
-
+<br>
 ### 3. Movies <!-- omit in toc -->
 -------------------
   3.1 URL: https://api.themoviedb.org/3/movie/popular?page=1
