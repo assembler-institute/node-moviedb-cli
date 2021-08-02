@@ -2,6 +2,8 @@
 
 const { Command } = require("commander");
 const { getPersons } = require("./module/getPersonsRequest");
+const { getPerson } = require("./module/getPersonRequest");
+
 const program = new Command();
 program.version("0.0.1");
 
@@ -20,9 +22,10 @@ program
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
-  });
+  .action((options) => {
+    getPerson(options);
+  })
+  .requiredOption("-i, --id <number>", "The id of the person");
 
 program
   .command("get-movies")
