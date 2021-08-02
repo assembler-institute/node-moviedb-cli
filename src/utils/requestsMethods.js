@@ -77,6 +77,7 @@ async function getPerson(personId = 990393) {
 
       res.on("end", (chunk) => {
         resolve(JSON.parse(Buffer.concat(chunks).toString()));
+        // console.log(JSON.parse(Buffer.concat(chunks).toString()));
       });
 
       res.on("error", (err) => {

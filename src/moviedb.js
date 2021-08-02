@@ -23,7 +23,6 @@ program
     const page = parseInt(options.page);
     const json = await request.getPopularPersons(page);
     render.renderPersons(json);
-    // console.log(json);
   });
 
 program
@@ -33,7 +32,7 @@ program
   .action(async function handleAction(options) {
     const personId = parseInt(options.id);
     const json = await request.getPerson(personId);
-    console.log(json);
+    render.renderPersonDetails(json);
   });
 
 program
