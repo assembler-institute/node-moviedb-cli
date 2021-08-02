@@ -22,7 +22,9 @@ function renderPersons(persons) {
       if (alias.title !== undefined) {
         log(`\n`);
         log(`\t${chalk.bold(`🍿 ${chalk.inverse(" M O V I E : ")} 🍿`)}`);
-        log(`\t${chalk.white("Title: ")}${chalk.white(alias.title)}`);
+        log(
+          `\t${chalk.white("Title: ")}${chalk.bold(chalk.green(alias.title))}`
+        );
         log(
           `\t${chalk.white("Release date: ")}${chalk.white(alias.release_date)}`
         );
@@ -42,24 +44,26 @@ function renderPersonDetails(person) {
   if (person.success == false) throw "Id not found";
   log(chalk.white(`\n\n----------------------------------------`));
   log(`\n`);
-  log(`${chalk.white("Person: ")} \n`);
-  log(`ID:${chalk.white(person.id)}`);
-  log(`Name:${chalk.blue(person.name)}`);
-  log(
-    `Birthday:${chalk.white(person.birthday)} ${chalk.gray("|")} ${chalk.white(
-      person.place_of_birth
-    )}`
-  );
-  log(`Biography:${chalk.blue.bold(person.biography)}`);
+  log(`${chalk.bold(chalk.white("😎 PERSON: "))} \n`);
+  log(`📸 Name => ${chalk.bold(chalk.green(person.name))}`);
+  log(`📝 Id => ${chalk.cyan(person.id)}`);
 
+  log(
+    `🎂 Birthday => ${chalk.white(person.birthday)} ${chalk.gray(
+      "|"
+    )} ${chalk.white(person.place_of_birth)}`
+  );
+  log(`\n`);
+  log(`📹 Biography => ${chalk.blue.green(person.biography)}`);
+  log(`\n`);
   if (person.known_for_department === "Acting") {
-    log(`Department:${chalk.magenta(person.known_for_department)}`);
+    log(`📩 Department => ${chalk.magenta(person.known_for_department)}`);
   }
   log(`\n`);
-  log(`${chalk.white(`Also know as:`)} \n`);
+  log(`${chalk.inverse(` ALSO KNOWN AS: `)} \n`);
   if (person.also_known_as.length > 0) {
     person.also_known_as.forEach((alias) => {
-      log(`${chalk.white(alias)}`);
+      log(`➡️  ${chalk.white(alias)}`);
     });
   } else {
     log(`\n`);
