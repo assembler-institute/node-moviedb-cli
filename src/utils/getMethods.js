@@ -3,6 +3,7 @@
 const https = require("https");
 const ora = require("ora");
 const fs = require("fs");
+const notifier = require("node-notifier");
 const file = require("./fileReader.js");
 
 const httpConstants = require("./httpConstants.js");
@@ -12,7 +13,6 @@ const {
   chalkPersonId,
   chalkSingleMovie,
 } = require("./chalks.js");
-
 /**
  * get People by Pages
  * @param page: number of page to render
@@ -33,6 +33,10 @@ function PersonsByPage(page = 1, option) {
       if (option) {
         file.savePeople(JSON.parse(body));
         spinner.succeed("Popular Persons data loaded");
+        // notifier.notify({
+        //   title: "Popular Persons",
+        //   message: "Popular Persons data loaded",
+        // });
       } else {
         chalkPeople(JSON.parse(body), spinner);
       }
