@@ -1,0 +1,27 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Nachomontoya",
+      "name": "Nacho",
+      "avatar_url": "https://avatars.githubusercontent.com/u/73990495?v=4",
+      "profile": "http://nachomontoya.es",
+      "contributions": [
+        "code",
+        "design",
+        "ideas",
+        "projectManagement"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "node-moviedb-cli",
+  "projectOwner": "mhfortuna",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
