@@ -25,6 +25,9 @@ https://github.com/assembler-school/node-moviedb-cli.git
 ## Table of Contents <!-- omit in toc -->
 
 - [Main objectives](#main-objectives)
+- [Installing](#installing)
+- [Resources](#resources)
+- [Authors](#authors)
 
 ## Main objectives
 

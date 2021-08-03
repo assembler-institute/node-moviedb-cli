@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "13bbfa29-c3ac-4a55-8c0d-e140289c2316",
+		"name": "moviedb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Persons popular",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.themoviedb.org/3/person/popular?api_key=c15aef2e35d1752562aec3685f62834e&page=1",
+					"protocol": "https",
+					"host": [
+						"api",
+						"themoviedb",
+						"org"
+					],
+					"path": [
+						"3",
+						"person",
+						"popular"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "c15aef2e35d1752562aec3685f62834e"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Person",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.themoviedb.org/3/person/:id?api_key=c15aef2e35d1752562aec3685f62834e",
+					"protocol": "https",
+					"host": [
+						"api",
+						"themoviedb",
+						"org"
+					],
+					"path": [
+						"3",
+						"person",
+						":id"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "c15aef2e35d1752562aec3685f62834e"
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "91606"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movies now playing",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.themoviedb.org/3/movie/:state?api_key=c15aef2e35d1752562aec3685f62834e&page=2",
+					"protocol": "https",
+					"host": [
+						"api",
+						"themoviedb",
+						"org"
+					],
+					"path": [
+						"3",
+						"movie",
+						":state"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "c15aef2e35d1752562aec3685f62834e"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						}
+					],
+					"variable": [
+						{
+							"key": "state",
+							"value": "now_playing"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movies popular",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.themoviedb.org/3/movie/:state?api_key=c15aef2e35d1752562aec3685f62834e&page=2",
+					"protocol": "https",
+					"host": [
+						"api",
+						"themoviedb",
+						"org"
+					],
+					"path": [
+						"3",
+						"movie",
+						":state"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "c15aef2e35d1752562aec3685f62834e"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						}
+					],
+					"variable": [
+						{
+							"key": "state",
+							"value": "popular"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.themoviedb.org/3/movie/:id?api_key=c15aef2e35d1752562aec3685f62834e",
+					"protocol": "https",
+					"host": [
+						"api",
+						"themoviedb",
+						"org"
+					],
+					"path": [
+						"3",
+						"movie",
+						":id"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "c15aef2e35d1752562aec3685f62834e"
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "70"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie review",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.themoviedb.org/3/movie/:id/reviews?api_key=c15aef2e35d1752562aec3685f62834e",
+					"protocol": "https",
+					"host": [
+						"api",
+						"themoviedb",
+						"org"
+					],
+					"path": [
+						"3",
+						"movie",
+						":id",
+						"reviews"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "c15aef2e35d1752562aec3685f62834e"
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "70"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
