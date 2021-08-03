@@ -1,4 +1,7 @@
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 `#node.js`  `#master-in-software-engineering` `#javascript` `#API`
 
 
@@ -192,6 +195,19 @@ for details
 ## Contributors ✨ <!-- omit in toc -->
 
   
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="http://nachomontoya.es"><img src="https://avatars.githubusercontent.com/u/73990495?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nacho</b></sub></a><br /><a href="https://github.com/mhfortuna/node-moviedb-cli/commits?author=Nachomontoya" title="Code">💻</a> <a href="#design-Nachomontoya" title="Design">🎨</a> <a href="#ideas-Nachomontoya" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-Nachomontoya" title="Project Management">📆</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 Thanks goes to these wonderful people
 
