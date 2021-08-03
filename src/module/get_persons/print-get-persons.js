@@ -4,11 +4,11 @@ const { SECTION_SEPARATOR } = require("../../utils/constants");
 
 const spinner = require("../../components/spinner");
 
-function printGetPersonsInformation(data) {
-  if (data.errors) {
-    spinner.fail(data.errors[0]);
+function printGetPersonsInformation(dataObject) {
+  if (dataObject.errors) {
+    spinner.fail(dataObject.errors[0]);
   } else {
-    const results = data.results;
+    const results = dataObject.results;
     results.forEach((r) => {
       // Separator
       console.log(chalk.white(`${SECTION_SEPARATOR}\n`));
@@ -52,10 +52,12 @@ function printGetPersonsInformation(data) {
     });
 
     // Page index
-    if (data.page <= data.total_pages) {
+    if (dataObject.page <= dataObject.total_pages) {
       console.log(chalk.white(SECTION_SEPARATOR));
       console.log(
-        chalk.white(`Page ${data.page} of ${data.total_pages}\n\n\n`)
+        chalk.white(
+          `Page ${dataObject.page} of ${dataObject.total_pages}\n\n\n`
+        )
       );
     }
 

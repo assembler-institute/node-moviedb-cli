@@ -1,8 +1,11 @@
-const { getMovies, getMoviesNowPlaying } = require("./getMoviesRequest");
+const {
+  getMoviesRequest,
+  getMoviesNowPlayingRequest,
+} = require("./get-movies-request");
 const { readLocalGetMoviesData } = require("./get-movies-data-local-handle");
 
 module.exports = {
-  getMovies: getMovies,
-  getMoviesNowPlaying: getMoviesNowPlaying,
+  getMoviesRequest: getMoviesRequest,
+  getMoviesNowPlayingRequest: getMoviesNowPlayingRequest,
   readLocalGetMoviesData: readLocalGetMoviesData,
 };
