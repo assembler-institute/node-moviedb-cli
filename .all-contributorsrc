@@ -1,0 +1,51 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Nachomontoya",
+      "name": "Nacho",
+      "avatar_url": "https://avatars.githubusercontent.com/u/73990495?v=4",
+      "profile": "http://nachomontoya.es",
+      "contributions": [
+        "code",
+        "design",
+        "ideas",
+        "projectManagement"
+      ]
+    },
+    {
+      "login": "Hugo05Duran",
+      "name": "Hugo05Duran",
+      "avatar_url": "https://avatars.githubusercontent.com/u/80817782?v=4",
+      "profile": "https://github.com/Hugo05Duran",
+      "contributions": [
+        "code",
+        "design",
+        "ideas",
+        "projectManagement"
+      ]
+    },
+    {
+      "login": "mhfortuna",
+      "name": "Mathias Fortuna",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66578026?v=4",
+      "profile": "https://github.com/mhfortuna",
+      "contributions": [
+        "code",
+        "design",
+        "ideas",
+        "projectManagement"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "node-moviedb-cli",
+  "projectOwner": "mhfortuna",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
