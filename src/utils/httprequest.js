@@ -1,6 +1,6 @@
 const https = require("https");
 const fs = require("fs");
-const { movie_render } = require("./render_movie");
+const { movie_render, person_render } = require("./render_movie");
 const spin = require("./spinner");
 const render = require("./render_globals");
 require("dotenv/config");
@@ -37,6 +37,10 @@ exports.httpRequest = function (endPoint, option1 = "", option2 = "") {
           } else if (endPoint.includes("movie/")) {
             movie_render(JSON.parse(result));
             spinner.succeed("Film loaded successfully");
+            return;
+          } else if (endPoint.includes("person/")) {
+            person_render(JSON.parse(result));
+            spinner.succeed("Person loaded successfully");
             return;
           }
         });
