@@ -244,6 +244,7 @@ async function getMovies(page, isLocal, isNowPlaying, isSave, isInteractive) {
         moviesJson = await fileSystem.loadMovies(isNowPlaying);
         spinnerText = "Popular movies data loaded";
       }
+      notify("Loaded data from file!");
     } else {
       if (isNowPlaying === true) {
         moviesJson = await request.getNowPlayingMovies(page);
@@ -292,6 +293,7 @@ async function getMovie(id, isReviews, isLocal, isSave, isInteractive) {
       if (isReviews === true) {
         movieReviewsJson = await fileSystem.loadMovieReviews(movieId);
       }
+      notify("Loaded data from file!");
     } else {
       singleMovieJson = await request.getMovie(movieId);
       if (isReviews === true) {
@@ -352,6 +354,7 @@ async function getPersons(page, isLocal, isSave, isInteractive) {
       } else {
         render.renderPersons(json);
         spinner.succeed("Popular Persons data loaded");
+        notify("Loaded data from file!");
       }
     } else if (isSave === true) {
       const json = await request.getPopularPersons(page);
@@ -381,6 +384,7 @@ async function getPerson(id, isLocal, isSave, isInteractive) {
     const personId = parseInt(id);
     if (isLocal === true) {
       json = await fileSystem.loadPerson();
+      notify("Loaded data from file!");
     } else {
       json = await request.getPerson(personId);
     }
