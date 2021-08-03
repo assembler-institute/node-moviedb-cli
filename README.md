@@ -1,6 +1,6 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 `#node.js`  `#master-in-software-engineering` `#javascript` `#API`
 
@@ -201,6 +201,7 @@ for details
 <table>
   <tr>
     <td align="center"><a href="http://nachomontoya.es"><img src="https://avatars.githubusercontent.com/u/73990495?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nacho</b></sub></a><br /><a href="https://github.com/mhfortuna/node-moviedb-cli/commits?author=Nachomontoya" title="Code">💻</a> <a href="#design-Nachomontoya" title="Design">🎨</a> <a href="#ideas-Nachomontoya" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-Nachomontoya" title="Project Management">📆</a></td>
+    <td align="center"><a href="https://github.com/Hugo05Duran"><img src="https://avatars.githubusercontent.com/u/80817782?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hugo05Duran</b></sub></a><br /><a href="https://github.com/mhfortuna/node-moviedb-cli/commits?author=Hugo05Duran" title="Code">💻</a> <a href="#design-Hugo05Duran" title="Design">🎨</a> <a href="#ideas-Hugo05Duran" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-Hugo05Duran" title="Project Management">📆</a></td>
   </tr>
 </table>
 
