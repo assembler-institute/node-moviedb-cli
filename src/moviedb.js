@@ -5,6 +5,7 @@ const { Command } = require("commander");
 const program = new Command();
 program.version("0.0.1");
 
+console.log(process.env.API_KEY);
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
