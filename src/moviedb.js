@@ -10,6 +10,7 @@ program
   .description("Make a network request to fetch most popular persons")
   .action(function getPersons() {
     // code here
+    Server.get
   });
 
 program
