@@ -1,10 +1,6 @@
 #!/usr/bin/env node
 
-
-
 const { Command } = require("commander");
-
-
 
 const program = new Command();
 
@@ -21,10 +17,6 @@ program.version("0.0.1")
     console.log(username, password);
 
   })
-
-
-
-
 
 program
 
@@ -66,8 +58,6 @@ program
 
   });
 
-
-
 program
 
   .command("get-movie")
@@ -80,11 +70,10 @@ program
 
   });
 
-
-
 program
 
   .option("-v, --verbose", "A value indicating whether output should be verbose")
+  
 
 // error on unknown commands
 
