@@ -10,17 +10,21 @@ program.version("0.0.1");
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
-  .action(function getPersons() {
-
-    const options =  {
+  .requiredOption(
+    "--page <number>",
+    "The page of persons data results to fetch"
+  )
+  .requiredOption("-p, --popular", "Fetch the popular persons")
+  .action(function getPersons(options) {
+    const fetch =  {
       href: "https://api.themoviedb.org",
       protocol: "https:",
       hostname: "api.themoviedb.org",
-      path: `/3/person/1?api_key=${KEY}`,
+      path: `/3/person/popular?page=${options.page}&api_key=${KEY}`,
       method: "GET",
     };
     
-    const req = https.request(options, (res) => {
+    const req = https.request(fetch, (res) => {
       let responseBody = '';
       res.on("data", function onData(chunk) {
         responseBody += chunk;
@@ -28,8 +32,8 @@ program
   
       res.on("end", function onEnd() {
         const data = JSON.parse(responseBody);
-  
         console.log('data:', data);
+        
       });
     });
     
@@ -38,6 +42,19 @@ program
     });
     req.end();
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 program
   .command("get-person")
