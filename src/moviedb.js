@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require('dotenv/config')
+
 const { Command } = require("commander");
 
 const program = new Command();
