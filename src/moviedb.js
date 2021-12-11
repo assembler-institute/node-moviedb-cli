@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-
+const https = require("https");
+require("dotenv").config()
+const KEY = process.env.API_KEY;
 const { Command } = require("commander");
 
 const program = new Command();
@@ -9,8 +11,32 @@ program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
   .action(function getPersons() {
-    // code here
-    Server.get
+
+    const options =  {
+      href: "https://api.themoviedb.org",
+      protocol: "https:",
+      hostname: "api.themoviedb.org",
+      path: `/3/person/1?api_key=${KEY}`,
+      method: "GET",
+    };
+    
+    const req = https.request(options, (res) => {
+      let responseBody = '';
+      res.on("data", function onData(chunk) {
+        responseBody += chunk;
+      });
+  
+      res.on("end", function onEnd() {
+        const data = JSON.parse(responseBody);
+  
+        console.log('data:', data);
+      });
+    });
+    
+    req.on('error', (e) => {
+      console.error(e);
+    });
+    req.end();
   });
 
 program
