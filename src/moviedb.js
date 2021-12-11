@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-const https = require("https");
-require("dotenv").config()
-const KEY = process.env.API_KEY;
+require("dotenv").config();
 const { Command } = require("commander");
-
+const https = require("https");
+const KEY = process.env.API_KEY;
+const ora  = require("ora");
 const program = new Command();
 program.version("0.0.1");
 
@@ -16,45 +16,32 @@ program
   )
   .requiredOption("-p, --popular", "Fetch the popular persons")
   .action(function getPersons(options) {
-    const fetch =  {
+    const fetch = {
       href: "https://api.themoviedb.org",
       protocol: "https:",
       hostname: "api.themoviedb.org",
       path: `/3/person/popular?page=${options.page}&api_key=${KEY}`,
       method: "GET",
     };
-    
+    const spinner = ora("Loading popular people").start();
     const req = https.request(fetch, (res) => {
-      let responseBody = '';
+      let responseBody = "";
       res.on("data", function onData(chunk) {
         responseBody += chunk;
       });
-  
+      
       res.on("end", function onEnd() {
         const data = JSON.parse(responseBody);
-        console.log('data:', data);
-        
+        spinner.succeed("Popular Persons - Loaded");
+        console.log("data:", data);
       });
     });
-    
-    req.on('error', (e) => {
+
+    req.on("error", (e) => {
       console.error(e);
     });
     req.end();
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 program
   .command("get-person")
