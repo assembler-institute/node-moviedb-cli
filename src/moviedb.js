@@ -3,10 +3,18 @@ require("dotenv").config();
 const { Command } = require("commander");
 const https = require("https");
 const KEY = process.env.API_KEY;
-const ora  = require("ora");
+const ora = require("ora");
 const program = new Command();
 program.version("0.0.1");
+const {
+  renderPersonsData,
+  renderPersonData,
+} = require("../utils/render");
 
+
+
+
+//get popular persons by page, command:
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
@@ -26,28 +34,56 @@ program
     const spinner = ora("Loading popular people").start();
     const req = https.request(fetch, (res) => {
       let responseBody = "";
-      res.on("data", function onData(chunk) {
-        responseBody += chunk;
-      });
       
+      res.on("data", function onData(resData) {
+        responseBody += resData;
+      });
+
       res.on("end", function onEnd() {
         const data = JSON.parse(responseBody);
+        console.log(renderPersonsData(data.page , data.total_pages, data.results));
         spinner.succeed("Popular Persons - Loaded");
-        console.log("data:", data);
       });
     });
 
-    req.on("error", (e) => {
-      console.error(e);
+    req.on("error", () => {
+      ora.error("Error: Network request fails");
     });
     req.end();
   });
 
+
+  //get single person by id, command:
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
-  .action(function getPerson() {
-    // code here
+  .requiredOption("--id <id>", "The id of the person")
+  .action(function getPerson(options) {
+    const fetch = {
+      href: "https://api.themoviedb.org",
+      protocol: "https:",
+      hostname: "api.themoviedb.org",
+      path: `/3/person/${options.id}?api_key=${KEY}`,
+      method: "GET",
+    };
+    const spinner = ora("Fetching the person data...").start();
+    const req = https.request(fetch, (res) => {
+      let responseBody = "";
+      res.on("data", function onData(chunk) {
+        responseBody += chunk;
+      });
+
+      res.on("end", function onEnd() {
+        const data = JSON.parse(responseBody);
+        spinner.succeed("Person data - Loaded");
+        console.log(renderPersonData(data));
+      });
+    });
+
+    req.on("error", (e) => {
+      ora.error("Error: Network request fails");
+    });
+    req.end();
   });
 
 program
