@@ -1,31 +1,31 @@
 {
-  "name": "node-moviedb-cli",
-  "version": "1.0.0",
-  "description": "Assembler School: Node.js MovieDB CLI",
-  "keywords": [
-    "node.js",
-    "cli app",
-    "assembler school"
-  ],
-  "author": "Dani Lucaci <dani@assemblerschool.com>",
-  "license": "MIT",
-  "private": true,
-  "main": "src/moviedb.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/assembler-school/node-moviedb-cli.git"
-  },
-  "scripts": {
-    "start": "set NODE_ENV=development && node src/moviedb.js"
-  },
-  "dependencies": {
-    "chalk": "^4.1.0",
-    "commander": "^6.1.0",
-    "express": "^4.17.1",
-    "node-notifier": "^8.0.0",
-    "ora": "^5.1.0"
-  },
-  "devDependencies": {
-    "dotenv": "^10.0.0"
-  }
+    "name": "node-moviedb-cli",
+    "version": "1.0.0",
+    "description": "Assembler School: Node.js MovieDB CLI",
+    "keywords": [
+        "node.js",
+        "cli app",
+        "assembler school"
+    ],
+    "author": "Dani Lucaci <dani@assemblerschool.com>",
+    "license": "MIT",
+    "private": true,
+    "main": "src/moviedb.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/assembler-school/node-moviedb-cli.git"
+    },
+    "scripts": {
+        "start": "set NODE_ENV=development && node src/moviedb.js"
+    },
+    "dependencies": {
+        "chalk": "^4.1.0",
+        "commander": "^6.1.0",
+        "express": "^4.17.1",
+        "node-notifier": "^8.0.2",
+        "ora": "^5.4.1"
+    },
+    "devDependencies": {
+        "dotenv": "^10.0.0"
+    }
 }
