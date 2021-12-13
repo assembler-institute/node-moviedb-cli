@@ -2,14 +2,23 @@ const chalk = require("chalk");
 
 const log = console.log;
 
-function renderPersonsData(data, page) {
+function renderData(page, obj) {
+    const items = obj.results
+    items.forEach(el => {
+
+                log(`Name: ${chalk.blue.bold(el.name)}`);
+                log(`ID: ${chalk.white(el.id)}`);
+                if (el.known_for_department) {
+                    log(`${chalk.white(`Department:${chalk.magenta(el.known_for_department)}`)}`);
+        }
+    });
+
     log(chalk.white(`\n\n----------------------------------------`));
-    log(`Page: ${chalk.white(page)} of: ${chalk.white(23)}`);
+    log(`Page: ${chalk.white(page)} of: ${chalk.white(obj.total_pages)}`);
 
     log(chalk.white(`---------------------------------------------`));
 
-    log(`\n${data[1]}`);
 }
 module.exports = {
-    renderPersonsData,
+    renderData,
 }
