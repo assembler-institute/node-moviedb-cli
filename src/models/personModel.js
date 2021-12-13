@@ -23,8 +23,3 @@ async function getPersons(page) {
 }
 
 export { getPerson, getPersons };
-
-// module.exports = {
-// 	getPerson,
-// 	getPersons,
-// };

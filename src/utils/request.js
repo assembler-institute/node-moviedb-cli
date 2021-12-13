@@ -2,16 +2,15 @@ import https from "https";
 
 function request(options) {
 	return new Promise((resolve, reject) => {
-		const chunks = [];
+		let data = "";
 
 		const req = https.request(options, (res) => {
 			res.on("data", function (chunk) {
-				chunks.push(chunk);
+				data += chunk;
 			});
 
-			res.on("end", function (chunk) {
-				var body = Buffer.concat(chunks);
-				resolve(JSON.parse(body.toString()));
+			res.on("end", function () {
+				resolve(JSON.parse(data));
 			});
 
 			res.on("error", function (error) {
@@ -24,7 +23,3 @@ function request(options) {
 }
 
 export default request;
-
-// module.exports = {
-// 	request,
-// };

@@ -13,21 +13,22 @@ function showPerson(data) {
 
 	console.log();
 
-	console.log(chalk.white("\n----------------------------------------\n"));
+	console.log(chalk.white("----------------------------------------\n"));
 	console.log(`ID: ${chalk.white(id)}`);
 	console.log(`Name: ${chalk.blue.bold(name)}`);
 	console.log(`Birth: ${chalk.white(birthday)} ${chalk.gray("|")} ${chalk.white(birthplace)}`);
 	console.log(`Department: ${department === "Acting" ? chalk.magenta(department) : chalk.white(department)}`);
 	console.log(`Biography: ${chalk.blue.bold(biography)}`);
+	console.log();
 
 	if (aliases !== undefined) {
-		console.log("\nAlso known as:\n");
+		console.log("Also known as:\n");
 
 		aliases.forEach((alias) => {
 			console.log(`${chalk.white(alias)}`);
 		});
 	} else {
-		console.log(`\n${chalk.yellow(name)} doesn’t have any alternative names`);
+		console.log(`${chalk.yellow(name)} doesn’t have any alternative names`);
 	}
 
 	console.log();
@@ -41,14 +42,15 @@ function showPersons(data) {
 	persons.forEach((person) => {
 		const { id, name, known_for_department: department, known_for: movies } = person;
 
-		console.log(chalk.white("\n----------------------------------------\n"));
+		console.log(chalk.white("----------------------------------------\n"));
 
 		console.log(`ID: ${chalk.white(id)}`);
 		console.log(`Name: ${chalk.blue.bold(name)}`);
 		console.log(`Department: ${department === "Acting" ? chalk.magenta(department) : chalk.white(department)}`);
+		console.log();
 
 		if (movies !== undefined) {
-			console.log("\nAppearing in movies:\n");
+			console.log("Appearing in movies:\n");
 
 			movies.forEach((movie) => {
 				const { id, title, release_date } = movie;
@@ -59,7 +61,7 @@ function showPersons(data) {
 				console.log(`\tTitle: ${chalk.white(title)}`);
 			});
 		} else {
-			console.log(chalk.orange(`\n${name} doesn’t appear in any movie`));
+			console.log(chalk.orange(`${name} doesn’t appear in any movie`));
 		}
 	});
 
@@ -67,8 +69,3 @@ function showPersons(data) {
 }
 
 export { showPerson, showPersons };
-
-// module.exports = {
-// 	showPerson,
-// 	showPersons,
-// };
