@@ -5,6 +5,7 @@ const log = console.log;
 function renderPersonsData(page, totalPages, persons) {
   if (totalPages > page) {
     log(chalk.white(`\n\n----------------------------------------`));
+
   }
 
   persons.forEach((person) => {
@@ -74,7 +75,18 @@ function renderPersonData(person) {
   }
 }
 
+function renderMoviesData(){
+  log(chalk.white(`\n----------------------------------------`));
+  log(`${chalk.white(`Person:\n`)}`);
+}
+
+// function renderMovieData(){
+
+// }
+
 module.exports = {
   renderPersonsData: renderPersonsData,
   renderPersonData: renderPersonData,
+  // renderMoviesData: renderMoviesData,
+  // renderMovieData: renderMovieData
 };
