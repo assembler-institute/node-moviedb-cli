@@ -3,7 +3,7 @@
 const { Command } = require("commander");
 const program = new Command();
 program.version("0.0.1");
-const { requestAsyncAwait } = require("./utils/httpRequests");
+const { requestPersonsByPage } = require("./utils/httpRequests");
 
 program
   .command("get-persons")
@@ -14,7 +14,7 @@ program
     "The page of persons data results to fetch"
   )
   .action(function handleAction(options) {
-    requestAsyncAwait(options.page);
+    requestPersonsByPage(options.page);
   });
 
 program

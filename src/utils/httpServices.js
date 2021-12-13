@@ -1,7 +1,7 @@
 const https = require("https");
 require("dotenv").config();
 
-function get(page) {
+function getPersonsByPage(page) {
   return new Promise((resolve, reject) => {
     const options = {
       href: "https://api.themoviedb.org",
@@ -32,5 +32,5 @@ function get(page) {
 }
 
 module.exports = {
-  get: get,
+  getPersonsByPage: getPersonsByPage,
 };
