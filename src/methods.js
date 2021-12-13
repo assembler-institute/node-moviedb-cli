@@ -4,13 +4,15 @@ const ora = require('ora');
 const https = require('https');
 const testRender = require('../render/person');
 const moviesRender = require('../render/movies');
+const saveData = require('./saveload');
+const { options } = require('node-notifier');
 // -----------------------------------constants-------------------------------------------------------
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const apiKey = process.env.API_KEY;
 const API_KEY = `api_key=${apiKey}`;
 //------------------------------------#########-----------------------------------------------------
 
-function connectApi(page) {
+function connectApi(page, options) {
     const url = `https://api.themoviedb.org/3/person/popular?api_key=${apiKey}&page=${page}`;
     const req = https.request(url, (res) => {
         const spinner = ora("Fetch the popular persons...").start();
@@ -21,6 +23,7 @@ function connectApi(page) {
         });
         res.on("end", () => {
             let obj = JSON.parse(data);
+            if (options.save) saveData.savePersons(obj);
             testRender.renderData(page, obj)
         })
         spinner.succeed("completed")
@@ -48,11 +51,10 @@ function getPerson(id) {
     })
 };
 
-function getMovies(page, popular, nowPlaying) {
+function getMovies(page, options) {
 
     let requestURL = `${BASE_URL}movie/popular?${API_KEY}&page=${page}`;
-    if (popular) requestURL = `${BASE_URL}movie/popular?${API_KEY}&page=${page}`;
-    if (nowPlaying) requestURL = `${BASE_URL}movie/now_playing?${API_KEY}&page=${page}`;
+    if (options.nowPlaying) requestURL = `${BASE_URL}movie/now_playing?${API_KEY}&page=${page}`;
     const req = https.request(requestURL, (res) => {
         const spinner = ora('Fetching the movies...').start();
         res.setEncoding('utf8');
@@ -66,6 +68,7 @@ function getMovies(page, popular, nowPlaying) {
         res.on("end", () => {
             const obj = JSON.parse(data);
             moviesRender.renderMovies(page, obj);
+            if (options.save) saveData.saveMovies(obj);
             spinner.succeed('Successfully fetched data');
         })
         spinner.stop();

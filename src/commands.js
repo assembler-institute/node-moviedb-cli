@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 //-----------------------------------requires--------------------------------------------------------
-const { Command, helpOption } = require("commander");
+const { Command, helpOption, option } = require("commander");
 const { connectApi } = require("./methods");
 const { getPerson } = require("./methods");
 const { getMovies } = require("./methods");
+const { load } = require("./saveload");
 //----------------------------------- ########--------------------------------------------------------
 const program = new Command();
 
@@ -16,8 +17,14 @@ program
     .requiredOption('-p, --popular', 'Fetch the popular persons')
     .requiredOption('--page', 'Fetch the popular persons')
     .description("Make a network request to fetch most popular persons")
-    .action((page) => {
-        connectApi(page)
+    .option('-s, --save', 'Save the result to a file')
+    .option('-l, --load', 'Load the result from a file')
+    .action((page, options) => {
+        if (options.load) {
+            load('persons.json')
+        } else {
+            connectApi(page, options)
+        }
     });
 
 
@@ -43,14 +50,15 @@ program
     .requiredOption('--page', 'Fetch the popular movies')
     .option('-p, --popular', 'Fetch the popular movies')
     .option('-n, --now-playing', 'Fetch the now playing movies')
-    .action((page, options, nowPlaying) => {
-        if (options.popular) {
-            options.popular = true;
+    .option('-s, --save', 'Save the movies to a file')
+    .option('-l, --local', 'Fetch the movies from a local file')
+    .action((page, options) => {
+        if (options.local) {
+            load('movies.json');
         }
-        if (nowPlaying) {
-            nowPlaying = true;
+        else {
+            getMovies(page, options);
         }
-        getMovies(page, options.popular, nowPlaying);
     });
 
 program.parse(process.argv);
