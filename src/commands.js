@@ -41,9 +41,16 @@ program
     .command("get-movies <page>")
     .description("Make a network request to fetch most popular movies")
     .requiredOption('--page', 'Fetch the popular movies')
+    .option('-p, --popular', 'Fetch the popular movies')
     .option('-n, --now-playing', 'Fetch the now playing movies')
-    .action((page) => {
-        getMovies(page)
+    .action((page, options, nowPlaying) => {
+        if (options.popular) {
+            options.popular = true;
+        }
+        if (nowPlaying) {
+            nowPlaying = true;
+        }
+        getMovies(page, options.popular, nowPlaying);
     });
 
 program.parse(process.argv);

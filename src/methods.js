@@ -48,8 +48,11 @@ function getPerson(id) {
     })
 };
 
-function getMovies(page) {
-    const requestURL = `${BASE_URL}movie/popular?${API_KEY}&page=${page}`;
+function getMovies(page, popular, nowPlaying) {
+
+    let requestURL = `${BASE_URL}movie/popular?${API_KEY}&page=${page}`;
+    if (popular) requestURL = `${BASE_URL}movie/popular?${API_KEY}&page=${page}`;
+    if (nowPlaying) requestURL = `${BASE_URL}movie/now_playing?${API_KEY}&page=${page}`;
     const req = https.request(requestURL, (res) => {
         const spinner = ora('Fetching the movies...').start();
         res.setEncoding('utf8');
