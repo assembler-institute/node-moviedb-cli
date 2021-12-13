@@ -10,6 +10,8 @@ const { Command } = require("commander");
 const { url } = require('inspector');
 const { options } = require('node-notifier');
 const req = require('express/lib/request');
+const testRender = require('../render/person');
+
 
 const program = new Command();
 
@@ -63,21 +65,9 @@ program
       res.setEncoding('utf8');
       res.on("data", (d) => {
         const obj = JSON.parse(d);
+        // console.log(obj);
+        console.log(testRender.renderPerson(obj));
 
-        console.log(chalk.white(`\n${obj.id}`));
-        console.log(chalk.bold(`\n${obj.name}`));
-        console.log(chalk.white(`\nBirthday: ${obj.birthday}| ${obj.place_of_birth}`));
-        obj.known_for_department === "Acting" ? console.log(chalk.white(`\n${obj.known_for_department}`)) : "";
-        console.log(chalk.blue(`\n${obj.biography}`));
-        if (obj.also_known_as) {
-          console.log(chalk.white(`\nAlso known as:`));
-          obj.also_known_as.forEach(element => {
-            console.log(chalk.white(`\n${element}`));
-          });
-          //  obj.also_known_as.forEach(e).log(chalk.white(`\nAlso known as: \n${obj.also_known_as}`)) 
-        } else {
-          console.log(chalk.white(`\n${obj.name} doesn't have any alternate names\n`));
-        };
 
         spinner.succeed('Successfully fetched data');
       });
