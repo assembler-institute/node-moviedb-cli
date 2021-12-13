@@ -1,10 +1,17 @@
 const https = require("https");
-const { URL } = require("url");
+require("dotenv").config();
 
-function get(url) {
+function get(page) {
   return new Promise((resolve, reject) => {
-    const REQUEST_URL = new URL(url);
-    const req = https.request(REQUEST_URL, (res) => {
+    const options = {
+      href: "https://api.themoviedb.org",
+      protocol: "https:",
+      hostname: "api.themoviedb.org",
+      path: `/3/person/popular?api_key=${process.env.API_KEY}&page=${page}`,
+      port: 443,
+      method: "GET",
+    };
+    const req = https.request(options, (res) => {
       let data = "";
       res.on("data", (chunk) => {
         data += chunk;
