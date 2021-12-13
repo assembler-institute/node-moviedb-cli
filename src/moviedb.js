@@ -26,7 +26,6 @@ program
   .action(function getPersons(options) {
     const fetch = {
       href: "https://api.themoviedb.org",
-      protocol: "https:",
       hostname: "api.themoviedb.org",
       path: `/3/person/popular?page=${options.page}&api_key=${KEY}`,
       method: "GET",
@@ -150,6 +149,7 @@ program
       path = `/3/movie/${options.id}?api_key=${KEY}`;
     }
     
+    
     const fetch = {
       href: "https://api.themoviedb.org",
       protocol: "https:",
@@ -160,6 +160,7 @@ program
 
     const spinner = ora("Loading popular people").start();
     const req = https.request(fetch, (res) => {
+      
       let responseBody = "";
 
       res.on("data", function onData(resData) {
@@ -168,11 +169,13 @@ program
 
       res.on("end", function onEnd() {
         const data = JSON.parse(responseBody);
-        console.log("data:", data)
-        if (options.reviews) { spinner.succeed("Recent released movies loaded")}
+        
+        renderMovieData(data, options);
+        if (options) { spinner.succeed("Recent released movies loaded");}
         else {spinner.succeed("Popular movies loaded")}
       });
     });
+    
 
     req.on("error", () => {
       ora.error("Error: Network request fails");

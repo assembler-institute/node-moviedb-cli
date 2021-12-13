@@ -1,4 +1,5 @@
 const chalk = require("chalk");
+const { options } = require("node-notifier");
 
 const log = console.log;
 
@@ -89,13 +90,42 @@ function renderMoviesData(page, totalPages, movies){
     log(`Release Date: ${chalk.white.bold(movie.release_date)}`);
 }
 )}
-// function renderMovieData(){
 
-// }
+function renderMovieData(movie){
+  
+  log(chalk.white(`\n----------------------------------------`));
+  log(`\n Movie: \n`);
+  log(`ID: ${movie.id} \n `);
+  log(`Title: ${chalk.blue.bold(movie.title)} \n`);
+  log(`Release Date: ${movie.release_date} \n`);
+  log(`Runtime: ${movie.runtime} \n`);
+  log(`Vote Count: ${movie.vote_count} \n`);
+  log(`Overview: ${movie.overview} \n`);
+  log(`\n`);
+    if (movie.genres){
+      log(`Genres:`)
+        movie.genres.forEach((genre)=>{
+          log(`\n ${genre.name}`)
+        })
+    }
+    else {
+      log(chalk.yellow("The movie doesn’t have a declared genre \n"))
+    }
+  log(`\n`);
+    if (movie.spoken_languages){
+      log(`Spoken Languages:`)
+        movie.spoken_languages.forEach((languages)=>{
+          log(`\n ${languages.english_name}`)
+        })
+    }
+    else {
+      log(chalk.yellow(`The movie: ${movie.id} doesn’t have any declared languages \n`))
+    }
+}
 
 module.exports = {
   renderPersonsData: renderPersonsData,
   renderPersonData: renderPersonData,
   renderMoviesData: renderMoviesData,
-  // renderMovieData: renderMovieData
+  renderMovieData: renderMovieData
 };
