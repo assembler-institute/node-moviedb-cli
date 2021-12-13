@@ -6,13 +6,7 @@ const KEY = process.env.API_KEY;
 const ora = require("ora");
 const program = new Command();
 program.version("0.0.1");
-const {
-  renderPersonsData,
-  renderPersonData,
-} = require("../utils/render");
-
-
-
+const { renderPersonsData, renderPersonData } = require("../utils/render");
 
 //get popular persons by page, command:
 program
@@ -34,14 +28,16 @@ program
     const spinner = ora("Loading popular people").start();
     const req = https.request(fetch, (res) => {
       let responseBody = "";
-      
+
       res.on("data", function onData(resData) {
         responseBody += resData;
       });
 
       res.on("end", function onEnd() {
         const data = JSON.parse(responseBody);
-        console.log(renderPersonsData(data.page , data.total_pages, data.results));
+
+        renderPersonsData(data.page, data.total_pages, data.results);
+
         spinner.succeed("Popular Persons - Loaded");
       });
     });
@@ -52,8 +48,7 @@ program
     req.end();
   });
 
-
-  //get single person by id, command:
+//get single person by id, command:
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
@@ -69,14 +64,15 @@ program
     const spinner = ora("Fetching the person data...").start();
     const req = https.request(fetch, (res) => {
       let responseBody = "";
-      res.on("data", function onData(chunk) {
-        responseBody += chunk;
+      res.on("data", function onData(resData) {
+        responseBody += resData;
       });
 
       res.on("end", function onEnd() {
         const data = JSON.parse(responseBody);
+        renderPersonData(data);
+
         spinner.succeed("Person data - Loaded");
-        console.log(renderPersonData(data));
       });
     });
 

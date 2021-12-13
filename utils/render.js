@@ -7,7 +7,7 @@ function renderPersonsData(page, totalPages, persons) {
     log(chalk.white(`\n\n----------------------------------------`));
   }
 
-  persons.forEach(function renderPerson(person) {
+  persons.forEach((person) => {
     log(chalk.white(`----------------------------------------`));
     log(`\n`);
     log(`${chalk.white(`Person:\n`)}`);
@@ -44,7 +44,6 @@ function renderPersonsData(page, totalPages, persons) {
   });
 }
 
-
 function renderPersonData(person) {
   log(chalk.white(`\n----------------------------------------`));
   log(`${chalk.white(`Person:\n`)}`);
@@ -74,7 +73,6 @@ function renderPersonData(person) {
     log(chalk.yellow(`${person.name} doesn’t have any alternate names\n`));
   }
 }
-
 
 module.exports = {
   renderPersonsData: renderPersonsData,
