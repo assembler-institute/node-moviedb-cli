@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 //-----------------------------------requires--------------------------------------------------------
-const { Command } = require("commander");
+const { Command, helpOption } = require("commander");
 const { connectApi } = require("./methods");
 const { getPerson } = require("./methods");
+const { getMovies } = require("./methods");
 //----------------------------------- ########--------------------------------------------------------
 const program = new Command();
 
@@ -30,6 +31,19 @@ program
 
     .action((options) => {
         getPerson(options.id);
+    });
+
+
+
+
+program
+
+    .command("get-movies <page>")
+    .description("Make a network request to fetch most popular movies")
+    .requiredOption('--page', 'Fetch the popular movies')
+    .option('-n, --now-playing', 'Fetch the now playing movies')
+    .action((page) => {
+        getMovies(page)
     });
 
 program.parse(process.argv);
