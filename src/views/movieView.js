@@ -32,7 +32,7 @@ function showMovie(data) {
 	console.log(`Overview: ${chalk.white(overview)}`);
 	console.log();
 
-	if (genres !== undefined) {
+	if (genres.length) {
 		console.log("Genres:\n");
 
 		genres.forEach((genre) => {
@@ -44,7 +44,7 @@ function showMovie(data) {
 
 	console.log();
 
-	if (spoken_languages !== undefined) {
+	if (spoken_languages.length) {
 		console.log("Languages:\n");
 
 		spoken_languages.forEach((spoken_language) => {
@@ -57,4 +57,27 @@ function showMovie(data) {
 	console.log();
 }
 
-export { showMovie, showMovies };
+function showMovieReviews(data) {
+	const { page, total_pages, results: reviews } = data;
+
+	console.log();
+
+	if (reviews.length) {
+		console.log(chalk.white("----------------------------------------"));
+		console.log(chalk.white(`Page ${page}/${total_pages}`));
+
+		reviews.forEach((review) => {
+			const { author, content } = review;
+			const reviewText = content.length < 400 ? content : content.slice(0, 400) + "...";
+
+			console.log(chalk.white("----------------------------------------\n"));
+			console.log(`Author: ${chalk.blue.bold(author)}`);
+			console.log(`Content: ${chalk.white(reviewText)}`);
+			console.log();
+		});
+	} else {
+		console.log(chalk.yellow("The movie doesn’t have any reviews"));
+	}
+}
+
+export { showMovie, showMovies, showMovieReviews };

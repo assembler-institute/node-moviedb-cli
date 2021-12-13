@@ -21,7 +21,7 @@ function showPerson(data) {
 	console.log(`Biography: ${chalk.blue.bold(biography)}`);
 	console.log();
 
-	if (aliases !== undefined) {
+	if (aliases.length) {
 		console.log("Also known as:\n");
 
 		aliases.forEach((alias) => {
@@ -49,7 +49,7 @@ function showPersons(data) {
 		console.log(`Department: ${department === "Acting" ? chalk.magenta(department) : chalk.white(department)}`);
 		console.log();
 
-		if (movies !== undefined) {
+		if (movies.length) {
 			console.log("Appearing in movies:\n");
 
 			movies.forEach((movie) => {
@@ -59,13 +59,12 @@ function showPersons(data) {
 				console.log(`\tID: ${chalk.white(id)}`);
 				console.log(`\tRelease date: ${chalk.white(release_date)}`);
 				console.log(`\tTitle: ${chalk.white(title)}`);
+				console.log();
 			});
 		} else {
-			console.log(chalk.orange(`${name} doesn’t appear in any movie`));
+			console.log(chalk.yellow(`${name} doesn’t appear in any movie\n`));
 		}
 	});
-
-	console.log();
 }
 
 export { showPerson, showPersons };

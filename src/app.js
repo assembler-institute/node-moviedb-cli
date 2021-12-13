@@ -7,7 +7,7 @@ import { default as ora } from "ora";
 import { getPerson, getPersons } from "./models/personModel.js";
 import { getMovie, getMovieReviews, getPlayingMovies, getPopularMovies } from "./models/movieModel.js";
 import { showPerson, showPersons } from "./views/personView.js";
-import { showMovie, showMovies } from "./views/movieView.js";
+import { showMovie, showMovieReviews, showMovies } from "./views/movieView.js";
 import { optionParseInteger } from "./utils/option.js";
 
 const program = new Command();
@@ -118,7 +118,7 @@ program
 
 				if (data.status_message) throw new Error(data.status_message);
 
-				console.log(data);
+				showMovieReviews(data);
 
 				loader.succeed("Movie reviews loaded successfully");
 			} else {
