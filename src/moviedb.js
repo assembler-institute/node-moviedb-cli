@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
-const ora = require("ora");
 const program = new Command();
 program.version("0.0.1");
+const { get } = require("./utils/httpServices");
+const ora = require("ora");
+require("dotenv").config();
 
 program
   .command("get-persons")
@@ -15,12 +17,10 @@ program
   )
   //? .alias("letra que sustitulle al nombre")
   .action(function handleAction(options) {
-    const spinner = ora("Fetching the popular person's data...").start();
-
-    setTimeout(() => {
-      spinner.stop();
-      console.log(`GET PERSONS -- PAGE ${options.page}`);
-    }, 2000);
+    console.log(process.env.API_KEY);
+    const url = `https://api.themoviedb.org/3/person/popular?page=${options.page}?api_key=${process.env.API_KEY}`;
+    console.log(url);
+    requestAsyncAwait(url);
   });
 
 program
@@ -47,3 +47,15 @@ program
 // error on unknown commands
 
 program.parse(process.argv);
+
+async function requestAsyncAwait(url) {
+  const spinner = ora("Fetching the popular person's data...").start();
+  try {
+    const data = await get(url);
+    spinner.succeed();
+    console.log(data);
+  } catch (err) {
+    spinner.fail();
+    console.log(err);
+  }
+}
