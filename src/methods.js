@@ -41,7 +41,7 @@ function getPerson(id) {
             console.log(testRender.renderPerson(obj));
             spinner.succeed('Successfully fetched data');
         });
-        spinner.stop();
+        // spinner.stop();
     }).end();
     req.on("error", (e) => {
         ora.fail(e.message);

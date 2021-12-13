@@ -3,10 +3,10 @@ const chalk = require('chalk');
 function renderPerson(obj) {
     console.log(chalk.white("\n----------------------------------------"))
     let aggregateString = chalk.white(`\nID: ${obj.id}`)
-    aggregateString += chalk.bold.blue(`\nName: ${obj.name}`)
+    aggregateString += chalk.white(`\nName: ${chalk.bold.blue(obj.name)}`)
     aggregateString += chalk.white(`\nBirthday: ${obj.birthday} ${chalk.grey('|')} ${chalk.white(obj.place_of_birth)}`)
-    aggregateString += obj.known_for_department === "Acting" ? chalk.magenta(`\nDepartment: ${obj.known_for_department}`) : "";
-    aggregateString += chalk.blue(`\n${obj.biography}`);
+    aggregateString += obj.known_for_department === "Acting" ? chalk.white(`\nDepartment: ${chalk.magenta(obj.known_for_department)}`) : "";
+    aggregateString += chalk.white(`\nBiography: ${chalk.bold.blue(obj.biography)}`);
 
     if (obj.also_known_as) {
         aggregateString += chalk.white(`\nAlso known as:\n`);
