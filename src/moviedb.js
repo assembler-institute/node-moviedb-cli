@@ -6,6 +6,7 @@ const KEY = process.env.API_KEY;
 const ora = require("ora");
 const program = new Command();
 program.version("0.0.1");
+
 const {
   renderPersonsData,
   renderPersonData,
@@ -87,22 +88,22 @@ program
     req.end();
   });
 
+  //get popular movies command
 program
   .command("get-movies")
   .description("Make a network request to fetch movies")
   .requiredOption("--page <number>", "The page of movies data results to fetch")
-  .option("--popular, -p", "Fetch the popular movies")
-  .option("--now-playing -n", "Fetch the movies that are playing now")
+  .option("-p, --popular", "Fetch the popular movies")
+  .option("-n, --now-playing", "Fetch the movies that are playing now")
   .action(function getMovies(options) {
-    let path = ""
-    const programOptions = program.opts();
-    if (programOptions.popular) {
-      path = `/3/movie/popular?page=${options.page}&api_key=${KEY}`;
-    } else if (programOptions.nowPlaying) {
+
+    let path = "";
+    if (options.nowPlaying) {
       path = `/3/movie/now_playing?page=${options.page}&api_key=${KEY}`;
-    } else if (!programOptions.nowPlaying && !programOptions.popular) {
+    }else{
       path = `/3/movie/popular?page=${options.page}&api_key=${KEY}`;
     }
+    
 
     const fetch = {
       href: "https://api.themoviedb.org",
@@ -122,8 +123,9 @@ program
 
       res.on("end", function onEnd() {
         const data = JSON.parse(responseBody);
-        console.log("data:", data);
-        spinner.succeed("Movies - Loaded");
+        renderMoviesData(data.page, data.total_pages, data.results);
+        if (options.nowPlaying) { spinner.succeed("Recent released movies loaded")}
+        else {spinner.succeed("Popular movies loaded")}
       });
     });
 
@@ -133,12 +135,51 @@ program
     req.end();
   });
 
+
+  //get movie by id 
 program
   .command("get-movie")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-i, --id <id>", "the id of the movie")
+  .option("-r, --reviews", "Fetch the reviews of the movie")
+  .action(function getMovie(options) {
+    let path = "";
+    if (options.reviews) {
+      path = `/3/movie/${options.id}/reviews?api_key=${KEY}`;
+    }else{
+      path = `/3/movie/${options.id}?api_key=${KEY}`;
+    }
+    
+    const fetch = {
+      href: "https://api.themoviedb.org",
+      protocol: "https:",
+      hostname: "api.themoviedb.org",
+      path: path,
+      method: "GET",
+    };
+
+    const spinner = ora("Loading popular people").start();
+    const req = https.request(fetch, (res) => {
+      let responseBody = "";
+
+      res.on("data", function onData(resData) {
+        responseBody += resData;
+      });
+
+      res.on("end", function onEnd() {
+        const data = JSON.parse(responseBody);
+        console.log("data:", data)
+        if (options.reviews) { spinner.succeed("Recent released movies loaded")}
+        else {spinner.succeed("Popular movies loaded")}
+      });
+    });
+
+    req.on("error", () => {
+      ora.error("Error: Network request fails");
+    });
+    req.end();
   });
+
 
 // error on unknown commands
 

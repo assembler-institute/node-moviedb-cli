@@ -5,6 +5,7 @@ const log = console.log;
 function renderPersonsData(page, totalPages, persons) {
   if (totalPages > page) {
     log(chalk.white(`\n\n----------------------------------------`));
+    log(chalk.white(`page: ${page} of: ${totalPages}`));
 
   }
 
@@ -75,11 +76,19 @@ function renderPersonData(person) {
   }
 }
 
-function renderMoviesData(){
+function renderMoviesData(page, totalPages, movies){
   log(chalk.white(`\n----------------------------------------`));
-  log(`${chalk.white(`Person:\n`)}`);
-}
+  log(chalk.white(`page: ${page} of: ${totalPages}`));
 
+  movies.forEach((movie) => {
+    log(chalk.white(`----------------------------------------`));
+    log(`\n`);
+    log(`${chalk.white(`Movie:\n`)}`);
+    log(`ID: ${chalk.white.bold(movie.id)}`);
+    log(`Title: ${chalk.blue.bold(movie.title)}`);
+    log(`Release Date: ${chalk.white.bold(movie.release_date)}`);
+}
+)}
 // function renderMovieData(){
 
 // }
@@ -87,6 +96,6 @@ function renderMoviesData(){
 module.exports = {
   renderPersonsData: renderPersonsData,
   renderPersonData: renderPersonData,
-  // renderMoviesData: renderMoviesData,
+  renderMoviesData: renderMoviesData,
   // renderMovieData: renderMovieData
 };
