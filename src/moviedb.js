@@ -3,7 +3,10 @@
 const { Command } = require("commander");
 const program = new Command();
 program.version("0.0.1");
-const { requestPersonsByPage } = require("./utils/httpRequests");
+const {
+  requestPersonsByPage,
+  requestPersonById,
+} = require("./utils/httpRequests");
 
 program
   .command("get-persons")
@@ -20,8 +23,9 @@ program
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-i, --id <number>", "The id of the person")
+  .action(function handleAction(options) {
+    requestPersonById(options.id);
   });
 
 program
