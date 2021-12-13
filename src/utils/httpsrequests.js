@@ -1,4 +1,6 @@
 import https from "https";
+import ora from "ora";
+import printInfo from "./printInfo.js";
 
 export default function httpsRequest(options) {
   const req = https.request(options, (res) => {
@@ -8,8 +10,11 @@ export default function httpsRequest(options) {
     });
     res.on("end", () => {
       const obj = JSON.parse(data);
-      return obj;
+      printInfo(obj)
     });
+    res.on("error", (err) => {
+      console.log(err);
+    })
   });
   req.end();
 }

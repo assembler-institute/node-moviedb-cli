@@ -25,7 +25,7 @@ program
     const options = new URL(
       `https://api.themoviedb.org/3/person/popular?page=${info.page}&api_key=${process.env.API_KEY}`
     );
-    const response = httpsRequest(options);
+    httpsRequest(options);
   });
 
 program
