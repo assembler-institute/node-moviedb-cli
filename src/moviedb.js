@@ -19,21 +19,29 @@ program
   .action(function handleAction(info) {
     createSpinner(
       "Fetching the popular person's data...",
-      "Popular person's data fetched!",
+      "Popular Persons data loaded",
       "yellow"
     );
     const options = new URL(
       `https://api.themoviedb.org/3/person/popular?page=${info.page}&api_key=${process.env.API_KEY}`
     );
-    httpsRequest(options);
+    httpsRequest(options, "getPersons");
   });
 
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
-  .requiredOption("-i, --id", "The id of the person")
-  .action(function handleAction() {
-    createSpinner("Fetching the person's data...", "yellow");
+  .requiredOption("-i, --id <number>", "The id of the person")
+  .action(function handleAction(info) {
+    createSpinner(
+      "Fetching the person's data...",
+      "Person data loaded",
+      "yellow"
+    );
+    const options = new URL(
+      `https://api.themoviedb.org/3/person/${info.id}?api_key=${process.env.API_KEY}`
+    );
+    httpsRequest(options, "getPerson");
   });
 
 program
