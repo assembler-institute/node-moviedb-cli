@@ -11,7 +11,7 @@
 	"author": "Dani Lucaci <dani@assemblerschool.com>",
 	"license": "MIT",
 	"private": true,
-	"main": "src/moviedb.js",
+	"main": "src/app.js",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/assembler-school/node-moviedb-cli.git"

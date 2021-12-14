@@ -9,7 +9,3 @@ function optionParseInteger(value) {
 }
 
 export { optionParseInteger };
-
-// module.exports = {
-// 	optionParseInteger,
-// };

@@ -40,7 +40,10 @@ function showPersons(data) {
 	console.log();
 
 	persons.forEach((person) => {
-		const { id, name, known_for_department: department, known_for: movies } = person;
+		const { id, name, known_for_department: department, known_for } = person;
+		const movies = known_for.filter((item) => {
+			return item.title !== undefined;
+		});
 
 		console.log(chalk.white("----------------------------------------\n"));
 
