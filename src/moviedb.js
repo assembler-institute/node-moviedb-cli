@@ -1,22 +1,31 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
-
 const program = new Command();
 program.version("0.0.1");
+const {
+  requestPersonsByPage,
+  requestPersonById,
+} = require("./utils/httpRequests");
 
 program
   .command("get-persons")
   .description("Make a network request to fetch most popular persons")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-p, --popular", "Fetch the popular persons")
+  .requiredOption(
+    "--page <number>",
+    "The page of persons data results to fetch"
+  )
+  .action(function handleAction(options) {
+    requestPersonsByPage(options.page);
   });
 
 program
   .command("get-person")
   .description("Make a network request to fetch the data of a single person")
-  .action(function handleAction() {
-    console.log("hello-world");
+  .requiredOption("-i, --id <number>", "The id of the person")
+  .action(function handleAction(options) {
+    requestPersonById(options.id);
   });
 
 program
