@@ -7,13 +7,13 @@
     "cli app",
     "assembler school"
   ],
-  "author": "Dani Lucaci <dani@assemblerschool.com>",
+  "author": "Gonzalo García <gonzaloarahuetes@protonmail.com>",
   "license": "MIT",
   "private": true,
   "main": "src/moviedb.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/assembler-school/node-moviedb-cli.git"
+    "url": "https://github.com/gonzalogarahuetes/node-moviedb-cli.git"
   },
   "scripts": {},
   "dependencies": {
